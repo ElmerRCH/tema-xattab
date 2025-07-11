@@ -1,0 +1,60 @@
+<header class="w-full border-b border-gray-200">
+  <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="{{ routes.root_url }}" class="flex items-center space-x-2">
+      {% if settings.logo != blank %}
+        <img src="{{ settings.logo | image_url: width: 180 }}"
+             alt="{{ shop.name }}"
+             class="h-8 w-auto">
+      {% else %}
+        <span class="text-lg font-semibold">{{ shop.name }}</span>
+      {% endif %}
+    </a>
+
+    <!-- Main navigation -->
+    <nav class="hidden md:flex space-x-8">
+      {% for link in linklists.main-menu.links %}
+        <a href="{{ link.url }}"
+           class="text-gray-700 hover:text-gray-900 font-medium">
+          {{ link.title }}
+        </a>
+      {% endfor %}
+    </nav>
+
+    <!-- Icons -->
+    <div class="flex items-center space-x-4">
+      <!-- Search Button (optional) -->
+      <button type="button"
+              class="hidden md:inline-flex items-center p-2 rounded-full hover:bg-gray-100">
+        {% render 'icon-search' %}
+      </button>
+
+      <!-- Cart -->
+      <a href="{{ routes.cart_url }}"
+         class="relative inline-flex items-center p-2 rounded-full hover:bg-gray-100">
+        {% render 'icon-cart' %}
+        {% if cart.item_count > 0 %}
+          <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+            {{ cart.item_count }}
+          </span>
+        {% endif %}
+      </a>
+
+      <!-- Mobile menu button -->
+      <button id="mobile-menu-toggle"
+              class="inline-flex md:hidden items-center p-2 rounded-md hover:bg-gray-100">
+        {% render 'icon-menu' %}
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="md:hidden hidden px-4 pb-4">
+    {% for link in linklists.main-menu.links %}
+      <a href="{{ link.url }}"
+         class="block py-2 text-gray-700 hover:text-gray-900 border-b border-gray-100">
+        {{ link.title }}
+      </a>
+    {% endfor %}
+  </div>
+</header>
