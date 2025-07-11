@@ -8,13 +8,14 @@
  * ------------------------------------------------------------
  */
 {
-  "sections": {
-    "main": {
-      "type": "main",
-      "settings": {}
-    }
-  },
-  "order": [
-    "main"
-  ]
+  "current": {
+    "logo": "shopify://shop_images/XATTAB.svg",
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {}
+      }
+    },
+    "content_for_index": []
+  }
 }
