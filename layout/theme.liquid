@@ -6,6 +6,10 @@
     <title>{{ page_title }}</title>
     {{ content_for_header }}
     <script src="{{ 'flowbite.min.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'predictive-search.js'  | asset_url }}" defer="defer"></script>
+
+    {{ 'predictive-search.js' | asset_url | stylesheet_tag }}
+
     {{ 'tailwind-output.css' | asset_url | stylesheet_tag }}
   </head>
   
