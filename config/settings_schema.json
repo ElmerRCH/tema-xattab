@@ -6,7 +6,12 @@
             "type": "image_picker",
             "id": "logo",
             "label": "Logo"
-            }
+            },
+           {
+            "type": "image_picker",
+            "id": "announcement_image",
+            "label": "announcement_image"
+            },
         ]
     }
 ]
