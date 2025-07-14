@@ -10,6 +10,7 @@
 {
   "current": {
     "logo": "shopify://shop_images/Xattab.svg",
+    "announcement_image": "shopify://shop_images/Envio_gratis.zip_-_3.svg",
     "sections": {
       "header": {
         "type": "header",
