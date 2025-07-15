@@ -9,15 +9,37 @@
  */
 {
   "sections": {
-     "slider": {
+    "slider": {
       "type": "slider",
-      "settings": {}
+      "blocks": {
+        "slider_hRLfjQ": {
+          "type": "slider",
+          "settings": {
+            "desktop_image": "shopify://shop_images/FOTO_2_jpg.jpg"
+          }
+        },
+        "slider_BJ8Cem": {
+          "type": "slider",
+          "settings": {
+            "desktop_image": "shopify://shop_images/Kelve_-_Baner_de_slider_-_2.svg"
+          }
+        }
+      },
+      "block_order": [
+        "slider_hRLfjQ",
+        "slider_BJ8Cem"
+      ],
+      "settings": {
+        "static_image_one": "shopify://shop_images/xattab-1.webp",
+        "static_link_one": "",
+        "static_image_two": "shopify://shop_images/xattaba-2.webp",
+        "static_link_two": ""
+      }
     },
     "main": {
       "type": "main",
       "settings": {}
     }
-   
   },
   "order": [
     "slider",
