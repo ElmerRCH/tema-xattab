@@ -9,12 +9,18 @@
  */
 {
   "sections": {
+     "slider": {
+      "type": "slider",
+      "settings": {}
+    },
     "main": {
       "type": "main",
       "settings": {}
     }
+   
   },
   "order": [
+    "slider",
     "main"
   ]
 }
