@@ -1,11 +1,13 @@
-<section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16 mt-5 rounded-md">
-    <div class="max-w-screen-xl mx-auto px-4">
-      {% if section.settings.section_heading != blank %}
-        <h2 class="text-2xl font-semibold text-center mb-8 text-gray-900 dark:text-white">
-          {{ section.settings.section_heading }}
-        </h2>
-      {% endif %}
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 text-gray-500 dark:text-gray-400 animate-float-in">
+ {% if section.settings.section_heading != blank %}
+  <h2 class=" text-2xl font-semibold text-start mb-4 text-gray-900 dark:text-white">
+    {{ section.settings.section_heading }}
+  </h2>
+{% endif %}
+
+<section class="bg-white  antialiased dark:bg-gray-900 rounded-md">
+  <div class="max-w-screen-xl mx-auto px-4">
+     
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 text-gray-500  dark:text-gray-400 animate-float-in ">
         {% for block in section.blocks %}
           {% if block.settings.logo_image != blank %}
             <div class="flex items-center justify-center">
@@ -14,7 +16,7 @@
                 width="200"
                 src="{{ block.settings.logo_image | image_url: width: 200 }}"
                 alt="{{ block.settings.logo_image.alt | escape }}"
-                class="h-12 object-contain opacity-80 hover:opacity-100 transition duration-300"
+                class="h-15 object-contain hover:shadow transition duration-300"
               >
             </div>
           {% endif %}
@@ -33,7 +35,7 @@
       "type": "text",
       "id": "section_heading",
       "label": "Título",
-      "default": "Marcas"
+      "default": "Encuentra las mejores marcas"
     }
   ],
   "blocks": [
