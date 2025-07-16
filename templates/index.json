@@ -56,12 +56,33 @@
           "settings": {
             "logo_image": "shopify://shop_images/victorinox.svg"
           }
+        },
+        "logo_aUaWKi": {
+          "type": "logo",
+          "settings": {
+            "logo_image": "shopify://shop_images/logo-gamo.webp"
+          }
+        },
+        "logo_Te7dtq": {
+          "type": "logo",
+          "settings": {
+            "logo_image": "shopify://shop_images/labomed-corporate-logo.svg"
+          }
+        },
+        "logo_ckdrKi": {
+          "type": "logo",
+          "settings": {
+            "logo_image": "shopify://shop_images/logo-olympus.avif"
+          }
         }
       },
       "block_order": [
         "logo_MdpztE",
         "logo_jBHB6E",
-        "logo_DYbYKk"
+        "logo_DYbYKk",
+        "logo_aUaWKi",
+        "logo_Te7dtq",
+        "logo_ckdrKi"
       ],
       "settings": {
         "section_heading": "Encuentra las mejores marcas"
