@@ -36,14 +36,26 @@
         "static_link_two": ""
       }
     },
-    "brands":{
-         "type": "brands",
+    "brands": {
+      "type": "brands",
+      "blocks": {
+        "logo_MdpztE": {
+          "type": "logo",
+          "settings": {
+            "logo_image": "shopify://shop_images/KELVE-LOGO.svg"
+          }
+        }
+      },
+      "block_order": [
+        "logo_MdpztE"
+      ],
+      "settings": {
+        "section_heading": "Marcas"
+      }
     }
-   
   },
   "order": [
     "slider",
     "brands"
-
   ]
 }
