@@ -5,13 +5,13 @@
           {{ section.settings.section_heading }}
         </h2>
       {% endif %}
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 text-gray-500 dark:text-gray-400">
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 text-gray-500 dark:text-gray-400 animate-float-in">
         {% for block in section.blocks %}
           {% if block.settings.logo_image != blank %}
             <div class="flex items-center justify-center">
               <img
-                height="0"
-                width="0"
+                height="200"
+                width="200"
                 src="{{ block.settings.logo_image | image_url: width: 200 }}"
                 alt="{{ block.settings.logo_image.alt | escape }}"
                 class="h-12 object-contain opacity-80 hover:opacity-100 transition duration-300"
