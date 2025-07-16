@@ -50,11 +50,18 @@
           "settings": {
             "logo_image": "shopify://shop_images/logo-lhabo.svg"
           }
+        },
+        "logo_DYbYKk": {
+          "type": "logo",
+          "settings": {
+            "logo_image": "shopify://shop_images/victorinox.svg"
+          }
         }
       },
       "block_order": [
         "logo_MdpztE",
-        "logo_jBHB6E"
+        "logo_jBHB6E",
+        "logo_DYbYKk"
       ],
       "settings": {
         "section_heading": "Encuentra las mejores marcas"
