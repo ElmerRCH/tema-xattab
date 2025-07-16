@@ -1,0 +1,12 @@
+
+<div class="carousel-container">
+  {% for product in products %}
+    <div class="carousel-item">
+      <a href="{{ product.url }}">
+        <img src="{{ product.featured_image | image_url: width: 400 }}" alt="{{ product.title }}"height="100" width="100">
+        <p>{{ product.title }}</p>
+        <p>{{ product.price | money }}</p>
+      </a>
+    </div>
+  {% endfor %}
+</div>

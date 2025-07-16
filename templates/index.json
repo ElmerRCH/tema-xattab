@@ -87,10 +87,16 @@
       "settings": {
         "section_heading": "Encuentra las mejores marcas"
       }
+    },
+    "recommen-product": {
+      "type": "recommen-product"
+      
     }
   },
+
   "order": [
     "slider",
-    "brands"
+    "brands",
+    "recommen-product"
   ]
 }
