@@ -89,11 +89,13 @@
       }
     },
     "recommen-product": {
-      "type": "recommen-product"
-      
+      "type": "recommen-product",
+      "settings": {
+        "collection": "productos-xattab",
+        "limit": 8
+      }
     }
   },
-
   "order": [
     "slider",
     "brands",
