@@ -16,8 +16,13 @@
   </head>
   
   <body class="bg-neutral-200">
-      {% section 'header' %}
-      {{ content_for_layout }}
+      
+    {% section 'header' %}
+      <div class="max-w-screen-xl m-auto  px-4">
+        {{ content_for_layout }}
+
+      </div>
+      
   </body>
 
 </html>

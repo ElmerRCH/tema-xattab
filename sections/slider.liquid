@@ -2,9 +2,9 @@
 
 
 
-<div class="sm:grid grid-cols-8 gap-2 mx-5 mt-5 ">
+<div class="sm:grid grid-cols-8 gap-2 mt-5 ">
   
-  <div class="col-start-1 2xl:col-start-2 col-span-6 2xl:col-span-5 row-start-1 row-span-2 2xl:ml-6 ">
+  <div class="col-start-1 2xl:col-start-1 col-span-6 2xl:col-span-6 row-start-1 row-span-2  ">
     <div >
       <div data-slider class="relative overflow-hidden rounded-lg ">
         <div data-track class="flex transition-transform duration-500 ease-in-out bg-red-500 ">
@@ -73,7 +73,9 @@
           <img
             src="{{ section.settings.static_image_one | image_url: width: 600 }}"
             alt="Imagen 1"
-            class="w-3/4 2xl:w-1/2 object-cover rounded-xl"
+            height="0"
+            width="0"
+            class="w-3/4 object-cover rounded-xl"
           >
         </a>
       {% endif %}
@@ -87,12 +89,15 @@
           <img
             src="{{ section.settings.static_image_two | image_url: width: 600 }}"
             alt="Imagen 2"
-            class="w-3/4 2xl:w-1/2  object-cover rounded-xl"
+            height="0"
+            width="0"
+            class="w-3/4 object-cover rounded-xl"
           >
         </a>
       {% endif %}
     </div>
   </div>
+
 </div>
     
 
