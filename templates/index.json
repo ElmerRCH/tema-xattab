@@ -44,10 +44,17 @@
           "settings": {
             "logo_image": "shopify://shop_images/logo_kelve.svg"
           }
+        },
+        "logo_jBHB6E": {
+          "type": "logo",
+          "settings": {
+            "logo_image": "shopify://shop_images/logo-lhabo.svg"
+          }
         }
       },
       "block_order": [
-        "logo_MdpztE"
+        "logo_MdpztE",
+        "logo_jBHB6E"
       ],
       "settings": {
         "section_heading": "Marcas"
