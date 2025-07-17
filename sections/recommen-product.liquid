@@ -3,6 +3,13 @@
   "name": "Recommended Products",
   "settings": [
     {
+      "type": "text",
+      "id": "section_heading",
+      "label": "Título",
+      "default": "Productos recomendados"
+
+    },
+    {
       "type": "collection",
       "id": "collection",
       "label": "Collection"
@@ -15,8 +22,10 @@
       "default": 8
     }
   ]
+
+
 }
 {% endschema %}
 
 {% assign collection = collections[section.settings.collection] %}
-{% render 'product-carousel', collection: collection %}
+{% render 'product-carousel', collection: collection%}
