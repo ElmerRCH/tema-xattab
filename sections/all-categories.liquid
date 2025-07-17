@@ -19,44 +19,25 @@
   ]
 }
 {% endschema %}
+{% assign collection_list = section.settings.collections_to_show %}
 
-{% stylesheet %}
-<style>
-  .all-categories-grid {
-    display: grid;
-    gap: 1.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  }
-</style>
-{% endstylesheet %}
 
-{% javascript %}{% endjavascript %}
+<h2 class=" text-2xl font-semibold text-start mb-4 text-gray-900 dark:text-white mt-4" >{{section.settings.section_heading}}</h2>
 
-{% assign collections = settings.collections_to_show %}
 
-<section class="px-4 py-8">
-  {% if settings.section_heading != blank %}
-    <h2 class="text-3xl font-bold mb-6 text-gray-900 dark:text-white">{{ settings.section_heading }}</h2>
-  {% endif %}
-
-  <div class="all-categories-grid">
-    {% for collection in collections %}
-      <a href="{{ collection.url }}" class="border rounded-lg overflow-hidden shadow-sm bg-white dark:bg-gray-800 hover:shadow-md transition-all">
-        {% if collection.image %}
-          <img 
-            src="{{ collection.image | image_url: width: 400 }}"
-            alt="{{ collection.title | escape }}"
-            class="w-full h-48 object-cover"
-          >
-        {% else %}
-          <div class="w-full h-48 bg-gray-100 flex items-center justify-center text-gray-400">
-            Sin imagen
-          </div>
-        {% endif %}
-        <div class="p-4">
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{{ collection.title }}</h3>
-        </div>
-      </a>
+{% if collection_list != blank %}
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+    {% for collection in collection_list %}
+      <div class="border rounded p-4 text-center">
+        <a href="{{ collection.url }}">
+          {% if collection.image %}
+            <img src="{{ collection.image | image_url: width: 400 }}" alt="{{ collection.title }}" class="mx-auto mb-2">
+          {% endif %}
+          <h3 class="text-lg font-semibold">{{ collection.title }}</h3>
+        </a>
+      </div>
     {% endfor %}
   </div>
-</section>
+{% else %}
+  <p>No hay colecciones para mostrar.</p>
+{% endif %}
