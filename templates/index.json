@@ -91,12 +91,23 @@
     "recommen-product": {
       "type": "recommen-product",
       "settings": {
+        "section_heading": "Productos recomendados",
         "collection": "productos-xattab",
         "limit": 8
       }
     },
-    "all-categories":{
+    "all-categories": {
       "type": "all-categories",
+      "settings": {
+        "section_heading": "Todas las categorias",
+        "collections_to_show": [
+          "colorantes",
+          "equipos-de-medicion-y-analiticos",
+          "ferreteria",
+          "productos-kelve",
+          "productos-xattab"
+        ]
+      }
     }
   },
   "order": [
