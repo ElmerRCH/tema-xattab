@@ -94,11 +94,15 @@
         "collection": "productos-xattab",
         "limit": 8
       }
+    },
+    "all-categories":{
+      "type": "all-categories",
     }
   },
   "order": [
     "slider",
     "brands",
-    "recommen-product"
+    "recommen-product",
+    "all-categories"
   ]
 }
