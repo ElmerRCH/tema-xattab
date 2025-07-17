@@ -5,7 +5,7 @@
     {
       "type": "collection",
       "id": "collection",
-      "label": "Collection",
+      "label": "Collection"
 
     },
     {
@@ -18,6 +18,5 @@
 }
 {% endschema %}
 
-{% assign products = collections[section.settings.collection].products | slice: 0, section.settings.limit %}
-
-{% render 'product-carousel', products: products %}
+{% assign collection = collections[section.settings.collection] %}
+{% render 'product-carousel', collection: collection %}
