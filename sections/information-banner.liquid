@@ -75,7 +75,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 text-center sm:text-left">
       {% for block in section.blocks %}
         <div class="flex items-center justify-star sm:justify-center space-x-4" {{ block.shopify_attributes }}>
-          <div class="benefit-icon" style="color: {{ block.settings.icon_color }}">
+          <div class="benefit-icon " style="color: {{ block.settings.icon_color }}">
             {{ block.settings.icon_svg }}
           </div>
           <p class="text-gray-800 dark:text-white text-base font-medium">{{ block.settings.title }}</p>
