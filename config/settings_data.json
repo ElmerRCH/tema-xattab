@@ -20,13 +20,11 @@
         "type": "footer",
         "settings": {
           "footer_logo": "shopify://shop_images/logo-x-xattab.svg",
-          "store_description": "Tu tienda confiable de productos de calidad.",
+          "store_description": "Creando lo que inspira.",
           "footer_menu": "",
-          "address": "Av. Ejemplo 123, CDMX",
+          "address": "Av. Fransisco I. Madero No.17 Cerro Agudo Mocorito, Sinaloa, Mexico. C.P.81460",
           "email": "contacto@tienda.com",
           "phone": "+52 123 456 7890",
-          "newsletter_heading": "Suscríbete a nuestro boletín",
-          "newsletter_placeholder": "Ingresa tu correo",
           "copyright": "© 2025 MiTienda. Todos los derechos reservados."
         }
       }
