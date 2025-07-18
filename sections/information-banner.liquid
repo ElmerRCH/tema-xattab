@@ -1,0 +1,75 @@
+{% schema %}
+{
+  "name": "Banner informativo",
+  "tag": "section",
+  "class": "shopify-section--informative-banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_heading",
+      "label": "Título del banner",
+      "default": "Beneficios de comprar con nosotros"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Beneficio",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Texto del beneficio",
+          "default": "Envío seguro"
+        },
+        {
+          "type": "textarea",
+          "id": "icon_svg",
+          "label": "Ícono SVG",
+          "default": "<svg class='w-8 h-8' fill='none' stroke='currentColor' stroke-width='2' viewBox='0 0 24 24'><path stroke-linecap='round' stroke-linejoin='round' d='M3 3h18l-2 13H5L3 3z' /><path stroke-linecap='round' stroke-linejoin='round' d='M16 16a2 2 0 100 4 2 2 0 000-4zM8 16a2 2 0 100 4 2 2 0 000-4z' /></svg>"
+        },
+        {
+          "type": "color",
+          "id": "icon_color",
+          "label": "Color del ícono",
+          "default": "#2563eb"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "Banner informativo",
+      "blocks": [
+        { "type": "benefit" },
+        { "type": "benefit" },
+        { "type": "benefit" },
+        { "type": "benefit" }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+
+<section class="bg-white dark:bg-gray-800 py-6 px-4 mt-4 rounded-md">
+  <div class="max-w-7xl mx-auto">
+    {% if section.settings.section_heading != blank %}
+      <h2 class="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white text-center mb-6">
+        {{ section.settings.section_heading }}
+      </h2>
+    {% endif %}
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 text-center sm:text-left">
+      {% for block in section.blocks %}
+        <div class="flex items-center space-x-4" {{ block.shopify_attributes }}>
+          <div class="benefit-icon" style="color: {{ block.settings.icon_color }}">
+            {{ block.settings.icon_svg }}
+          </div>
+          <p class="text-gray-800 dark:text-white text-base font-medium">{{ block.settings.title }}</p>
+        </div>2
+      {% endfor %}
+    </div>
+  </div>
+</section>

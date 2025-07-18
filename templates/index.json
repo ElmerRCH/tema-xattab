@@ -110,17 +110,20 @@
     },
     "view-product":{
        "type": "view-product",
-    }
+    },
+    "information-banner":{
+      "type": "information-banner",
 
+    }
 
 
   },
   "order": [
     "slider",
-    "brands",
     "recommen-product",
+    "brands",
     "view-product",
+    "information-banner",
     "all-categories"
-
   ]
 }
