@@ -38,18 +38,7 @@
       "label": "Teléfono",
       "default": "+52 123 456 7890"
     },
-    {
-      "type": "text",
-      "id": "newsletter_heading",
-      "label": "Título de boletín",
-      "default": "Suscríbete a nuestro boletín"
-    },
-    {
-      "type": "text",
-      "id": "newsletter_placeholder",
-      "label": "Placeholder del boletín",
-      "default": "Ingresa tu correo"
-    },
+
     {
       "type": "text",
       "id": "copyright",
@@ -88,18 +77,18 @@
 <footer class="grid grid-cols-1 md:grid-cols-4 gap-8">
   <!-- Logo y descripción -->
   <div>
-    {% if settings.footer_logo %}
-      <img src="{{ settings.footer_logo | image_url: width: 200 }}" alt="Logo" class="mb-4">
+    {% if section.settings.footer_logo %}
+      <img src="{{ section.settings.footer_logo | image_url: width: 200 }}" alt="Logo" class="mb-4">
     {% endif %}
-    <p>{{ settings.store_description }}</p>
+    <p>{{ section.settings.store_description }}</p>
   </div>
 
   <!-- Menú -->
   <div>
     <h4 class="font-semibold mb-2">Enlaces</h4>
-    {% if linklists[settings.footer_menu] %}
+    {% if linklists[section.settings.footer_menu] %}
       <ul class="space-y-1">
-        {% for link in linklists[settings.footer_menu].links %}
+        {% for link in linklists[section.settings.footer_menu].links %}
           <li><a href="{{ link.url }}" class="hover:underline">{{ link.title }}</a></li>
         {% endfor %}
       </ul>
@@ -109,26 +98,13 @@
   <!-- Contacto -->
   <div>
     <h4 class="font-semibold mb-2">Contacto</h4>
-    <p>{{ settings.address }}</p>
-    <p><a href="mailto:{{ settings.email }}">{{ settings.email }}</a></p>
-    <p><a href="tel:{{ settings.phone }}">{{ settings.phone }}</a></p>
+    <p>{{ section.settings.address }}</p>
+    <p><a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a></p>
+    <p><a href="tel:{{ section.settings.phone }}">{{ section.settings.phone }}</a></p>
   </div>
 
   <!-- Newsletter y redes -->
   <div>
-    <h4 class="font-semibold mb-2">{{ settings.newsletter_heading }}</h4>
-    <form method="post" action="/contact#footer">
-      <input
-        type="email"
-        name="contact[email]"
-        placeholder="{{ settings.newsletter_placeholder }}"
-        class="w-full px-3 py-2 mb-2 border border-gray-300 rounded"
-        required>
-      <button type="submit" class="w-full bg-black text-white py-2 rounded hover:bg-gray-800">
-        Suscribirme
-      </button>
-    </form>
-
     <!-- Redes sociales -->
     {% if section.blocks.size > 0 %}
       <div class="mt-4 flex space-x-3">
@@ -143,6 +119,6 @@
 
   <!-- Créditos legales -->
   <div class="col-span-full text-center mt-8 text-sm text-gray-500 dark:text-gray-400">
-    {{ settings.copyright }}
+    {{ section.settings.copyright }}
   </div>
 </footer>
