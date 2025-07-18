@@ -20,12 +20,6 @@
       "label": "Menú del footer"
     },
     {
-        "type": "textarea",
-        "id": "icon_svg",
-        "label": "Ícono SVG",
-        "default": "<svg class='w-8 h-8' fill='none' stroke='currentColor' stroke-width='2' viewBox='0 0 24 24'><path stroke-linecap='round' stroke-linejoin='round' d='M3 3h18l-2 13H5L3 3z' /><path stroke-linecap='round' stroke-linejoin='round' d='M16 16a2 2 0 100 4 2 2 0 000-4zM8 16a2 2 0 100 4 2 2 0 000-4z' /></svg>"
-    },
-    {
       "type": "text",
       "id": "address",
       "label": "Dirección",
@@ -43,7 +37,6 @@
       "label": "Teléfono",
       "default": "+52 123 456 7890"
     },
-
     {
       "type": "text",
       "id": "copyright",
@@ -68,9 +61,21 @@
           "label": "URL de la red social"
         }
       ]
+    },
+    {
+      "type": "payment_icon_svg",
+      "name": "Método de pago SVG",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "svg_code",
+          "label": "Código SVG",
+          "default": "<svg class='w-8 h-8' fill='currentColor' viewBox='0 0 24 24'><path d='...'/></svg>"
+        }
+      ]
     }
   ],
-  "max_blocks": 5,
+  "max_blocks": 10,
   "presets": [
     {
       "name": "Footer"
@@ -78,6 +83,8 @@
   ]
 }
 {% endschema %}
+
+
 
 <footer class="grid grid-cols-1 md:grid-cols-4 gap-8 bg-gray-800 text-white p-10">
   <!-- Logo y descripción -->
@@ -101,18 +108,18 @@
     {% endif %}
   </div>
 
-
-
-    <!-- Metodos de pago -->
-  <div>
-    <h4 class="font-semibold mb-2">Metodos de pago</h4>
-    <ul class="space-y-1">
-        <div >
-            {{ section.block.settings.icon_svg }}
+  <!-- Métodos de pago -->
+    <div>
+    <h4 class="font-semibold mb-2">Métodos de pago</h4>
+    <div class="flex space-x-4 items-center">
+        {% assign payment_blocks = section.blocks | where: "type", "payment_icon_svg" %}
+        {% for block in payment_blocks limit: 4 %}
+        <div class="w-10 h-10">
+            {{ block.settings.svg_code }}
         </div>
-    </ul>
-   
-  </div>
+        {% endfor %}
+    </div>
+    </div>
 
   <!-- Contacto -->
   <div >
