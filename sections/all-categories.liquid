@@ -25,14 +25,13 @@
 <h2 class=" text-2xl font-semibold text-start mb-4 text-gray-900 dark:text-white mt-4" >{{section.settings.section_heading}}</h2>
 
 
-
-<div class="flex items-center justify-around  mb-4">
+<div class="flex items-center justify-around  mb-4 " >
     {% for collection in collection_list %}
         <div class="border rounded  text-center h-32 w-32">
             <a href="{{ collection.url }} "
-                class="flex flex-col items-center justify-center m-1 ">
+                class="flex flex-col items-center justify-center m-1  ">
                 {% if collection.image %}
-                <img src="{{ collection.image | image_url: width: 400 }}" alt="{{ collection.title }}" class="mb-2  bg-white rounded-full shadow border" height="100"  width="100">
+                <img src="{{ collection.image | image_url: width: 400 }}" alt="{{ collection.title }}" class="mb-2  bg-white rounded-full shadow border transition-shadow hover:shadow-lg" height="100"  width="100">
                 {% endif %}
                 <h3 class="text-sm font-semibold text-center">{{ collection.title }}</h3>
             </a>
