@@ -21,7 +21,7 @@
         "settings": {
           "footer_logo": "shopify://shop_images/logo-x-xattab.svg",
           "store_description": "Creando lo que inspira.",
-          "footer_menu": "",
+          "footer_menu": "main-menu",
           "address": "Av. Fransisco I. Madero No.17 Cerro Agudo Mocorito, Sinaloa, Mexico. C.P.81460",
           "email": "ventas@xattab.mx  xattabsadecv@gmail.com",
           "phone": "+52 673 135 6666",
