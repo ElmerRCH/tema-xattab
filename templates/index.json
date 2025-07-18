@@ -36,6 +36,14 @@
         "static_link_two": ""
       }
     },
+    "recommen-product": {
+      "type": "recommen-product",
+      "settings": {
+        "section_heading": "Productos recomendados",
+        "collection": "productos-xattab",
+        "limit": 8
+      }
+    },
     "brands": {
       "type": "brands",
       "blocks": {
@@ -88,12 +96,27 @@
         "section_heading": "Encuentra las mejores marcas"
       }
     },
-    "recommen-product": {
-      "type": "recommen-product",
+    "view-product": {
+      "type": "view-product",
+      "settings": {}
+    },
+    "information-banner": {
+      "type": "information-banner",
+      "blocks": {
+        "benefit_eRieLk": {
+          "type": "benefit",
+          "settings": {
+            "title": "Envío seguro",
+            "icon_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewbox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"currentColor\" class=\"size-6\">\n  <path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12\"></path>\n</svg>",
+            "icon_color": "#ed1b24"
+          }
+        }
+      },
+      "block_order": [
+        "benefit_eRieLk"
+      ],
       "settings": {
-        "section_heading": "Productos recomendados",
-        "collection": "productos-xattab",
-        "limit": 8
+        "section_heading": "Beneficios de comprar con nosotros"
       }
     },
     "all-categories": {
@@ -107,16 +130,7 @@
           "productos-kelve"
         ]
       }
-    },
-    "view-product":{
-       "type": "view-product",
-    },
-    "information-banner":{
-      "type": "information-banner",
-
     }
-
-
   },
   "order": [
     "slider",
