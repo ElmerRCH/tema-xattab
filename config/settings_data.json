@@ -18,6 +18,26 @@
       },
       "footer": {
         "type": "footer",
+        "blocks": {
+          "social_link_7DrMd7": {
+            "type": "social_link",
+            "settings": {
+              "platform": "Instagram",
+              "url": ""
+            }
+          },
+          "social_link_33BVCf": {
+            "type": "social_link",
+            "settings": {
+              "platform": "tiktok",
+              "url": ""
+            }
+          }
+        },
+        "block_order": [
+          "social_link_7DrMd7",
+          "social_link_33BVCf"
+        ],
         "settings": {
           "footer_logo": "shopify://shop_images/logo-x-xattab.svg",
           "store_description": "Creando lo que inspira.",
