@@ -4,14 +4,14 @@
 
 <div class="relative mb-5">
   <!-- Botón izquierdo -->
-  <button onclick="scrollCarousel('left')" class="absolute left-0 top-1/2 z-10 -translate-y-1/2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 p-2 rounded-full shadow-md hover:bg-gray-100 dark:hover:bg-gray-700">
+  <button onclick="scrollCarousel('left')" class="absolute left-0 top-1/2 z-10 -translate-y-1/2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 p-2 rounded-full shadow-md hover:bg-red-300 dark:hover:bg-gray-700">
     ◀
   </button>
 
   <!-- Contenedor deslizable -->
   <div id="product-carousel" class="carousel-container flex overflow-x-auto space-x-4 scroll-smooth px-4">
     {% for product in collection.products limit: section.settings.limit %}
-      <a href="{{ product.url }}" class="flex-none w-72 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 hover:shadow-md transition-shadow duration-200">
+      <a href="{{ product.url }}" class="flex-none w-72 bg-white border border-gray-300 hover:border-[var(--brand-color)] rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 hover:shadow-md transition-shadow duration-200">
         <img class="p-4 rounded-t-lg object-contain h-48 w-full"
              src="{{ product.featured_image | image_url: width: 400 }}"
              alt="{{ product.title | escape }}" 
@@ -22,8 +22,9 @@
           <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
             {{ product.title }}
           </h5>
+          
           <div class="flex items-center justify-between mt-2">
-            <span class="text-2xl font-bold text-gray-900 dark:text-white">
+            <span class="text-xl font-bold color-text-brand dark:text-white">
               {{ product.price | money }}
             </span>
           </div>
@@ -35,7 +36,7 @@
   </div>
 
   <!-- Botón derecho -->
-  <button onclick="scrollCarousel('right')" class="absolute right-0 top-1/2 z-10 -translate-y-1/2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 p-2 rounded-full shadow-md hover:bg-gray-100 dark:hover:bg-gray-700">
+  <button onclick="scrollCarousel('right')" class="absolute right-0 top-1/2 z-10 -translate-y-1/2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 p-2 rounded-full shadow-md hover:bg-red-300 dark:hover:bg-gray-700">
     ▶
   </button>
 </div>
