@@ -1,0 +1,92 @@
+<style>
+  .zoom-container {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .zoom-image {
+    transition: transform 0.2s ease;
+    transform-origin: center center;
+  }
+
+  .zoom-container:hover .zoom-image {
+    transform: scale(2);
+  }
+
+  .zoom-container:active .zoom-image,
+  .zoom-container:focus .zoom-image {
+    transform: scale(2);
+  }
+</style>
+
+<section class="py-8 bg-white md:py-16 dark:bg-gray-900 antialiased">
+  <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
+    <div class="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
+      
+      <!-- Galería de imágenes -->
+      <div class="shrink-0 max-w-md lg:max-w-lg mx-auto">
+        <div class="flex flex-col md:flex-row gap-4">
+          
+          <!-- Miniaturas -->
+          <div class="flex md:flex-col gap-3 overflow-x-auto md:overflow-visible md:w-20">
+            {% for image in product.images %}
+              <button onclick="document.getElementById('main-image').src='{{ image | img_url: '1024x1024' }}'"
+                      class="border border-gray-200 rounded-md overflow-hidden hover:ring-2 ring-blue-400">
+                <img src="{{ image | img_url: '150x150' }}" alt="Vista {{ forloop.index }}" class="w-16 h-16 object-cover"  width="100" height="100">
+              </button>
+            {% endfor %}
+          </div>
+
+          <!-- Imagen con zoom tipo lupa -->
+          <div class="flex-1 relative zoom-container rounded-md border" onmousemove="zoomImage(event)" onmouseleave="resetZoom()">
+            <img id="main-image"
+                 src="{{ product.featured_image | img_url: '1024x1024' }}"
+                 alt="{{ product.title }}"
+                 class="zoom-image w-full h-auto max-h-[500px] object-contain" /
+                width="100"
+                height="100">
+          </div>
+          
+        </div>
+      </div>
+
+      <!-- Información del producto -->
+      <div class="mt-6 sm:mt-8 lg:mt-0">
+        <h1 class="text-2xl font-semibold text-gray-900 dark:text-white">{{ product.title }}</h1>
+        <p class="text-3xl font-bold text-green-600">{{ product.price | money }}</p>
+
+        {% if product.description != blank %}
+          <div class="text-gray-600 text-sm leading-relaxed mt-4">
+            {{ product.description }}
+          </div>
+        {% endif %}
+
+        <form method="post" action="/cart/add" class="mt-6">
+          <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+          <button type="submit"
+                  class="w-full sm:w-auto bg-yellow-400 hover:bg-yellow-500 text-black font-semibold px-6 py-3 rounded-md transition">
+            🛒 Comprar ahora
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  const image = document.getElementById("main-image");
+
+  function zoomImage(e) {
+    const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - left) / width) * 100;
+    const y = ((e.clientY - top) / height) * 100;
+    image.style.transformOrigin = `${x}% ${y}%`;
+    image.style.transform = "scale(2)";
+  }
+
+  function resetZoom() {
+    image.style.transformOrigin = "center center";
+    image.style.transform = "scale(1)";
+  }
+</script>
