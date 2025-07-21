@@ -20,7 +20,7 @@
       {
         "type": "color",
         "id": "custom_color",
-        "label": "Color personalizado",
+        "label": "Color Marca",
         "default": "#ed1b24"
       }
     ]
