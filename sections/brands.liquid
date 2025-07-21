@@ -1,0 +1,99 @@
+ {% if section.settings.section_heading != blank %}
+  <h2 class=" text-2xl font-semibold text-start mb-4 text-gray-900 dark:text-white">
+    {{ section.settings.section_heading }}
+  </h2>
+{% endif %}
+
+
+{% comment %}
+  alimentar con demas logos-marcas
+{% endcomment %}
+<section class="bg-white  antialiased dark:bg-gray-900 rounded-md sm:h-20">
+  <div class=" mx-auto px-6">
+     
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 text-gray-500  dark:text-gray-400 ">
+        {% for block in section.blocks %}
+          {% if block.settings.logo_image != blank %}
+            <div class="flex items-center justify-center h-1/3 mt-1">
+              {% assign delay_ms = forloop.index0 | times: 300 %}
+              <img
+                height="200"
+                width="200"
+                src="{{ block.settings.logo_image | image_url: width: 200 }}"
+                alt="{{ block.settings.logo_image.alt | escape }}"
+                class="h-full object-contain animate-float-in  transition duration-300 cursor-pointer personal-shadow"
+                style="animation-delay: {{ delay_ms }}ms;"
+              >
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+  </div>
+    
+</section>
+
+
+{% schema %}
+{
+  "name": "Banner Logos",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_heading",
+      "label": "Título",
+      "default": "Encuentra las mejores marcas"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo_image",
+          "label": "Logo"
+        }
+      ],
+      "limit": 7
+    }
+  ],
+  "presets": [
+    {
+      "name": "Logo Slider"
+    }
+  ]
+}
+{% endschema %}
+
+
+
+<style>
+
+  .personal-shadow:hover{
+    filter:drop-shadow(
+      12px 8px 4px black
+    );
+
+  }
+
+  .animate-float-in {
+    opacity: 0;
+    animation: floatIn 1.2s ease forwards;
+  }
+
+  /* Animación de entrada flotante */
+  @keyframes floatIn {
+    0% {
+      transform: translate(
+        calc(-50vw + 100px),
+        calc(-50vh + 100px)
+      ) scale(0.3) rotate(20deg);
+
+    }
+    100% {
+      transform: translate(0, 0) scale(1) rotate(0deg);
+      opacity: 1;
+    }
+  }
+</style>

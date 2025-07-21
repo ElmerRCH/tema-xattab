@@ -1,0 +1,157 @@
+{% schema %}
+{
+  "name": "Footer",
+  "tag": "footer",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "footer_logo",
+      "label": "Logo del footer"
+    },
+    {
+      "type": "text",
+      "id": "store_description",
+      "label": "Descripción de la tienda",
+      "default": "Tu tienda confiable de productos de calidad."
+    },
+    {
+      "type": "link_list",
+      "id": "footer_menu",
+      "label": "Menú del footer"
+    },
+    {
+      "type": "text",
+      "id": "address",
+      "label": "Dirección",
+      "default": "Av. Ejemplo 123, CDMX"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Correo electrónico",
+      "default": "contacto@tienda.com"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Teléfono",
+      "default": "+52 123 456 7890"
+    },
+    {
+      "type": "text",
+      "id": "copyright",
+      "label": "Texto legal",
+      "default": "© 2025 MiTienda. Todos los derechos reservados."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "social_link",
+      "name": "Red social",
+      "settings": [
+        {
+          "type": "text",
+          "id": "platform",
+          "label": "Nombre de la red (ej. Instagram)",
+          "default": "Instagram"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "URL de la red social"
+        }
+      ]
+    },
+    {
+      "type": "payment_icon_svg",
+      "name": "Método de pago SVG",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "svg_code",
+          "label": "Código SVG",
+          "default": "<svg class='w-8 h-8' fill='currentColor' viewBox='0 0 24 24'><path d='...'/></svg>"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "Footer"
+    }
+  ]
+}
+{% endschema %}
+
+
+
+
+
+
+<footer class="grid grid-cols-1 md:grid-cols-4 gap-8 bg-gray-800 text-white p-10">
+    <!-- Logo y descripción -->
+    <div class="flex  flex-col justify-start items-center w-50 h-50">
+        {% if section.settings.footer_logo %}
+            <svg  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" zoomAndPan="magnify" viewBox="0 0 384 383.999986" height="auto"  width="auto" preserveAspectRatio="xMidYMid meet" version="1.2"><defs/><g id="584f608eab"><g style="fill:#bf0202;fill-opacity:1;"><g transform="translate(149.31373, 263.596552)"><path style="stroke:none" d="M -0.988281 -0.683594 L 15.925781 -84.519531 L 19.304688 -83.835938 L 15.914062 -83.222656 L 1.757812 -161.5625 L 39.734375 -161.5625 L 48.453125 -104.210938 L 45.042969 -103.691406 L 41.625 -104.144531 L 49.191406 -161.5625 L 87.421875 -161.5625 L 73.070312 -83.214844 L 69.679688 -83.835938 L 73.058594 -84.519531 L 90.808594 3.445312 L 51.667969 3.445312 L 41.273438 -61.226562 L 44.675781 -61.773438 L 48.078125 -61.21875 L 37.492188 3.445312 L -1.820312 3.445312 Z M 5.769531 0.683594 L 2.390625 0 L 2.390625 -3.445312 L 34.5625 -3.445312 L 34.5625 0 L 31.164062 -0.558594 L 41.273438 -62.332031 L 48.078125 -62.320312 L 58.007812 -0.546875 L 54.605469 0 L 54.605469 -3.445312 L 86.59375 -3.445312 L 86.59375 0 L 83.214844 0.683594 L 66.167969 -83.804688 L 79.894531 -158.734375 L 83.285156 -158.113281 L 83.285156 -154.667969 L 52.214844 -154.667969 L 52.214844 -158.113281 L 55.632812 -157.664062 L 48.460938 -103.242188 L 41.636719 -103.175781 L 33.363281 -157.59375 L 36.769531 -158.113281 L 36.769531 -154.667969 L 5.882812 -154.667969 L 5.882812 -158.113281 L 9.277344 -158.726562 L 22.8125 -83.800781 Z M 5.769531 0.683594 "/></g></g><g style="fill:#bf0202;fill-opacity:1;"><g transform="translate(228.503588, 146.375543)"><path style="stroke:none" d="M 5.546875 0 L 5.546875 -34.375 L 0.5 -34.375 L 0.5 -42.546875 L 19.125 -42.546875 L 19.125 -34.375 L 14.0625 -34.375 L 14.0625 0 Z M 5.546875 0 "/></g></g><g style="fill:#bf0202;fill-opacity:1;"><g transform="translate(155.487228, 226.343132)"><path style="stroke:none" d="M -5.546875 0 L -5.546875 34.375 L -0.5 34.375 L -0.5 42.546875 L -19.125 42.546875 L -19.125 34.375 L -14.0625 34.375 L -14.0625 0 Z M -5.546875 0 "/></g></g></g></svg>
+            
+        {% endif %}
+        <p class="-mt-12">{{ section.settings.store_description }}</p>
+    </div>
+
+    <!-- Menú -->
+    <div>
+        <h4 class="font-semibold mb-2">Enlaces</h4>
+        {% if linklists[section.settings.footer_menu] %}
+        <ul class="space-y-1">
+            {% for link in linklists[section.settings.footer_menu].links %}
+            <li><a href="{{ link.url }}" class="hover:underline">{{ link.title }}</a></li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+
+    <!-- Métodos de pago -->
+    <div> 
+        <h4 class="font-semibold mb-2">Métodos de pago</h4>
+        <div class="flex justify-start items-start flex-col space-y-1 cursor-pointer">
+            {% assign payment_blocks = section.blocks | where: "type", "payment_icon_svg" %}
+            {% for block in payment_blocks limit: 4 %}
+            <div class="w-10 h-10">
+                {{ block.settings.svg_code }}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Contacto -->
+    <div >
+        <h4 class="font-semibold mb-2">Contacto</h4>
+        <p>{{ section.settings.address }}</p>
+
+        <p class="mt-2"><a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a></p>
+        <p><a href="tel:{{ section.settings.phone }}">{{ section.settings.phone }}</a></p>
+    </div>
+
+    <!-- Newsletter y redes -->
+    <div class="m-auto col-span-full">
+        <!-- Redes sociales -->
+        {% if section.blocks.size > 0 %}
+        <div class="mt-4 flex space-x-3 ">
+            {% for block in section.blocks %}
+            <a href="{{ block.settings.url }}" target="_blank" rel="noopener noreferrer" class="text-lg hover:underline">
+                {{ block.settings.platform }}
+            </a>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Créditos legales -->
+    <div class="col-span-full text-center mt-8 p-4 text-sm text-gray-400 dark:text-gray-400 border-t border-gray-500">
+        {{ section.settings.copyright }} 
+    
+    </div>
+</footer>
+
+
