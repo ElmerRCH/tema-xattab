@@ -21,6 +21,7 @@
 
 <section class="py-8 bg-white md:py-16 dark:bg-gray-900 antialiased">
   <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
+    
     <div class="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
       
       <!-- Galería de imágenes -->
@@ -38,7 +39,7 @@
           </div>
 
           <!-- Imagen con zoom tipo lupa -->
-          <div class="flex-1 relative zoom-container rounded-md border" onmousemove="zoomImage(event)" onmouseleave="resetZoom()">
+          <div class="flex-1 relative zoom-container rounded-md" onmousemove="zoomImage(event)" onmouseleave="resetZoom()">
             <img id="main-image"
                  src="{{ product.featured_image | img_url: '1024x1024' }}"
                  alt="{{ product.title }}"
@@ -51,23 +52,13 @@
       </div>
 
       <!-- Información del producto -->
-      <div class="mt-6 sm:mt-8 lg:mt-0">
-        <h1 class="text-2xl font-semibold text-gray-900 dark:text-white">{{ product.title }}</h1>
-        <p class="text-3xl font-bold text-green-600">{{ product.price | money }}</p>
+      <div class="mt-6 ml-8 sm:mt-8 lg:mt-0 border p-4 w-3/4">
+        <h1 class=" inline-block text-2xl font-semibold text-gray-900 dark:text-white">{{ product.title }}</h1>
+        <p class=" mt-2 text-2xl font-bold color-text-brand">{{ product.price | money }}</p>
+        <p class=" -mt-1 text-xs font-sans">IVA incluido</p>
 
-        {% if product.description != blank %}
-          <div class="text-gray-600 text-sm leading-relaxed mt-4">
-            {{ product.description }}
-          </div>
-        {% endif %}
-
-        <form method="post" action="/cart/add" class="mt-6">
-          <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-          <button type="submit"
-                  class="w-full sm:w-auto bg-yellow-400 hover:bg-yellow-500 text-black font-semibold px-6 py-3 rounded-md transition">
-            🛒 Comprar ahora
-          </button>
-        </form>
+         
+       
       </div>
 
     </div>
@@ -90,3 +81,20 @@
     image.style.transform = "scale(1)";
   }
 </script>
+
+{% comment %}
+    {% if product.description != blank %}
+    <div class="text-gray-600 text-sm leading-relaxed mt-4">
+    {{ product.description }}
+    </div>
+    {% endif %}
+
+    <form method="post" action="/cart/add" class="mt-6">
+        <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+        <button type="submit"
+                class="w-full sm:w-auto bg-yellow-400 hover:bg-yellow-500 text-black font-semibold px-6 py-3 rounded-md transition">
+        🛒 Comprar ahora
+        </button>
+    </form>
+    
+{% endcomment %}
