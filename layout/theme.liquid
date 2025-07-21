@@ -12,13 +12,14 @@
 
     {{ 'predictive-search.js' | asset_url | stylesheet_tag }}
     {{ 'tailwind-output.css' | asset_url | stylesheet_tag }}
+    {{ 'brand.css' | asset_url | stylesheet_tag }}
 
   </head>
   
   <body class="bg-neutral-200">
-      
+   
     {% section 'header' %}
-      <div class="max-w-screen-xl m-auto  px-4">
+      <div class="max-w-screen-xl m-auto  px-4 main-content">
         {{ content_for_layout }}
 
       </div>
@@ -33,3 +34,15 @@
     --brand-color: {{ settings.custom_color }};
   }
 </style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+  const header = document.querySelector(".site-header");
+  const content = document.querySelector(".main-content");
+
+  if (header && content) {
+    const headerHeight = header.offsetHeight;
+    content.style.paddingTop = headerHeight + "px";
+  }
+  });
+</script>
