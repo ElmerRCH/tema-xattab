@@ -1,0 +1,161 @@
+{{ 'tailwind-output.css' | asset_url | stylesheet_tag }}
+
+
+
+<div class="sm:grid grid-cols-8 gap-2 mt-5 ">
+  
+  <div class="col-start-1 2xl:col-start-1 col-span-6 2xl:col-span-6 row-start-1 row-span-2  ">
+    <div >
+      <div data-slider class="relative overflow-hidden rounded-lg ">
+        <div data-track class="flex transition-transform duration-500 ease-in-out bg-red-500 ">
+          {% for block in section.blocks %}
+            <div data-slide class="flex-none w-full sm:h-[500px]">
+              {% if block.settings.desktop_image != blank %}
+                {{ block.settings.desktop_image | image_url: width: 2000 | image_tag:
+                  class: "2xl:w-full sm:block rounded-xl h-full",
+                  loading: "lazy",
+                  alt: ""
+                }}
+              {% endif %}
+              {% if block.settings.mobile_image != blank %}
+                {{ block.settings.mobile_image | image_url: width: 800 | image_tag:
+                  class: "w-full object-cover sm:hidden",
+                  loading: "lazy",
+                  alt: ""
+                }}
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+
+        <!-- Botón anterior -->
+        <button
+          data-prev
+          class="absolute top-1/2 left-4 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-700 hover:text-black w-10 h-10 flex items-center justify-center rounded-full shadow-lg border border-gray-300 transition"
+          aria-label="Anterior"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+
+        <!-- Botón siguiente -->
+        <button
+          data-next
+          class="absolute top-1/2 right-4 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-700 hover:text-black w-10 h-10 flex items-center justify-center rounded-full shadow-lg border border-gray-300 transition"
+          aria-label="Siguiente"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+      
+      <!-- Dots debajo del slider -->
+      <div data-dots class="flex justify-center mt-4 space-x-2">
+        {% for block in section.blocks %}
+          <button
+            class="w-4 h-4 rounded-full bg-red-300 hover:bg-red-500 transition"
+            aria-label="Ir al slide {{ forloop.index }}"
+            data-dot="{{ forloop.index0 }}"
+          ></button>
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="hidden sm:block col-start-7 2xl:col-start-7 col-span-2 row-start-1">
+    <div class="relative overflow-hidden h-full">
+      {% if section.settings.static_image_one != blank %}
+        <a class="flex justify-center 2xl:justify-start" href="{{ section.settings.static_link_one }}">
+          <img
+            src="{{ section.settings.static_image_one | image_url: width: 600 }}"
+            alt="Imagen 1"
+            height="0"
+            width="0"
+            class="w-3/4 object-cover rounded-xl"
+          >
+        </a>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="hidden sm:block col-start-7  2xl:col-start-7 2xl:mt-6 col-span-2 row-start-2 sm:mb-8">
+    <div class="relative overflow-hidden rounded-lg h-full">
+      {% if section.settings.static_image_two != blank %}
+        <a class="flex justify-center 2xl:justify-start" href="{{ section.settings.static_link_two }}">
+          <img
+            src="{{ section.settings.static_image_two | image_url: width: 600 }}"
+            alt="Imagen 2"
+            height="0"
+            width="0"
+            class="w-3/4 object-cover rounded-xl"
+          >
+        </a>
+      {% endif %}
+    </div>
+  </div>
+
+</div>
+    
+
+{% schema %}
+{
+  "name": "Slider",
+  "class": "simple-slider",
+    "settings": [
+    {
+      "id": "static_image_one",
+      "type": "image_picker",
+      "label": "Static Image One"
+    },
+    {
+      "id": "static_link_one",
+      "type": "url",
+      "label": "Link for Static Image One"
+    },
+    {
+      "id": "static_image_two",
+      "type": "image_picker",
+      "label": "Static Image Two"
+    },
+    {
+      "id": "static_link_two",
+      "type": "url",
+      "label": "Link for Static Image Two"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slider",
+      "name": "Slider",
+      "settings": [
+        {
+          "id": "desktop_image",
+          "type": "image_picker",
+          "label": "Desktop Image"
+        },
+        
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Slider",
+      "category": "Image",
+      "blocks": [
+        {
+          "type": "slider",
+          "settings": {}
+        },
+        {
+          "type": "slider",
+          "settings": {}
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
