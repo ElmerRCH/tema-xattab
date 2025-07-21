@@ -1,17 +1,28 @@
 [
-    {
-        "name": "Header",
-        "settings": [
-            {
-            "type": "image_picker",
-            "id": "logo",
-            "label": "Logo"
-            },
-           {
-            "type": "image_picker",
-            "id": "announcement_image",
-            "label": "announcement_image"
-            },
-        ]
-    }
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo"
+      },
+      {
+        "type": "image_picker",
+        "id": "announcement_image",
+        "label": "Imagen de anuncio"
+      }
+    ]
+  },
+  {
+    "name": "Colores",
+    "settings": [
+      {
+        "type": "color",
+        "id": "custom_color",
+        "label": "Color personalizado",
+        "default": "#ed1b24"
+      }
+    ]
+  }
 ]
