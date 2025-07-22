@@ -97,44 +97,173 @@
     </div>
 
   <!-- Filter modal -->
-  <form action="#" method="get" id="filterModal" tabindex="-1" aria-hidden="true" class="fixed left-0 right-0 top-0 z-50 hidden h-modal w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0 md:h-full">
-    <div class="relative h-full w-full max-w-xl md:h-auto">
-      <!-- Modal content -->
-      <div class="relative rounded-lg bg-white shadow dark:bg-gray-800">
-        <!-- Modal header -->
-        <div class="flex items-start justify-between rounded-t p-4 md:p-5">
-          <h3 class="text-lg font-normal text-gray-500 dark:text-gray-400">Filtros</h3>
-          <button type="button" class="ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="filterModal">
-            <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
-            </svg>
-            <span class="sr-only">Close modal</span>
-          </button>
-        </div>
-        
-        <!-- Modal body -->
-        <div class="px-4 md:px-5">
-          
-          <div id="myTabContent">
-            <div class="grid grid-cols-2 gap-4 md:grid-cols-3" id="brand" role="tabpanel" aria-labelledby="brand-tab">
-                <div class="space-y-2">
-                    <h5 class="text-lg font-medium uppercase text-black dark:text-white">Tipo de producto</h5>
+  <div id="filterModal" tabindex="-1" aria-hidden="true" class="fixed left-0 right-0 top-0 z-50 hidden h-modal w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0 md:h-full">
+  <div class="relative h-full w-full max-w-xl md:h-auto">
+    <div class="relative rounded-lg bg-white shadow dark:bg-gray-800">
+      <div class="flex items-start justify-between rounded-t p-4 md:p-5">
+        <h3 class="text-lg font-normal text-gray-500 dark:text-gray-400">Filtros</h3>
+        <button type="button" class="ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="filterModal">
+          <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
+          </svg>
+          <span class="sr-only">Close modal</span>
+        </button>
+      </div>
+
+      <div class="px-4 md:px-5">
+        <div id="myTabContent">
+          <div class="grid grid-cols-2 gap-4 md:grid-cols-3" id="brand" role="tabpanel" aria-labelledby="brand-tab">
+            {% for filter in collection.filters %}
+              <div class="space-y-2">
+                <h5 class="text-lg font-medium uppercase text-black dark:text-white">{{ filter.label }}</h5>
+
+                {% case filter.type %}
+                {% when 'list' %}
+                  {% for value in filter.values %}
                     <div class="flex items-center">
-                        <input id="apple" type="checkbox" value="" class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" />
-
-                        <label for="apple" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"> Colorantes </label>
+                      <input
+                        id="{{ filter.label | handleize }}_{{ forloop.index }}"
+                        type="checkbox"
+                        name="{{ filter.param_name }}"
+                        value="{{ value.value }}"
+                        {% if value.active %}checked{% endif %}
+                        class="filter-checkbox h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                      />
+                      <label for="{{ filter.label | handleize }}_{{ forloop.index }}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                        {{ value.label }} ({{ value.count }})
+                      </label>
                     </div>
-                </div>
-            </div>
+                  {% endfor %}
+                {% when 'price_range' %}
+                  <form class="space-y-2" id="priceRangeForm">
+                    <div class="flex gap-2">
+                      <input
+                        name="filter.v.price.gte"
+                        type="number"
+                        id="price-gte"
+                        value="{{ filter.min_value.value }}"
+                        min="{{ filter.range_min }}"
+                        max="{{ filter.range_max }}"
+                        placeholder="Mín"
+                        class="w-1/2 rounded border border-gray-300 px-2 py-1 text-sm dark:bg-gray-700 dark:text-white"
+                      />
+                      <input
+                        name="filter.v.price.lte"
+                        type="number"
+                        id="price-lte"
+                        value="{{ filter.max_value.value }}"
+                        min="{{ filter.range_min }}"
+                        max="{{ filter.range_max }}"
+                        placeholder="Máx"
+                        class="w-1/2 rounded border border-gray-300 px-2 py-1 text-sm dark:bg-gray-700 dark:text-white"
+                      />
+                    </div>
+                    <button type="submit" class="mt-1 rounded bg-black px-3 py-1 text-sm text-white dark:bg-white dark:text-black">Aplicar</button>
+                  </form>
+                {% endcase %}
+              </div>
+            {% endfor %}
           </div>
-
-        </div>
-
-        <!-- Modal footer -->
-        <div class="flex items-center space-x-4 rounded-b p-4 dark:border-gray-600 md:p-5">
-          <button type="reset" class="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700">limpiar</button>
         </div>
       </div>
+
+      <div class="flex items-center space-x-4 rounded-b p-4 dark:border-gray-600 md:p-5">
+        <button id="clearFiltersBtn" type="button" class="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700">Limpiar filtros</button>
+      </div>
     </div>
-  </form>
+  </div>
+</div>
+
+  
 </section>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+  const filterModal = document.getElementById('filterModal');
+  const filterCheckboxes = filterModal.querySelectorAll('.filter-checkbox');
+  const priceRangeForm = document.getElementById('priceRangeForm');
+  const clearFiltersBtn = document.getElementById('clearFiltersBtn');
+  const productsContainer = document.querySelector('.mb-4.grid.gap-4'); // Selector donde están los productos
+
+  // Función para construir la query string con filtros seleccionados
+  function buildFilterQuery() {
+    const params = new URLSearchParams();
+
+    filterCheckboxes.forEach(chk => {
+      if (chk.checked) {
+        params.append(chk.name, chk.value);
+      }
+    });
+
+    if (priceRangeForm) {
+      const gte = priceRangeForm.querySelector('#price-gte').value;
+      const lte = priceRangeForm.querySelector('#price-lte').value;
+      if (gte) params.set('filter.v.price.gte', gte);
+      if (lte) params.set('filter.v.price.lte', lte);
+    }
+
+    return params.toString();
+  }
+
+  // Función para actualizar productos via AJAX
+  async function updateProducts() {
+    const query = buildFilterQuery();
+    const url = `${window.location.pathname}?${query}`;
+
+    try {
+      const response = await fetch(url, {
+        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+      });
+      if (!response.ok) throw new Error('Error en la petición');
+
+      const html = await response.text();
+
+      // Extraer solo la parte de productos (selector usado arriba)
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = html;
+      const newProducts = tempDiv.querySelector('.mb-4.grid.gap-4');
+      if (newProducts && productsContainer) {
+        productsContainer.innerHTML = newProducts.innerHTML;
+      }
+
+    } catch (error) {
+      console.error('Error actualizando productos:', error);
+    }
+  }
+
+  // Evento para checkboxes
+  filterCheckboxes.forEach(chk => {
+    chk.addEventListener('change', () => {
+      updateProducts();
+    });
+  });
+
+  // Evento para formulario de precio
+  if (priceRangeForm) {
+    priceRangeForm.addEventListener('submit', e => {
+      e.preventDefault();
+      updateProducts();
+    });
+  }
+
+  // Limpiar filtros
+  clearFiltersBtn.addEventListener('click', () => {
+    filterCheckboxes.forEach(chk => (chk.checked = false));
+    if (priceRangeForm) {
+      priceRangeForm.querySelector('#price-gte').value = '';
+      priceRangeForm.querySelector('#price-lte').value = '';
+    }
+    updateProducts();
+  });
+
+  // Modal toggle (ya tienes este código, pero por si acaso)
+  document.querySelectorAll('[data-modal-toggle]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterModal.classList.toggle('hidden');
+    });
+  });
+});
+
+    
+</script>
