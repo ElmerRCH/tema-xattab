@@ -19,7 +19,7 @@
   }
 </style>
 
-<section class="py-8 bg-white md:py-16 dark:bg-gray-900 antialiased">
+<section class="py-8 bg-white md:py-16 dark:bg-gray-900 antialiased rounded-lg mb-5">
   <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
     
     <div class="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
@@ -52,12 +52,43 @@
       </div>
 
       <!-- Información del producto -->
-      <div class="mt-6 ml-8 sm:mt-8 lg:mt-0 border p-4 w-3/4">
+      <div class="mt-6 ml-8 sm:mt-8 lg:mt-0 border p-4 w-3/4 rounded-md">
         <h1 class=" inline-block text-2xl font-semibold text-gray-900 dark:text-white">{{ product.title }}</h1>
         <p class=" mt-2 text-2xl font-bold color-text-brand">{{ product.price | money }}</p>
         <p class=" -mt-1 text-xs font-sans">IVA incluido</p>
 
-         
+        <form class="mt-5">
+          <label for="quantity-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cantidad:</label>
+          <div class="relative flex items-center max-w-[14rem]">
+            <button type="button" id="decrement-button" data-input-counter-decrement="quantity-input" class="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
+                <svg class="w-3 h-3 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16"/>
+                </svg>
+            </button>
+            <input type="text" id="quantity-input" data-input-counter aria-describedby="helper-text-explanation" class="bg-gray-50 border-x-0 border-gray-300 h-11 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="1" required />
+            <button type="button" id="increment-button" data-input-counter-increment="quantity-input" class="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
+                <svg class="w-3 h-3 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
+                </svg>
+            </button>
+          </div>
+        </form>
+        <div class="mt-5">
+          <button type="button" class="text-white bg-brand-color hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            
+            Comprar ahora
+             <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+            </svg>
+          </button>
+          <button type="button" class="text-white bg-brand-color hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+              Agregar al carrito
+            <svg class="w-3.5 h-3.5 me-2 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21">
+            <path d="M15 12a1 1 0 0 0 .962-.726l2-7A1 1 0 0 0 17 3H3.77L3.175.745A1 1 0 0 0 2.208 0H1a1 1 0 0 0 0 2h.438l.6 2.255v.019l2 7 .746 2.986A3 3 0 1 0 9 17a2.966 2.966 0 0 0-.184-1h2.368c-.118.32-.18.659-.184 1a3 3 0 1 0 3-3H6.78l-.5-2H15Z"/>
+            </svg>
+          </button>
+        </div>
+       
        
       </div>
 
