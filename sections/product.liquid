@@ -32,7 +32,7 @@
           <div class="flex md:flex-col gap-3 overflow-x-auto md:overflow-visible md:w-20">
             {% for image in product.images %}
               <button onclick="document.getElementById('main-image').src='{{ image | img_url: '1024x1024' }}'"
-                      class="border border-gray-200 rounded-md overflow-hidden hover:ring-2 ring-blue-400">
+                      class="border border-gray-200 rounded-md overflow-hidden hover:ring-2 ring-gray-400">
                 <img src="{{ image | img_url: '150x150' }}" alt="Vista {{ forloop.index }}" class="w-16 h-16 object-cover"  width="100" height="100">
               </button>
             {% endfor %}
@@ -52,7 +52,7 @@
       </div>
 
       <!-- Información del producto -->
-      <div class="mt-6 ml-8 sm:mt-8 lg:mt-0 border p-4 w-3/4 rounded-md">
+      <div class="mt-6 ml-8 sm:mt-8 lg:mt-0 border p-4 w-5/6 h-auto rounded-md">
         <h1 class=" inline-block text-2xl font-semibold text-gray-900 dark:text-white">{{ product.title }}</h1>
         <p class=" mt-2 text-2xl font-bold color-text-brand">{{ product.price | money }}</p>
         <p class=" -mt-1 text-xs font-sans">IVA incluido</p>
@@ -73,15 +73,15 @@
             </button>
           </div>
         </form>
-        <div class="mt-5">
-          <button type="button" class="text-white bg-brand-color hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        <div class="flex  flex-wrap mt-5 gap-2">
+          <button type="button" class=" w-full sm:w-2/5 h-10 text-white bg-brand-color hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             
             Comprar ahora
              <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
             </svg>
           </button>
-          <button type="button" class="text-white bg-brand-color hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+          <button type="button" class="w-full sm:w-1/2 h-10 text-white bg-brand-color hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
               Agregar al carrito
             <svg class="w-3.5 h-3.5 me-2 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21">
             <path d="M15 12a1 1 0 0 0 .962-.726l2-7A1 1 0 0 0 17 3H3.77L3.175.745A1 1 0 0 0 2.208 0H1a1 1 0 0 0 0 2h.438l.6 2.255v.019l2 7 .746 2.986A3 3 0 1 0 9 17a2.966 2.966 0 0 0-.184-1h2.368c-.118.32-.18.659-.184 1a3 3 0 1 0 3-3H6.78l-.5-2H15Z"/>
@@ -93,6 +93,15 @@
       </div>
 
     </div>
+     {% if product.description != blank %}
+
+    <div class="text-gray-800 text-sm leading-relaxed mt-4 m-auto p-4">
+      
+    {{ product.description }}
+    </div>
+    {% endif %}
+
+
   </div>
 </section>
 
