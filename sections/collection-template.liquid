@@ -7,6 +7,88 @@
 
 
 <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-12 p-5 rounded-md">
+    
+    <!-- Filter modal -->
+    <div id="filterModal" tabindex="-1" aria-hidden="true"
+      class="fixed left-0 right-0 top-0 z-50 hidden h-modal w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0 md:h-full">
+      <div class="relative h-full w-full max-w-xl md:h-auto">
+        <div class="relative rounded-lg bg-white shadow dark:bg-gray-800">
+          <div class="flex items-start justify-between rounded-t p-4 md:p-5">
+            <h3 class="text-lg font-normal text-gray-500 dark:text-gray-400">Filtros</h3>
+            <button type="button" class="ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="filterModal">
+              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"/></svg>
+              <span class="sr-only">Cerrar modal</span>
+            </button>
+          </div>
+
+          <!-- 🔽 FORMULARIO GENERAL DE FILTROS -->
+          <form id="filtro" class="px-4 md:px-5 space-y-4">
+            <div id="myTabContent">
+              <div class="grid grid-cols-2 gap-4 md:grid-cols-3" id="brand" role="tabpanel" aria-labelledby="brand-tab">
+                {% for filter in collection.filters %}
+                  <div class="space-y-2">
+                    <h5 class="text-lg font-medium uppercase text-black dark:text-white">{{ filter.label }}</h5>
+
+                    {% case filter.type %}
+                    {% when 'list' %}
+                      {% for value in filter.values %}
+                        <div class="flex items-center">
+                          <input
+                            id="{{ filter.label | handleize }}_{{ forloop.index }}"
+                            type="checkbox"
+                            name="{{ filter.param_name }}"
+                            value="{{ value.value }}"
+                            {% if value.active %}checked{% endif %}
+                            class="filter-checkbox h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                          />
+                          <label for="{{ filter.label | handleize }}_{{ forloop.index }}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                            {{ value.label }} ({{ value.count }})
+                          </label>
+                        </div>
+                      {% endfor %}
+
+                    {% when 'price_range' %}
+                      <div class="space-y-2">
+                        <div class="flex gap-2">
+                          <input
+                            name="filter.v.price.gte"
+                            type="number"
+                            id="price-gte"
+                            value="{{ filter.min_value.value }}"
+                            min="{{ filter.range_min }}"
+                            max="{{ filter.range_max }}"
+                            placeholder="Mín"
+                            class="w-1/2 rounded border border-gray-300 px-2 py-1 text-sm dark:bg-gray-700 dark:text-white"
+                          />
+                          <input
+                            name="filter.v.price.lte"
+                            type="number"
+                            id="price-lte"
+                            value="{{ filter.max_value.value }}"
+                            min="{{ filter.range_min }}"
+                            max="{{ filter.range_max }}"
+                            placeholder="Máx"
+                            class="w-1/2 rounded border border-gray-300 px-2 py-1 text-sm dark:bg-gray-700 dark:text-white"
+                          />
+                        </div>
+                      </div>
+                    {% endcase %}
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+
+            <!-- ✅ Botones del formulario -->
+            <div class="flex items-center justify-between rounded-b pt-4 md:p-5">
+              <button id="clearFiltersBtn" type="reset" class="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Limpiar</button>
+
+              <button type="submit" class="rounded-lg bg-black px-5 py-2.5 text-sm font-medium text-white dark:bg-white dark:text-black">Aplicar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
     <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
         <!-- Heading & Filters -->
         <div class="mb-4 items-end justify-between space-y-4 sm:flex sm:space-y-0 md:mb-8">
@@ -28,242 +110,13 @@
         </div>
         </div>
 
-        {% paginate collection.products by 12 %}
-        <div class="mb-4 grid gap-4 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-4">
+        
+          <div id="product-container">
             
-            {% for product in collection.products %}
-                <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
-                    <div class="h-56 w-full">
-                    <a href="{{ product.url }}">
-                        <img 
-                            src="{{ product.featured_image | image_url: width: 600 }}" 
-                            alt="{{ product.title }}" 
-                            class="w-full h-64 object-cover"
-                        />
-                    </a>
-                    </div>
-                    <div class="pt-6">
-                    
-                    <a href="#" class="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white">{{ product.title }}</a>
-                    <ul class="mt-2 flex items-center gap-4">
-                        <li class="flex items-center gap-2">
-                        <svg class="h-4 w-4 color-text-brand " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h6l2 4m-8-4v8m0-8V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v9h2m8 0H9m4 0h2m4 0h2v-4m0 0h-5m3.5 5.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm-10 0a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z" />
-                        </svg>
-                        <p class="text-sm font-medium text-black ">Envio rapido</p>
-                        </li>
-                    </ul>
-
-                    <div class="mt-4 flex items-center justify-between gap-4">
-                        <p class="text-2xl font-extrabold leading-tight text-gray-900 dark:text-white">{{ product.price | money }}</p>
-
-                        <button type="button" class=" bg-brand-color  inline-flex items-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                        <svg class="-ms-2 me-2 h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6" />
-                        </svg>
-                        Agregar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        
-        
-        </div>
-        <!-- Paginación -->
-        {% if paginate.pages > 1 %}
-        <div class="flex justify-center mt-10 space-x-2">
-            {% if paginate.previous %}
-            <a href="{{ paginate.previous.url }}" class="px-4 py-2 border rounded hover:bg-gray-100">Anterior</a>
-            {% endif %}
-
-            {% for part in paginate.parts %}
-            {% if part.is_link %}
-                <a href="{{ part.url }}" class="px-3 py-1 border rounded hover:bg-gray-100">{{ part.title }}</a>
-            {% elsif part.title == paginate.current_page %}
-                <span class="px-3 py-1 border rounded bg-gray-800 text-white">{{ part.title }}</span>
-            {% else %}
-                <span class="px-3 py-1">{{ part.title }}</span>
-            {% endif %}
-            {% endfor %}
-
-            {% if paginate.next %}
-            <a href="{{ paginate.next.url }}" class="px-4 py-2 border rounded hover:bg-gray-100">Siguiente</a>
-            {% endif %}
-        </div>
-        {% endif %}
-        {% endpaginate %}
-
-    </div>
-
-  <!-- Filter modal -->
-  <div id="filterModal" tabindex="-1" aria-hidden="true" class="fixed left-0 right-0 top-0 z-50 hidden h-modal w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0 md:h-full">
-  <div class="relative h-full w-full max-w-xl md:h-auto">
-    <div class="relative rounded-lg bg-white shadow dark:bg-gray-800">
-      <div class="flex items-start justify-between rounded-t p-4 md:p-5">
-        <h3 class="text-lg font-normal text-gray-500 dark:text-gray-400">Filtros</h3>
-        <button type="button" class="ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="filterModal">
-          <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
-          </svg>
-          <span class="sr-only">Close modal</span>
-        </button>
-      </div>
-
-      <div class="px-4 md:px-5">
-        <div id="myTabContent">
-          <div class="grid grid-cols-2 gap-4 md:grid-cols-3" id="brand" role="tabpanel" aria-labelledby="brand-tab">
-            {% for filter in collection.filters %}
-              <div class="space-y-2">
-                <h5 class="text-lg font-medium uppercase text-black dark:text-white">{{ filter.label }}</h5>
-
-                {% case filter.type %}
-                {% when 'list' %}
-                  {% for value in filter.values %}
-                    <div class="flex items-center">
-                      <input
-                        id="{{ filter.label | handleize }}_{{ forloop.index }}"
-                        type="checkbox"
-                        name="{{ filter.param_name }}"
-                        value="{{ value.value }}"
-                        {% if value.active %}checked{% endif %}
-                        class="filter-checkbox h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
-                      />
-                      <label for="{{ filter.label | handleize }}_{{ forloop.index }}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                        {{ value.label }} ({{ value.count }})
-                      </label>
-                    </div>
-                  {% endfor %}
-                {% when 'price_range' %}
-                  <form class="space-y-2" id="priceRangeForm">
-                    <div class="flex gap-2">
-                      <input
-                        name="filter.v.price.gte"
-                        type="number"
-                        id="price-gte"
-                        value="{{ filter.min_value.value }}"
-                        min="{{ filter.range_min }}"
-                        max="{{ filter.range_max }}"
-                        placeholder="Mín"
-                        class="w-1/2 rounded border border-gray-300 px-2 py-1 text-sm dark:bg-gray-700 dark:text-white"
-                      />
-                      <input
-                        name="filter.v.price.lte"
-                        type="number"
-                        id="price-lte"
-                        value="{{ filter.max_value.value }}"
-                        min="{{ filter.range_min }}"
-                        max="{{ filter.range_max }}"
-                        placeholder="Máx"
-                        class="w-1/2 rounded border border-gray-300 px-2 py-1 text-sm dark:bg-gray-700 dark:text-white"
-                      />
-                    </div>
-                    <button type="submit" class="mt-1 rounded bg-black px-3 py-1 text-sm text-white dark:bg-white dark:text-black">Aplicar</button>
-                  </form>
-                {% endcase %}
-              </div>
-            {% endfor %}
+            <!-- Shopify Online Store 2.0 inyecta aquí la sección 'collection-products' -->
           </div>
-        </div>
-      </div>
 
-      <div class="flex items-center space-x-4 rounded-b p-4 dark:border-gray-600 md:p-5">
-        <button id="clearFiltersBtn" type="button" class="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700">Limpiar filtros</button>
-      </div>
     </div>
-  </div>
-</div>
 
-  
 </section>
 
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-  const filterModal = document.getElementById('filterModal');
-  const filterCheckboxes = filterModal.querySelectorAll('.filter-checkbox');
-  const priceRangeForm = document.getElementById('priceRangeForm');
-  const clearFiltersBtn = document.getElementById('clearFiltersBtn');
-  const productsContainer = document.querySelector('.mb-4.grid.gap-4'); // Selector donde están los productos
-
-  // Función para construir la query string con filtros seleccionados
-  function buildFilterQuery() {
-    const params = new URLSearchParams();
-
-    filterCheckboxes.forEach(chk => {
-      if (chk.checked) {
-        params.append(chk.name, chk.value);
-      }
-    });
-
-    if (priceRangeForm) {
-      const gte = priceRangeForm.querySelector('#price-gte').value;
-      const lte = priceRangeForm.querySelector('#price-lte').value;
-      if (gte) params.set('filter.v.price.gte', gte);
-      if (lte) params.set('filter.v.price.lte', lte);
-    }
-
-    return params.toString();
-  }
-
-  // Función para actualizar productos via AJAX
-  async function updateProducts() {
-    const query = buildFilterQuery();
-    const url = `${window.location.pathname}?${query}`;
-
-    try {
-      const response = await fetch(url, {
-        headers: { 'X-Requested-With': 'XMLHttpRequest' }
-      });
-      if (!response.ok) throw new Error('Error en la petición');
-
-      const html = await response.text();
-
-      // Extraer solo la parte de productos (selector usado arriba)
-      const tempDiv = document.createElement('div');
-      tempDiv.innerHTML = html;
-      const newProducts = tempDiv.querySelector('.mb-4.grid.gap-4');
-      if (newProducts && productsContainer) {
-        productsContainer.innerHTML = newProducts.innerHTML;
-      }
-
-    } catch (error) {
-      console.error('Error actualizando productos:', error);
-    }
-  }
-
-  // Evento para checkboxes
-  filterCheckboxes.forEach(chk => {
-    chk.addEventListener('change', () => {
-      updateProducts();
-    });
-  });
-
-  // Evento para formulario de precio
-  if (priceRangeForm) {
-    priceRangeForm.addEventListener('submit', e => {
-      e.preventDefault();
-      updateProducts();
-    });
-  }
-
-  // Limpiar filtros
-  clearFiltersBtn.addEventListener('click', () => {
-    filterCheckboxes.forEach(chk => (chk.checked = false));
-    if (priceRangeForm) {
-      priceRangeForm.querySelector('#price-gte').value = '';
-      priceRangeForm.querySelector('#price-lte').value = '';
-    }
-    updateProducts();
-  });
-
-  // Modal toggle (ya tienes este código, pero por si acaso)
-  document.querySelectorAll('[data-modal-toggle]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterModal.classList.toggle('hidden');
-    });
-  });
-});
-
-    
-</script>

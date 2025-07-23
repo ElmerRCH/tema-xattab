@@ -1,0 +1,3 @@
+{% paginate collection.products by 12 %}
+  {% render 'product-grid', products: collection.products, paginate: paginate %}
+{% endpaginate %}
