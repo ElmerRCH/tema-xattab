@@ -1,0 +1,16 @@
+<div class="cart-items">
+  {% if cart.item_count > 0 %}
+    {% for item in cart.items %}
+      <div class="cart-item border-b py-4">
+        <img src="{{ item.image | img_url: '100x' }}" alt="{{ item.title }}" class="w-16 h-16 object-cover" />
+        <div>
+          <p>{{ item.product.title }}</p>
+          <p>Cantidad: {{ item.quantity }}</p>
+          <p>Precio: {{ item.final_line_price | money }}</p>
+        </div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p>Tu carrito está vacío.</p>
+  {% endif %}
+</div>
