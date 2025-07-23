@@ -56,7 +56,7 @@
         <p class="-mt-1 text-xs font-sans">IVA incluido</p>
 
         <!-- Formulario de compra con selector de cantidad funcional -->
-        <form method="post" action="/cart/add" class="mt-5 w-full">
+        <form method="post" action="{{routes.cart_add_url }}" class="mt-5 w-full add-to-cart-form">
           <input type="hidden" name="id" value="{{ product.variants.first.id }}">
 
           <label for="quantity-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cantidad:</label>

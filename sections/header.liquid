@@ -158,10 +158,10 @@
               {% endif %}
             </li>
           {% endfor %}
-          
-          <a href="/cart" class="relative">
+
+          <a href="{{ routes.cart.url }}" class="relative">
             🛒
-            <span class="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full px-1">
+            <span id="cart-count" class="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full px-1">
               {{ cart.item_count }}
             </span>
           </a>
