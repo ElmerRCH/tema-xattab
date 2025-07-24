@@ -19,10 +19,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     dots.forEach((dot, i) => {
       if (i === index) {
-        dot.classList.add("bg-red-500");
+        dot.classList.add("bg-brand-color");
         dot.classList.remove("bg-red-300");
       } else {
-        dot.classList.remove("bg-red-500");
+        dot.classList.remove("bg-brand-color");
         dot.classList.add("bg-red-300");
       }
     });

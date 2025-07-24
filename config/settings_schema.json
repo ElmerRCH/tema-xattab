@@ -24,5 +24,26 @@
         "default": "#ed1b24"
       }
     ]
-  }
+  },
+  {
+    "name": "email",
+    "settings": [
+      {
+        "type": "text",
+        "id": "email",
+        "label": "email",
+        "default": "example@gmail.com"
+      }
+    ]
+  },
+  {
+      "name": "Favicon",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "favicon_image",
+          "label": "Sube tu favicon"
+        }
+      ]
+    }
 ]
