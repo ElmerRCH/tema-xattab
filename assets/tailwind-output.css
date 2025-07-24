@@ -1569,6 +1569,10 @@ input[type="range"]::-ms-fill-lower {
   cursor: pointer;
 }
 
+.cursor-not-allowed {
+  cursor: not-allowed;
+}
+
 .resize {
   resize: both;
 }
@@ -2223,6 +2227,10 @@ input[type="range"]::-ms-fill-lower {
 
 .opacity-100 {
   opacity: 1;
+}
+
+.opacity-50 {
+  opacity: 0.5;
 }
 
 .shadow {

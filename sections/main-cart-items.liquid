@@ -18,44 +18,50 @@
 
                     <div class="flex items-center justify-between md:order-3 md:justify-end">
                         <div class="flex items-center">
-                        <form method="post" action="/cart/change">
-                            <input type="hidden" name="id" value="{{ item.key }}">
-                            <button type="submit" name="quantity" value="{{ item.quantity | minus: 1 }}" class="inline-flex h-5 w-5 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600">
+                          <button 
+                            class="change-quantity-btn inline-flex h-5 w-5 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600"
+                            data-key="{{ item.key }}"
+                            data-quantity="{{ item.quantity | minus: 1 }}"
+                            data-stock="{{ item.variant.inventory_quantity }}"
+                          >
                             <svg class="h-2.5 w-2.5 text-gray-900 dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2"><path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M1 1h16"/></svg>
-                            </button>
-                        </form>
+                          </button>
 
-                        <input type="text" readonly class="w-10 border-0 bg-transparent text-center text-sm font-medium text-gray-900 dark:text-white" value="{{ item.quantity }}">
+                          <input type="text" readonly class="w-10 border-0 bg-transparent text-center text-sm font-medium text-gray-900 dark:text-white" value="{{ item.quantity }}">
 
-                        <form method="post" action="/cart/change">
-                            <input type="hidden" name="id" value="{{ item.key }}">
-                            <button type="submit" name="quantity" value="{{ item.quantity | plus: 1 }}" class="inline-flex h-5 w-5 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600">
-                            <svg class="h-2.5 w-2.5 text-gray-900 dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18"><path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M9 1v16M1 9h16"/></svg>
-                            </button>
-                        </form>
+                          <button 
+                            class="change-quantity-btn plus-button inline-flex h-5 w-5 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600"
+                            data-key="{{ item.key }}"
+                            data-quantity="{{ item.quantity | plus: 1 }}"
+                            data-stock="{{ item.variant.inventory_quantity }}"
+                          >
+                            <svg class="h-2.5 w-2.5 text-gray-900 dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                              <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M9 1v16M1 9h16"/>
+                            </svg>
+                          </button>
                         </div>
 
                         <div class="text-end md:order-4 md:w-32">
-                        <p class="text-base font-bold text-gray-900 dark:text-white">{{ item.final_line_price | money }}</p>
+                          <p class="text-base font-bold text-gray-900 dark:text-white">{{ item.final_line_price | money }}</p>
                         </div>
                     </div>
 
                     <div class="w-full min-w-0 flex-1 space-y-4 md:order-2 md:max-w-md">
                         <a href="{{ item.url }}" class="text-base font-medium text-gray-900 hover:underline dark:text-white">
-                        {{ item.product.title }}
-                        {% if item.variant.title != 'Default Title' %}
+                          {{ item.product.title }}
+                          {% if item.variant.title != 'Default Title' %}
                             - {{ item.variant.title }}
-                        {% endif %}
+                          {% endif %}
                         </a>
 
-                        <form method="post" action="/cart/change">
-                        <input type="hidden" name="id" value="{{ item.key}}">
-                        <input type="hidden" name="quantity" value="0">
-                        <button type="submit" class="inline-flex items-center text-sm font-medium text-red-600 hover:underline dark:text-red-500">
-                            <svg class="me-1.5 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-                            Remove
+                        <button 
+                          type="button" 
+                          class="remove-item-btn inline-flex items-center text-sm font-medium text-red-600 hover:underline dark:text-red-500"
+                          data-key="{{ item.key }}"
+                        >
+                          <svg class="me-1.5 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                          Remove
                         </button>
-                        </form>
                     </div>
                     </div>
                 </div>
@@ -98,16 +104,16 @@
   </div>
 </section>
 
-
 <script>
-  // Cambia cantidad o elimina item usando fetch a /cart/change.js
-  async function changeCartQuantity(key, quantity) {
-    if (quantity < 0) return; // No permitas cantidad negativa
+  
+  async function changeCartQuantity(key, quantity, stock = null) {
+    if (quantity < 0) return;
+    if (stock !== null && quantity > stock) {
 
-    const body = JSON.stringify({
-      id: key,
-      quantity: quantity
-    });
+      return;
+    }
+
+    const body = JSON.stringify({ id: key, quantity });
 
     const response = await fetch('/cart/change.js', {
       method: 'POST',
@@ -119,7 +125,6 @@
     });
 
     if (response.ok) {
-      // Refresca para mostrar cambios
       location.reload();
     } else {
       console.error('Error al actualizar carrito');
@@ -130,7 +135,8 @@
     button.addEventListener('click', () => {
       const key = button.getAttribute('data-key');
       const quantity = parseInt(button.getAttribute('data-quantity'));
-      changeCartQuantity(key, quantity);
+      const stock = parseInt(button.getAttribute('data-stock'));
+      changeCartQuantity(key, quantity, stock);
     });
   });
 
