@@ -28,7 +28,8 @@ form.addEventListener('submit', async function(e) {
     if (response.ok) {
         await updateCartCount();
         setTimeout(() => {
-        alert('productos agregados correctamente')
+
+        //alert('productos agregados correctamente')
         }, 1000);
     } else {
         console.error('Error al agregar producto');
