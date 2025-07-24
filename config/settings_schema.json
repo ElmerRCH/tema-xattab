@@ -9,11 +9,19 @@
       },
       {
         "type": "image_picker",
+        "id": "logo_movil",
+        "label": "Logo para dispositivos moviles"
+      },
+
+      {
+        "type": "image_picker",
         "id": "announcement_image",
         "label": "Imagen de anuncio"
       }
     ]
   },
+  
+  
   {
     "name": "Colores",
     "settings": [
