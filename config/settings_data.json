@@ -12,7 +12,8 @@
     "logo": "shopify://shop_images/Xattab.svg",
     "announcement_image": "shopify://shop_images/Envio_gratis.zip_-_3.svg",
     "custom_color": "#c2001e",
-    "email": "ventas@xattab.com",
+    "email": "ventas@xattab.mx",
+    "favicon_image": "shopify://shop_images/favicon-32x32.png",
     "sections": {
       "header": {
         "type": "header",
