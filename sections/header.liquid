@@ -2,24 +2,33 @@
 
 
 <header class="fixed top-0 z-50 left-0 w-full border-b border-gray-200 shadow-bottom  site-header">
-  <div class="bg-brand-color text-white text-center">
+  <div class="bg-brand-color text-white text-center ">
     {% render 'email-announcement' %}
   </div>
  
   <nav class="bg-white border-gray-200 dark:bg-gray-900">
     <div class="max-w-screen-xl flex flex-wrap items-center  mx-auto p-4 ">
 
-       <a href="{{ routes.root_url }}" class="flex items-center m-auto sm:m-0 rtl:space-x-reverse ">
+      <a href="{{ routes.root_url }}" class="hidden sm:flex items-center m-auto sm:m-0 rtl:space-x-reverse ">
+        {% if settings.logo != blank %}
+          <img src="{{ settings.logo | image_url: width: 300 }}" class="h-24 w-24" alt="{{ shop.name }} "width="300" height="300" />
+        {% else %}
+            <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"> {{ shop.name }}</span>
+        {% endif %}
+      </a>
+      
+      
+      <div class="flex w-full md:order-1 md:w-1/2  ">
+        
+        <a href="{{ routes.root_url }}" class="flex sm:hidden items-center m-auto sm:m-0 rtl:space-x-reverse ">
           {% if settings.logo != blank %}
-            <img src="{{ settings.logo | image_url: width: 300 }}" class="h-24 w-24"  alt="{{ shop.name }} "width="300" height="300" />
+            <img src="{{ settings.logo_movil | image_url: width: 300 }}" class="w-14 "  alt="{{ shop.name }} "width="300" height="300" />
           {% else %}
               <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"> {{ shop.name }}</span>
           {% endif %}
         </a>
+            
 
-      
-        <div class="flex w-full md:order-1 md:w-1/2 mr-4">
-           
         <!-- Formulario de búsqueda visible en desktop -->
         <form id="predictive-search-form" action="/search" method="get" role="search" class="relative  md:block w-full">
           <label for="search-navbar" class="sr-only">Buscar productos</label>
@@ -56,7 +65,7 @@
         </form>
         
         <!-- Botón del menú en móvil -->
-        <button data-collapse-toggle="navbar-search" type="button" class="inline-flex items-center  p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-search" aria-expanded="false">
+        <button data-collapse-toggle="navbar-search" type="button" class="inline-flex items-center ml-1 p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-search" aria-expanded="false">
           <span class="sr-only">Abrir menú principal</span>
           <svg
             class="w-5 h-5"
@@ -74,10 +83,18 @@
           </svg>
         </button>
 
+        <a href="/cart" class="relative sm:hidden ml-2 px-1">
+            🛒
+            <span id="cart-count" class="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full px-1">
+              {{ cart.item_count }}
+            </span>
+        </a>
+
+
       </div>
 
       {% if settings.announcement_image != blank %}
-        <img src="{{ settings.announcement_image | image_url: width: 300 }}" class=" hidden md:block md:order-3 rounded-xl border-search-brand"  alt="{{ shop.name }} "width="300" height="300" />
+        <img src="{{ settings.announcement_image | image_url: width: 300 }}" class=" hidden md:block md:order-3 rounded-xl border-search-brand ml-4"  alt="{{ shop.name }} "width="300" height="300" />
       {% else %}
           <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white hidden  md:block md:order-3">espacio para imagen</span>
       {% endif %}
@@ -85,15 +102,16 @@
 
       <div class="items-center justify-between  hidden w-full md:flex md:w-auto md:order-4" id="navbar-search">
         
-        <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+        <ul class="flex  flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
           {% for link in linklists.main-menu.links %}
             <li class="custom-css">
               {% if link.links != blank %}
                 {%- assign dropdown_id = "dropdown-" | append: forloop.index -%}
+                
                 <button 
                   id="{{ dropdown_id }}-button" 
                   data-dropdown-toggle="{{ dropdown_id }}" 
-                  class="color-text-brand focus:ring-0 focus:outline-none  font-medium rounded-lg text-sm px-5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  class="color-text-brand focus:ring-0 focus:outline-none bg-red  sm-mr-0 font-medium rounded-lg text-md px-3 text-center inline-flex items-center "
                   type="button">
                   {{ link.title }}
                   <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -148,7 +166,7 @@
               {% else %}
                 <a 
                   href="{{ link.url }}" 
-                  class=" flex py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent hover:text-[var(--brand-color)] md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                  class=" flex py-2 px-3 text-gray-900 text-center rounded-sm hover:bg-gray-100 md:hover:bg-transparent hover:text-[var(--brand-color)] md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                   {% if link.current %}
                     aria-current="page"
                   {% endif %}
@@ -159,16 +177,17 @@
             </li>
           {% endfor %}
 
-          <a href="/cart" class="relative">
+          <a href="/cart" class=" hidden sm:block sm:relative">
             🛒
-            <span id="cart-count" class="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full px-1">
+            <span id="cart-count" class="flex absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full px-1">
               {{ cart.item_count }}
             </span>
           </a>
           
         </ul>
-
+        
       </div>
+
     </div>
   </nav>
 
