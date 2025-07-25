@@ -13,7 +13,8 @@
       "type": "page-contact",
       "custom_css": [
         "h1 {text-align: center;}"
-      ]
+      ],
+      "settings": {}
     }
   },
   "order": [

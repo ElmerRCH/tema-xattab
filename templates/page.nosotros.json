@@ -11,11 +11,10 @@
   "sections": {
     "main": {
       "type": "page-about-us",
+      "settings": {}
     }
   },
-  
   "order": [
-    "main",
-   
+    "main"
   ]
 }

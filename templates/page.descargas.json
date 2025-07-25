@@ -11,10 +11,10 @@
   "sections": {
     "main": {
       "type": "page-donwload",
+      "settings": {}
     }
   },
   "order": [
-    "main",
-   
+    "main"
   ]
 }
