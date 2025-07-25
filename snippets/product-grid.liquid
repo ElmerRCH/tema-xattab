@@ -1,6 +1,78 @@
-<div class="bg-gray-50 mb-4 sm:grid gap-4 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-4 p-5 rounded-b-md">
+{%- assign products = collection.products | default: collection.items -%}
+
+{%- if products == blank and search_results -%}
+  {%- assign products = search_results.items | where: "object_type", "product" -%}
+{%- endif -%}
+
+{%- assign products = collection.products | default: collection.items -%}
+
+{%- if products == blank and search_results -%}
+  {%- assign products = search_results.items | where: "object_type", "product" -%}
+{%- endif -%}
+
+<div class="bg-gray-50 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-5 rounded-b-md">
             
-    {% for product in collection.products %}
+        {% for product in products %}
+          {% if product.object_type == 'product' %}
+            <div class="border border-gray-200 bg-white rounded-lg overflow-hidden flex flex-col hover:shadow-lg transition-shadow duration-300">
+               <div class="h-56 w-full">
+                <a href="{{ product.url }}">
+                    <img 
+                        width="100"
+                        height="100"
+                        src="{{ product.featured_image | image_url: width: 600 }}" 
+                        alt="{{ product.title }}" 
+                        class="w-full h-64 object-cover"
+                    />
+                </a>
+            </div>
+              <div class="p-4 flex-grow flex flex-col">
+                <a href="{{ product.url }}" class="text-lg font-semibold text-gray-900 hover:text-red-600 mb-2">{{ product.title }}</a>
+                <div class="mt-auto">
+                  {% if product.price %}
+                    <span class="text-red-600 font-bold text-lg">
+                      {{ product.price | money }}
+                    </span>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+    <!-- Paginación -->
+    
+    {% if paginate.pages > 1 %}
+        <div class="flex justify-center mt-10 space-x-2">
+            {% if paginate.previous %}
+            <a href="{{ paginate.previous.url }}" class="px-4 py-2 border rounded hover:bg-gray-100">Anterior</a>
+            {% endif %}
+
+            {% for part in paginate.parts %}
+            {% if part.is_link %}
+                <a href="{{ part.url }}" class="px-3 py-1 border rounded hover:bg-gray-100">{{ part.title }}</a>
+            {% elsif part.title == paginate.current_page %}
+                <span class="px-3 py-1 border rounded bg-gray-800 text-white">{{ part.title }}</span>
+            {% else %}
+                <span class="px-3 py-1">{{ part.title }}</span>
+            {% endif %}
+            {% endfor %}
+
+            {% if paginate.next %}
+            <a href="{{ paginate.next.url }}" class="px-4 py-2 border rounded hover:bg-gray-100">Siguiente</a>
+            {% endif %}
+        </div>
+    {% endif %}
+            
+</div>
+
+
+
+
+{% comment %}
+ <div class="bg-red-500 mb-4 sm:grid gap-4 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-4 p-5 rounded-b-md ">
+            
+    {% for product in products%}
+        
         <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800 mb-4 sm:mb-0">
             <div class="h-56 w-full">
                 <a href="{{ product.url }}">
@@ -26,15 +98,24 @@
 
                 <div class="mt-4 flex items-center justify-between gap-4">
                     <p class="text-2xl font-extrabold leading-tight text-gray-900 dark:text-white">{{ product.price | money }}</p>
-                    <button type="button" class=" bg-brand-color  inline-flex items-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                        <svg class="-ms-2 me-2 h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6" />
-                        </svg>
-                        Agregar
-                    </button>
+                     {% if product.available %}
+                        <form method="post" action="{{routes.cart_add_url }}" class="add-to-cart-form">
+                            <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+                            <button type="submit" class="bg-brand-color inline-flex items-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                                <svg class="-ms-2 me-2 h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6" />
+                                </svg>
+                                Agregar
+                            </button>
+                        </form>
+                    {% else %}
+                        <span class="px-1 py-1">No disponible</span>
+                    {% endif %} 
+
                 </div>
             </div>
         </div>
+
     {% endfor %}
     
     <!-- Paginación -->
@@ -61,5 +142,4 @@
     {% endif %}
             
 </div>
-
-
+{% endcomment %}
