@@ -1,1 +1,131 @@
-{% render 'announcent' %}
+<section class="bg-white dark:bg-gray-900 py-16 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-4xl mx-auto text-center">
+    <h2 class="text-4xl font-extrabold text-gray-900 dark:text-white">{{ section.settings.title }}</h2>
+    <p class="mt-4 text-lg text-gray-600 dark:text-gray-300">{{ section.settings.description }}</p>
+  </div>
+
+  <div class="mt-14 max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-10">
+
+    <!-- Misión -->
+    <div class="group bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl shadow transition duration-300 transform hover:scale-105 hover:shadow-xl">
+      <div class="flex items-center justify-center mb-4">
+        <img
+          src="{{ section.settings.icon_mission | default: 'https://www.svgrepo.com/show/503849/target.svg' }}"
+          alt="Misión"
+          class="w-16 h-16 transition duration-300 group-hover:scale-110"
+        >
+      </div>
+      <h3 class="text-xl font-semibold text-gray-900 dark:text-white text-center">Misión</h3>
+      <p class="mt-3 text-gray-700 dark:text-gray-300 text-sm text-center">{{ section.settings.mission }}</p>
+    </div>
+
+    <!-- Visión -->
+    <div class="group bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl shadow transition duration-300 transform hover:scale-105 hover:shadow-xl">
+      <div class="flex items-center justify-center mb-4">
+        <img
+          src="{{ section.settings.icon_vision | default: 'https://www.svgrepo.com/show/503929/binoculars.svg' }}"
+          alt="Visión"
+          class="w-16 h-16 transition duration-300 group-hover:scale-110"
+        >
+      </div>
+      <h3 class="text-xl font-semibold text-gray-900 dark:text-white text-center">Visión</h3>
+      <p class="mt-3 text-gray-700 dark:text-gray-300 text-sm text-center">{{ section.settings.vision }}</p>
+    </div>
+
+    <!-- Lema -->
+    <div class="group bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl shadow transition duration-300 transform hover:scale-105 hover:shadow-xl">
+      <div class="flex items-center justify-center mb-4">
+        <img
+          src="{{ section.settings.icon_motto | default: 'https://www.svgrepo.com/show/503853/light-bulb.svg' }}"
+          alt="Lema"
+          class="w-16 h-16 transition duration-300 group-hover:scale-110"
+        >
+      </div>
+      <h3 class="text-xl font-semibold text-gray-900 dark:text-white text-center">Lema</h3>
+      <p class="mt-3 text-gray-700 dark:text-gray-300 text-sm text-center">{{ section.settings.motto }}</p>
+    </div>
+
+    <!-- Compromiso -->
+    <div class="group bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl shadow transition duration-300 transform hover:scale-105 hover:shadow-xl">
+      <div class="flex items-center justify-center mb-4">
+        <img
+          src="{{ section.settings.icon_commitment | default: 'https://www.svgrepo.com/show/503861/handshake.svg' }}"
+          alt="Compromiso"
+          class="w-16 h-16 transition duration-300 group-hover:scale-110"
+        >
+      </div>
+      <h3 class="text-xl font-semibold text-gray-900 dark:text-white text-center">Compromiso</h3>
+      <p class="mt-3 text-gray-700 dark:text-gray-300 text-sm text-center">{{ section.settings.commitment }}</p>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Nosotros Xattab",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título principal",
+      "default": "Nosotros"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Descripción general",
+      "default": "En Xattab, nos enorgullece ser una empresa 100% mexicana con más de tres décadas de dedicación a la venta y distribución de productos de calidad en todo México."
+    },
+    {
+      "type": "textarea",
+      "id": "mission",
+      "label": "Misión",
+      "default": "Nuestra misión es satisfacer las necesidades de nuestros clientes con los más altos estándares de calidad..."
+    },
+    {
+      "type": "textarea",
+      "id": "vision",
+      "label": "Visión",
+      "default": "Nos proyectamos hacia la excelencia como una empresa de clase mundial..."
+    },
+    {
+      "type": "textarea",
+      "id": "motto",
+      "label": "Lema",
+      "default": "Innovando el futuro"
+    },
+    {
+      "type": "textarea",
+      "id": "commitment",
+      "label": "Compromiso e innovación",
+      "default": "En Xattab, no solo ofrecemos productos de calidad, sino que también cultivamos un compromiso continuo con la innovación..."
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_mission",
+      "label": "Ícono para Misión"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_vision",
+      "label": "Ícono para Visión"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_motto",
+      "label": "Ícono para Lema"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_commitment",
+      "label": "Ícono para Compromiso"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Nosotros - Xattab"
+    }
+  ]
+}
+{% endschema %}
