@@ -31,9 +31,9 @@
       ],
       "settings": {
         "static_image_one": "shopify://shop_images/1_49ee9da8-0b7a-4452-8b4e-c55daf37adbc.svg",
-        "static_link_one": "",
+        "static_link_one": "https://xattab.mx/search?q=xattab&page=2",
         "static_image_two": "shopify://shop_images/2_50553b42-1e3f-4dd3-ad85-e14698b422ec.svg",
-        "static_link_two": ""
+        "static_link_two": "https://xattab.mx/search?q=aceites+xattab"
       }
     },
     "recommen-product": {
