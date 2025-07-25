@@ -11,7 +11,14 @@
   "sections": {
     "main": {
       "type": "page-about-us",
-      "settings": {}
+      "settings": {
+        "title": "Nosotros",
+        "description": "En Xattab, nos enorgullece ser una empresa 100% mexicana con más de tres décadas de dedicación a la venta y distribución de productos de calidad en todo México.",
+        "mission": "Nuestra misión es satisfacer las necesidades de nuestros clientes con los más altos estándares de calidad. Nos esforzamos por ofrecer excelentes productos y servicios, colocando como objetivo principal la constante búsqueda de crecimiento. Aspiramos a ser reconocidos por nuestra dedicación y contribución al progreso de quienes confían en nosotros.",
+        "vision": "Nos proyectamos hacia la excelencia como una empresa de clase mundial. Buscamos el reconocimiento y certificación por parte de organizaciones de calidad internacional. Nuestra visión se cimenta en la distinción de contar con un equipo altamente calificado, comprometido y dispuesto a satisfacer las expectativas de nuestros clientes en todo momento.",
+        "motto": "Creando lo que inspira.",
+        "commitment": "En Xattab, no solo ofrecemos productos de calidad, sino que también cultivamos un compromiso continuo creando lo que inspira."
+      }
     }
   },
   "order": [
