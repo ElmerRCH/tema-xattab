@@ -3,6 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+
+
+    {% if settings.favicon_image %}
+        <link rel="icon" type="image/png" href="{{ settings.favicon_image | img_url: '32x32' }}">
+    {% endif %}
+
     <title>{{ page_title }}</title>
     {{ content_for_header }}
     <script src="{{ 'flowbite.min.js' | asset_url }}" defer="defer"></script>
@@ -12,7 +18,7 @@
     <script src="{{ 'shopping-car.js' | asset_url }}" defer></script>
 
 
-  
+
     {{ 'tailwind-output.css' | asset_url | stylesheet_tag }}
     {{ 'brand.css' | asset_url | stylesheet_tag }}
 
