@@ -1,1 +1,81 @@
-{% render 'announcent' %}
+{{ 'layout-contact.css' | asset_url | stylesheet_tag }}
+
+
+<div class="layout-contact-container-1">
+    <h3>ATENCION AL CLIENTE</h3>
+    <div class="subcontainer-1">
+        
+        <div class="border-r">
+
+            <img class="svg-icon" src="{{ 'whatsapp-svgrepo-com.svg' | asset_url }}" alt="WhatsApp"  width="50" height="50" />
+            <span><a target="_blank" href="https://api.whatsapp.com/send/?phone=%2B526731489939&text=Hola,%20deseo%20m%C3%A1s%20informaci%C3%B3n.">673 148 9939</a></span>
+            <label>(Lunes a Viernes: 9 am - 5 pm)</label>
+        </div>
+        <div >
+            <img class="svg-icon" src="{{ 'email-svgrepo-com.svg' | asset_url }}" alt="WhatsApp"  width="50" height="50" />
+            <span><a target="_blank" href="mailto:ventas@kelve.mx">ventas@kelve.mx</a></span>
+            <span><a target="_blank" href="mailto:kelvepro@hotmail.com">kelvepro@hotmail.com</a></span>
+            <span><a target="_blank" href="mailto:kelve-ml@outlook.com">kelve-ml@outlook.com</a></span>
+
+        </div>
+    </div>
+</div>
+
+<div class="layout-contact-container-2">
+    <div class="container-data-social"  >
+        <h3>SOCIAL</h3>
+        <span>Av. Nicolas Bravo #356-B Zona Centro, Salvador&nbsp;Alvarado, Sinaloa, México 81400.</span>
+        <span>Telefono: <a target="_blank" href="https://api.whatsapp.com/send/?phone=%2B526731489939&text=Hola,%20deseo%20m%C3%A1s%20informaci%C3%B3n.">673 148 9939</a></span>
+        <span>E-mail: <a target="_blank" href="mailto:ventas@kelve.mx">ventas@kelve.mx</a></span>
+        <div  class="social-container">
+            <a target="_blank" href="https://www.tiktok.com/@kelvemx"><img class="svg-icon" src="{{ 'tiktok-svgrepo-com.svg' | asset_url }}" alt="WhatsApp"  width="30" height="30" /></a>
+            <a target="_blank" href="https://www.instagram.com/kelve.mx/"><img class="svg-icon" src="{{ 'instagram-1-svgrepo-com.svg' | asset_url }}" alt="WhatsApp"  width="30" height="30" /></a>
+
+        </div>
+
+    </div>
+    <div class="container-extra">
+        <h3>INFORMACION EXTRA</h3>
+        <span>¿quieres ser nuestro distribuidor, le gustaria formar parte de nuestro equipo o necesita contactar con otras areas funcionales de la empresa?</span>
+        <button onclick="mostrarContenido()" class="button-see-contact"> Escríbenos</button>
+        
+    </div>
+    
+</div>
+
+
+
+
+{% schema %}
+{
+  "name": "Contactanos",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título principal",
+      "default": "Nosotros"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Descripción general",
+      "default": "........"
+    }
+   
+  ],
+  "presets": [
+    {
+      "name": "contactanos - Xattab"
+    }
+  ]
+}
+{% endschema %}
+
+
+
+<script>
+  function mostrarContenido() {
+    window.location.href = "mailto:ventas@kelve.mx";
+  }
+</script>
