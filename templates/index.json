@@ -98,7 +98,9 @@
     },
     "view-product": {
       "type": "view-product",
-      "settings": {}
+      "settings": {
+        "product": "microscopio-biologico-trinocular-cx43-olympus"
+      }
     },
     "information-banner": {
       "type": "information-banner",
