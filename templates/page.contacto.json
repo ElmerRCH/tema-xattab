@@ -14,7 +14,12 @@
       "custom_css": [
         "h1 {text-align: center;}"
       ],
-      "settings": {}
+      "settings": {
+        "mission": "ATENCION AL CLIENTE",
+        "vision": "SOCIAL",
+        "subtitulo_3": "INFORMACION EXTRA",
+        "commitment": "..."
+      }
     }
   },
   "order": [
