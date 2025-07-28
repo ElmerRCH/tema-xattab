@@ -1,0 +1,88 @@
+[
+    {
+        "marca":"https://cdn.shopify.com/s/files/1/0605/9900/9494/files/Labomed-Corporate-Logo.svg?v=1750176737",
+        "productos":[
+            {   "nombre":"CX L",
+                
+                "img":"https://jflaren.com.mx/cdn/shop/files/ControladorPublico_8c6a9511-bd93-4ec9-b342-25c0fd1a5de5_1000x.png?v=1717421449",
+                "link_descarga":"https://cdn.shopify.com/s/files/1/0605/9900/9494/files/cxl_um_v1.8.pdf?v=1749594878"
+            },
+            {   "nombre":"LX 300",
+                "img":"https://jflaren.com.mx/cdn/shop/products/ControladorPublico_5c27d2e9-aea6-4b7b-abe5-6cfa06b8ffec_1000x.png?v=1663039696",
+                "link_descarga":"https://cdn.shopify.com/s/files/1/0605/9900/9494/files/Lx_300_Revision_1.2...._2019.pdf?v=1749595089"
+            },
+            {   "nombre":"LX 400",
+                "img":"https://jflaren.com.mx/cdn/shop/files/ControladorPublico_d4e66b47-b325-405b-bda6-da3ac16c9b8d_600x.png?v=1741126897",
+                "link_descarga":"https://cdn.shopify.com/s/files/1/0605/9900/9494/files/Lx_400_Revision_1.6.APRIL.2022.pdf?v=1749595292"
+            },
+            {   "nombre":"LX 500",
+                "img":"https://jflaren.com.mx/cdn/shop/files/ControladorPublico_ea349f90-8ad9-4de8-9de9-f6e53ebe8a74_1000x.png?v=1743455545",
+                "link_descarga":"https://cdn.shopify.com/s/files/1/0605/9900/9494/files/Lx_500_REVISION_1.6_APRIL_2022.pdf?v=1749595482"
+            },
+            {   "nombre":"TCM 400",
+                "img":"https://jflaren.com.mx/cdn/shop/files/ControladorPublico_520ff23a-50a6-48dd-9a6e-0c907e52fa8d_1000x.png?v=1740013923",
+                "link_descarga":"https://cdn.shopify.com/s/files/1/0605/9900/9494/files/TCM_400_REVISION_1.3_APRIL_2022.pdf?v=1749595746"
+            },
+            {   "nombre":"LUXEO 2S",
+                "img":"https://jflaren.com.mx/cdn/shop/files/ControladorPublico_2d50f15d-b633-4691-88e6-bd2379351c09_1000x.png?v=1741900336",
+                "link_descarga":"https://cdn.shopify.com/s/files/1/0605/9900/9494/files/luxeo_2s4z_um_v1.3.pdf?v=1749595980"
+            },
+            {   "nombre":"LUXEO 4Z",
+                "img":"https://jflaren.com.mx/cdn/shop/files/ControladorPublico_255fa1fa-9eb9-49d4-b936-2363731337ef_600x.png?v=1742850767",
+                "link_descarga":"https://cdn.shopify.com/s/files/1/0605/9900/9494/files/Luxeo__User_Manual_1.3_2020.pdf?v=1749596425"
+            }
+            
+        ]
+
+    },
+    {
+        "marca":"https://cdn.shopify.com/s/files/1/0605/9900/9494/files/logo-olympus.avif?v=1750176737",
+        "productos":[
+            {   "nombre":"CX 23",
+                "img":"https://jflaren.com.mx/cdn/shop/products/ControladorPublico_539e6dff-516b-4cdb-be05-83ba3770ea31_1000x.png?v=1697160566",
+                "link_descarga":"https://cdn.shopify.com/s/files/1/0605/9900/9494/files/CX23_instructions_manuel_EN_V01.pdf?v=1750115370"
+            },
+            {   "nombre":"CX 33",
+                "img":"https://jflaren.com.mx/cdn/shop/files/ControladorPublico_819e7114-ec63-46b1-bf9b-e41dd4beb948_1000x.png?v=1743716699",
+                "link_descarga":"https://cdn.shopify.com/s/files/1/0605/9900/9494/files/CX23_instructions_manuel_EN_V01.pdf?v=1750115370"
+            },
+             {   "nombre":"CX 43",
+                "img":"https://jflaren.com.mx/cdn/shop/products/ControladorPublico_379daf40-1ead-4503-8016-da4d27212dc4_1000x.png?v=1697160293",
+                "link_descarga":"https://cdn.shopify.com/s/files/1/0605/9900/9494/files/olympus_cx43_manual.pdf?v=1750115860"
+            }
+        ]
+    },
+    {
+        "marca":"https://cdn.shopify.com/s/files/1/0605/9900/9494/files/logo-ohaus.png?v=1750179868",
+        "productos":[
+            {   "nombre":"MB 23",
+                "img":"https://jflaren.com.mx/cdn/shop/products/ControladorPublico_01a83906-59e1-45c2-be35-e5df209292c5_600x.png?v=1697148777",
+                "link_descarga":"https://cdn.shopify.com/s/files/1/0605/9900/9494/files/analizador-humedad-ohaus-mb-23-25-manual-instrucciones.pdf?v=1750180045"
+            },
+            {   "nombre":"PR 124",
+                "img":"https://jflaren.com.mx/cdn/shop/products/ControladorPublico_9d0c9d69-7fe7-4920-8ace-86b57abd783a_1000x.png?v=1705583288",
+                "link_descarga":"https://cdn.shopify.com/s/files/1/0605/9900/9494/files/BA-PRO-784288-FR.pdf?v=1750180756"
+            },
+             {   "nombre":"PR 224",
+                "img":"https://jflaren.com.mx/cdn/shop/files/ControladorPublico_2e6573fb-65f5-4c89-a985-27a886a721c5_1000x.png?v=1730769109",
+                "link_descarga":"https://cdn.shopify.com/s/files/1/0605/9900/9494/files/BA-PRO-784288-FR.pdf?v=1750180756"
+            },
+            {   "nombre":"CX2200ZH",
+                "img":"https://jflaren.com.mx/cdn/shop/files/ImagendeWhatsApp2025-06-16alas15.34.30_7170d665_837d082b-4352-4c08-bfc3-d020bd064fad_600x.jpg?v=1750806192",
+                "link_descarga":"https://cdn.shopify.com/s/files/1/0605/9900/9494/files/Cx2200zh_manual.pdf?v=1750876165"
+
+            },
+            {   "nombre":"CX5200ZH",
+                "img":"https://kelve.mx/cdn/shop/files/WhatsAppImage2025-06-16at3.34.40PM_2464881c-bf97-412c-b12a-2db9690d46db.jpg?v=1750719450&width=550",
+                "link_descarga":"https://cdn.shopify.com/s/files/1/0605/9900/9494/files/Cx5200zh_manual.pdf?v=1750876165"
+
+            },
+             {   "nombre":"CX2200SG",
+                "img":"https://kelve.mx/cdn/shop/files/WhatsAppImage2025-06-16at3.34.40PM_53ea09a1-12a7-4381-b671-2b6cb7374966.jpg?v=1750719610&width=550",
+                "link_descarga":"https://cdn.shopify.com/s/files/1/0605/9900/9494/files/Cx2200zh_manual.pdf?v=1750876165"
+
+            }
+
+        ]
+    }    
+]

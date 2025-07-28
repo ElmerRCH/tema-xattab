@@ -3,14 +3,22 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+
+
+    {% if settings.favicon_image %}
+        <link rel="icon" type="image/png" href="{{ settings.favicon_image | img_url: '32x32' }}">
+    {% endif %}
+
     <title>{{ page_title }}</title>
     {{ content_for_header }}
     <script src="{{ 'flowbite.min.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'predictive-search.js'  | asset_url }}" defer="defer"></script>
     <script src="{{ 'custom-slider.js' | asset_url }}" defer></script>
-    
+    <script src="{{ 'collection-filter.js' | asset_url }}" defer></script>
+    <script src="{{ 'shopping-car.js' | asset_url }}" defer></script>
 
-    {{ 'predictive-search.js' | asset_url | stylesheet_tag }}
+
+
     {{ 'tailwind-output.css' | asset_url | stylesheet_tag }}
     {{ 'brand.css' | asset_url | stylesheet_tag }}
 
@@ -19,12 +27,13 @@
   <body class="bg-neutral-200">
    
     {% section 'header' %}
-      <div class="max-w-screen-xl m-auto  px-4 main-content">
+      <div class="max-w-screen-xl m-auto  px-4 main-content mt-5">
         {{ content_for_layout }}
 
       </div>
     {% section 'footer' %}
-      
+    {% render 'floating-bubble' %}
+
   </body>
 
 </html>
