@@ -53,12 +53,31 @@
     ]
   },
   {
-    "name": "Redes Sociales",
-    "settings": [
-      
-     
-    ]
-
+  "name": "Redes Sociales",
+  "settings": [
+    {
+      "type": "url",
+      "id": "tiktok_url",
+      "label": "Enlace a TikTok"
+    },
+    {
+      "type": "textarea",
+      "id": "tiktok_svg",
+      "label": "SVG TikTok",
+      "default": "<svg fill='currentColor' ...></svg>"
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Enlace a Instagram"
+    },
+    {
+      "type": "textarea",
+      "id": "instagram_svg",
+      "label": "SVG Instagram",
+      "default": "<svg fill='currentColor' ...></svg>"
+    }
+  ]
   },
   {
       "name": "Favicon",
