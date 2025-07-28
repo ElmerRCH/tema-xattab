@@ -34,7 +34,7 @@
     ]
   },
   {
-    "name": "Email",
+    "name": "email",
     "settings": [
       {
         "type": "text",
