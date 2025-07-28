@@ -80,6 +80,9 @@
     display: inline-block;
 
 }
+.border-r{
+    border-right: 0.9px dashed #595959;
+}
 
 @media only screen and (max-width: 768px) {
     .layout-contact-container-2{
@@ -103,6 +106,19 @@
     }
     .layout-contact-container-2 .button-see-contact{
         margin-top:10px;
+    }
+    .subcontainer-1{
+
+        flex-wrap: wrap;
+        justify-content: start;
+    }
+    .border-r{
+        width: 70%;
+        padding: 5px;
+        border-right:none;
+    }
+    .border-r label{
+        width: 100%;
     }
 
 }
@@ -139,9 +155,7 @@ label{
 }
 
 
-.border-r{
-    border-right: 0.9px dashed #595959;
-}
+
 
 .button-see-contact{
     color: black;

@@ -80,6 +80,23 @@
   ]
   },
   {
+  "name": "Direcciones",
+  "settings": [
+    {
+      "type": "text",
+      "id": "direcction_1",
+      "label": "direccion 1"
+    },
+    {
+      "type": "text",
+      "id": "direcction_2",
+      "label": "direccion 2"
+    },
+    
+  ]
+  },
+
+  {
       "name": "Favicon",
       "settings": [
         {
