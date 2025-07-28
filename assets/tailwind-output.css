@@ -1169,6 +1169,10 @@ input[type="range"]::-ms-fill-lower {
   margin: auto;
 }
 
+.m-5 {
+  margin: 1.25rem;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -1663,6 +1667,14 @@ input[type="range"]::-ms-fill-lower {
   align-content: center;
 }
 
+.content-between {
+  align-content: space-between;
+}
+
+.content-around {
+  align-content: space-around;
+}
+
 .items-start {
   align-items: flex-start;
 }
@@ -2014,6 +2026,11 @@ input[type="range"]::-ms-fill-lower {
 
 .bg-white\/80 {
   background-color: rgb(255 255 255 / 0.8);
+}
+
+.bg-red-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 128 128 / var(--tw-bg-opacity, 1));
 }
 
 .object-contain {

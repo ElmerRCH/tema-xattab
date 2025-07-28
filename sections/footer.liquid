@@ -21,18 +21,6 @@
     },
     {
       "type": "text",
-      "id": "address",
-      "label": "Dirección",
-      "default": "Av. Ejemplo 123, CDMX"
-    },
-    {
-      "type": "text",
-      "id": "email",
-      "label": "Correo electrónico",
-      "default": "contacto@tienda.com"
-    },
-    {
-      "type": "text",
       "id": "phone",
       "label": "Teléfono",
       "default": "+52 123 456 7890"
@@ -84,11 +72,6 @@
 }
 {% endschema %}
 
-
-
-
-
-
 <footer class="grid grid-cols-1 md:grid-cols-4 gap-8 bg-gray-800 text-white p-10">
     <!-- Logo y descripción -->
     <div class="flex  flex-col justify-start items-center w-50 h-50">
@@ -125,12 +108,15 @@
     </div>
 
     <!-- Contacto -->
-    <div >
-        <h4 class="font-semibold mb-2">Contacto</h4>
-        <p>{{ section.settings.address }}</p>
+    <div class="flex flex-col">
+      <h4 class="font-semibold mb-2">Contacto</h4>
+      <p>{{ settings.direcction_1 }}</p>
+      <hr class="mt-2">
+      <p class="mt-2">{{ settings.direcction_2 }}</p>
 
-        <p class="mt-2"><a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a></p>
-        <p><a href="tel:{{ section.settings.phone }}">{{ section.settings.phone }}</a></p>
+
+      <p class="mt-2"><a href="mailto:{{ settings.email}}">{{ settings.email }}</a></p>
+      <p><a target="_blank" href="https://api.whatsapp.com/send/?phone=%2B52{{settings.phone}}&text=Hola,%20deseo%20m%C3%A1s%20informaci%C3%B3n.">{{settings.phone}}</a></p>
     </div>
 
     <!-- Newsletter y redes -->
