@@ -26,16 +26,8 @@
         <span>Telefono: <a target="_blank" href="https://api.whatsapp.com/send/?phone=%2B52{{settings.phone}}&text=Hola,%20deseo%20m%C3%A1s%20informaci%C3%B3n.">{{settings.phone}}</a></span>
         <span>E-mail: <a class="email-container"target="_blank" href="mailto:{{settings.email}}">{{settings.email}}</a></span>
         <div  class="social-container">
-          {% if section.settings.tiktok_url %}
-            <a href="{{ section.settings.tiktok_url }}" target="_blank" aria-label="TikTok" class="hover:text-pink-500 svg-icon">
-              {{ section.settings.tiktok_svg }}
-            </a>
-          {% endif %}
-          {% if section.settings.instagram_url %}
-            <a href="{{ section.settings.instagram_url }}" target="_blank" aria-label="Instagram" class="hover:text-pink-500 svg-icon">
-              {{ section.settings.instagram_svg }}
-            </a>
-          {% endif %}
+          {% render 'social' %}
+          
             {% comment %}
               <a target="_blank" href="https://www.tiktok.com/@kelvemx"><img class="svg-icon" src="{{ 'tiktok-svgrepo-com.svg' | asset_url }}" alt="Social"  width="30" height="30" /></a>
               <a target="_blank" href="https://www.instagram.com/kelve.mx/"><img class="svg-icon" src="{{ 'instagram-1-svgrepo-com.svg' | asset_url }}" alt="Social"  width="30" height="30" /></a>
