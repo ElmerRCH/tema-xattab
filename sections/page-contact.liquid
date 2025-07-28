@@ -1,1 +1,89 @@
-{% render 'announcent' %}
+{{ 'layout-contact.css' | asset_url | stylesheet_tag }}
+
+
+<div class="layout-contact-container-1 ">
+    <h3>ATENCION AL CLIENTE</h3> 
+    <div class="subcontainer-1">
+        
+        <div class="border-r">
+
+            <img class="svg-icon" src="{{ 'whatsapp-svgrepo-com.svg' | asset_url }}" alt="WhatsApp"  width="50" height="50" />
+            <span><a target="_blank" href="https://api.whatsapp.com/send/?phone=%2B52{{settings.phone}}&text=Hola,%20deseo%20m%C3%A1s%20informaci%C3%B3n.">{{settings.phone}}</a></span>
+            <label>(Lunes a Viernes: 9 am - 5 pm)</label>
+        </div>
+        <div >
+            {% render 'icon-email' %}
+
+            <span><a target="_blank" href="mailto:{{settings.email}}">{{settings.email}}</a></span>
+        </div>
+    </div>
+</div>
+
+<div class="layout-contact-container-2">
+    <div class="container-data-social"  >
+        <h3>SOCIAL</h3>
+        <span>{{settings.direcction_1}}</span>
+        <span>Telefono: <a target="_blank" href="https://api.whatsapp.com/send/?phone=%2B52{{settings.phone}}&text=Hola,%20deseo%20m%C3%A1s%20informaci%C3%B3n.">{{settings.phone}}</a></span>
+        <span>E-mail: <a class="email-container"target="_blank" href="mailto:{{settings.email}}">{{settings.email}}</a></span>
+        <div  class="social-container">
+          {% render 'social'  size: 24%}
+          
+            {% comment %}
+              <a target="_blank" href="https://www.tiktok.com/@kelvemx"><img class="svg-icon" src="{{ 'tiktok-svgrepo-com.svg' | asset_url }}" alt="Social"  width="30" height="30" /></a>
+              <a target="_blank" href="https://www.instagram.com/kelve.mx/"><img class="svg-icon" src="{{ 'instagram-1-svgrepo-com.svg' | asset_url }}" alt="Social"  width="30" height="30" /></a>
+            {% endcomment %}
+           
+        </div>
+
+    </div>
+    <div class="container-extra">
+        <h3>INFORMACION EXTRA</h3>
+        <span>¿quieres ser nuestro distribuidor, le gustaria formar parte de nuestro equipo o necesita contactar con otras areas funcionales de la empresa?</span>
+        <button onclick="mostrarContenido()" class="button-see-contact"> Escríbenos</button>
+        
+    </div>
+    
+</div>
+
+
+{% schema %}
+{
+  "name": "Contactanos",
+  "settings": [
+    {
+      "type": "text",
+      "id": "mission",
+      "label": "subtitulo_1",
+      "default": "..."
+    },
+    {
+      "type": "text",
+      "id": "vision",
+      "label": "subtitulo_2",
+      "default": "..."
+    },
+    {
+      "type": "text",
+      "id": "subtitulo_3",
+      "label": "subtitulo 3",
+      "default": "....."
+    }
+    
+  ],
+  "presets": [
+    {
+      "name": "contactanos - Xattab"
+    }
+  ]
+}
+{% endschema %}
+
+
+
+<script>
+  function mostrarContenido() {
+
+    const contenedor = document.querySelector('.email-container');
+    window.location.href = `mailto:${contenedor.innerHTML}`;
+  }
+</script>

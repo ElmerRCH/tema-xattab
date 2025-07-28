@@ -1,1 +1,196 @@
-{% render 'announcent' %}
+
+<section class="bg-white dark:bg-gray-900 py-16 px-4 sm:px-6 lg:px-8 neon-border mb-5">
+  <div class="max-w-4xl mx-auto text-center">
+    <h2 class="text-4xl font-extrabold text-gray-900 dark:text-white">{{ section.settings.title }}</h2>
+    <p class="mt-4 text-lg text-gray-600 dark:text-gray-300">{{ section.settings.description }}</p>
+  </div>
+
+  <div class="mt-14 max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-10">
+
+    <!-- Misión -->
+    <div class="group  dark:bg-gray-800 p-6 rounded-2xl shadow transition duration-300 transform hover:scale-105 hover:shadow-xl">
+        
+        <div class="flex items-center flex-col justify-center mb-4 bg red-200">
+            <h2 class="text-3xl font-semibold text-gray-900 dark:text-white text-center mb-5">Mision</h2>
+
+            <img
+            
+            src="{{ section.settings.icon_mission | image_url: width: 300 }}"
+            alt="Misión"
+            class="w-50 h-50 transition duration-300 group-hover:scale-110"
+          
+            >
+      </div>
+      <p class="mt-3 text-gray-700 dark:text-gray-300 text-sm text-justify">{{ section.settings.mission }}</p>
+    </div>
+
+    <!-- Visión -->
+    <div class="group  dark:bg-gray-800 p-6 rounded-2xl shadow transition duration-300 transform hover:scale-105 hover:shadow-xl">
+        
+        <div class="flex items-center flex-col justify-center mb-4 bg red-200">
+            <h2 class="text-3xl font-semibold text-gray-900 dark:text-white text-center mb-5">Vision</h2>
+
+            <img
+            
+            src="{{ section.settings.icon_vision | image_url: width: 300 }}"
+            alt="Misión"
+            class="w-50 h-50 transition duration-300 group-hover:scale-110"
+          
+            >
+      </div>
+      <p class="mt-3 text-gray-700 dark:text-gray-300 text-sm text-justify">{{ section.settings.vision }}</p>
+    </div>
+
+    <!-- Lema -->
+    <div class="group  dark:bg-gray-800 p-6 rounded-2xl shadow transition duration-300 transform hover:scale-105 hover:shadow-xl">
+        
+        <div class="flex items-center flex-col justify-center mb-4 bg red-200">
+            <h2 class="text-3xl font-semibold text-gray-900 dark:text-white text-center mb-5">Lema</h2>
+
+            <img
+            
+            src="{{ section.settings.icon_motto | image_url: width: 300 }}"
+            alt="Misión"
+            class="w-50 h-50 transition duration-300 group-hover:scale-110"
+          
+            >
+      </div>
+      <p class="mt-3 text-gray-700 dark:text-gray-300 text-sm text-center">{{ section.settings.motto }}</p>
+    </div>
+    <!-- Compromiso -->
+     <div class="group  dark:bg-gray-800 p-6 rounded-2xl shadow transition duration-300 transform hover:scale-105 hover:shadow-xl">
+        
+        <div class="flex items-center flex-col justify-center mb-4 bg red-200">
+            <h2 class="text-3xl font-semibold text-gray-900 dark:text-white text-center mb-5">Compromiso</h2>
+
+            <img
+            
+            src="{{ section.settings.icon_commitment | image_url: width: 300 }}"
+            alt="Misión"
+            class="w-50 h-50 transition duration-300 group-hover:scale-110"
+          
+            >
+      </div>
+      <p class="mt-3 text-gray-700 dark:text-gray-300 text-sm text-justify">{{ section.settings.commitment }}</p>
+    </div>
+
+  </div>
+</section>
+
+
+{% schema %}
+{
+  "name": "Nosotros Xattab",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título principal",
+      "default": "Nosotros"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Descripción general",
+      "default": "En Xattab, nos enorgullece ser una empresa 100% mexicana con más de tres décadas de dedicación a la venta y distribución de productos de calidad en todo México."
+    },
+    {
+      "type": "textarea",
+      "id": "mission",
+      "label": "Misión",
+      "default": "Nuestra misión es satisfacer las necesidades de nuestros clientes con los más altos estándares de calidad..."
+    },
+    {
+      "type": "textarea",
+      "id": "vision",
+      "label": "Visión",
+      "default": "Nos proyectamos hacia la excelencia como una empresa de clase mundial..."
+    },
+    {
+      "type": "textarea",
+      "id": "motto",
+      "label": "Lema",
+      "default": "Innovando el futuro"
+    },
+    {
+      "type": "textarea",
+      "id": "commitment",
+      "label": "Compromiso e innovación",
+      "default": "En Xattab, no solo ofrecemos productos de calidad, sino que también cultivamos un compromiso continuo con la innovación..."
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_mission",
+      "label": "Ícono para Misión"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_vision",
+      "label": "Ícono para Visión"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_motto",
+      "label": "Ícono para Lema"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_commitment",
+      "label": "Ícono para Compromiso"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Nosotros - Xattab"
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+  @keyframes neon-border {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 200% 50%;
+    }
+  }
+
+  .neon-border {
+    position: relative;
+    border: 2px solid transparent;
+    border-radius: 1rem;
+    z-index: 0;
+  }
+
+  .neon-border::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    z-index: -1;
+    background: linear-gradient(
+      120deg,
+      #ED3237,
+      black,
+      #ED3237,
+      #ff9a9a,
+      #ED3237
+    );
+    background-size: 300% auto;
+    animation: neon-border 10s linear infinite;
+    border-radius: 1.125rem; /* un poco más para cubrir bordes */
+    mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: destination-out;
+    padding: 1.5px;
+  }
+</style>
