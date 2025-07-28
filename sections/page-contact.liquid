@@ -8,15 +8,13 @@
         <div class="border-r">
 
             <img class="svg-icon" src="{{ 'whatsapp-svgrepo-com.svg' | asset_url }}" alt="WhatsApp"  width="50" height="50" />
-            <span><a target="_blank" href="https://api.whatsapp.com/send/?phone=%2B526731489939&text=Hola,%20deseo%20m%C3%A1s%20informaci%C3%B3n.">673 148 9939</a></span>
+            <span><a target="_blank" href="https://api.whatsapp.com/send/?phone=%2B52{{settings.phone}}&text=Hola,%20deseo%20m%C3%A1s%20informaci%C3%B3n.">{{settings.phone}}</a></span>
             <label>(Lunes a Viernes: 9 am - 5 pm)</label>
         </div>
         <div >
-            <img class="svg-icon" src="{{ 'email-svgrepo-com.svg' | asset_url }}" alt="WhatsApp"  width="50" height="50" />
-            <span><a target="_blank" href="mailto:ventas@kelve.mx">ventas@kelve.mx</a></span>
-            <span><a target="_blank" href="mailto:kelvepro@hotmail.com">kelvepro@hotmail.com</a></span>
-            <span><a target="_blank" href="mailto:kelve-ml@outlook.com">kelve-ml@outlook.com</a></span>
+            {% render 'icon-email' %}
 
+            <span><a target="_blank" href="mailto:{{settings.email}}">{{settings.email}}</a></span>
         </div>
     </div>
 </div>
@@ -25,11 +23,11 @@
     <div class="container-data-social"  >
         <h3>SOCIAL</h3>
         <span>Av. Nicolas Bravo #356-B Zona Centro, Salvador&nbsp;Alvarado, Sinaloa, México 81400.</span>
-        <span>Telefono: <a target="_blank" href="https://api.whatsapp.com/send/?phone=%2B526731489939&text=Hola,%20deseo%20m%C3%A1s%20informaci%C3%B3n.">673 148 9939</a></span>
-        <span>E-mail: <a target="_blank" href="mailto:ventas@kelve.mx">ventas@kelve.mx</a></span>
+        <span>Telefono: <a target="_blank" href="https://api.whatsapp.com/send/?phone=%2B52{{settings.phone}}&text=Hola,%20deseo%20m%C3%A1s%20informaci%C3%B3n.">{{settings.phone}}</a></span>
+        <span>E-mail: <a class="email-container"target="_blank" href="mailto:{{settings.email}}">{{settings.email}}</a></span>
         <div  class="social-container">
-            <a target="_blank" href="https://www.tiktok.com/@kelvemx"><img class="svg-icon" src="{{ 'tiktok-svgrepo-com.svg' | asset_url }}" alt="WhatsApp"  width="30" height="30" /></a>
-            <a target="_blank" href="https://www.instagram.com/kelve.mx/"><img class="svg-icon" src="{{ 'instagram-1-svgrepo-com.svg' | asset_url }}" alt="WhatsApp"  width="30" height="30" /></a>
+            <a target="_blank" href="https://www.tiktok.com/@kelvemx"><img class="svg-icon" src="{{ 'tiktok-svgrepo-com.svg' | asset_url }}" alt="Social"  width="30" height="30" /></a>
+            <a target="_blank" href="https://www.instagram.com/kelve.mx/"><img class="svg-icon" src="{{ 'instagram-1-svgrepo-com.svg' | asset_url }}" alt="Social"  width="30" height="30" /></a>
 
         </div>
 
@@ -42,8 +40,6 @@
     </div>
     
 </div>
-
-
 
 
 {% schema %}
@@ -68,7 +64,7 @@
       "label": "subtitulo 3",
       "default": "....."
     }
-  
+    
   ],
   "presets": [
     {
@@ -80,11 +76,10 @@
 
 
 
-
-
-
 <script>
   function mostrarContenido() {
-    window.location.href = "mailto:ventas@kelve.mx";
+
+    const contenedor = document.querySelector('.email-container');
+    window.location.href = `mailto:${contenedor.innerHTML}`;
   }
 </script>
