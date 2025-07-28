@@ -22,11 +22,11 @@
 <div class="layout-contact-container-2">
     <div class="container-data-social"  >
         <h3>SOCIAL</h3>
-        <span>Av. Nicolas Bravo #356-B Zona Centro, Salvador&nbsp;Alvarado, Sinaloa, México 81400.</span>
+        <span>{{settings.direcction_1}}</span>
         <span>Telefono: <a target="_blank" href="https://api.whatsapp.com/send/?phone=%2B52{{settings.phone}}&text=Hola,%20deseo%20m%C3%A1s%20informaci%C3%B3n.">{{settings.phone}}</a></span>
         <span>E-mail: <a class="email-container"target="_blank" href="mailto:{{settings.email}}">{{settings.email}}</a></span>
         <div  class="social-container">
-          {% render 'social' %}
+          {% render 'social'  size: 24%}
           
             {% comment %}
               <a target="_blank" href="https://www.tiktok.com/@kelvemx"><img class="svg-icon" src="{{ 'tiktok-svgrepo-com.svg' | asset_url }}" alt="Social"  width="30" height="30" /></a>

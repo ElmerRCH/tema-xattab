@@ -134,17 +134,20 @@
     </div>
 
     <!-- Newsletter y redes -->
-    <div class="m-auto col-span-full">
+    <div class="m-auto col-span-full flex justify-evenly  w-80">
         <!-- Redes sociales -->
-        {% if section.blocks.size > 0 %}
-        <div class="mt-4 flex space-x-3 ">
-            {% for block in section.blocks %}
-            <a href="{{ block.settings.url }}" target="_blank" rel="noopener noreferrer" class="text-lg hover:underline">
-                {{ block.settings.platform }}
-            </a>
-            {% endfor %}
-        </div>
-        {% endif %}
+
+        <a href="{{ settings.tiktok_url }}" target="_blank" aria-label="TikTok" class="hover:text-pink-500">
+            <div class="w-12 h-12 md:w-18 md:h-18 [&>svg]:w-full [&>svg]:h-full">
+                {{ settings.tiktok_svg | raw }}
+            </div>
+        </a>
+        <a href="{{ settings.instagram_url }}" target="_blank" aria-label="TikTok" class="hover:text-pink-500">
+            <div class="w-12 h-12 md:w-18 md:h-18 [&>svg]:w-full [&>svg]:h-full">
+                {{ settings.instagram_svg | raw }}
+            </div>
+        </a>
+
     </div>
 
     <!-- Créditos legales -->

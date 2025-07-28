@@ -1,21 +1,18 @@
 
-
 {% if settings.tiktok_url %}
-    <a href="{{ settings.tiktok_url }}" target="_blank" aria-label="TikTok" class="hover:text-pink-500">
-        <div class="w-12 h-12 md:w-24 md:h-24 [&>svg]:w-full [&>svg]:h-full">
-            {{ settings.tiktok_svg | raw }}
-        </div>
-    </a>
+<a href="{{ settings.tiktok_url }}" target="_blank" aria-label="TikTok" class="hover:text-pink-500">
+    <div class="w-12 h-12 md:w-24 md:h-24 container-social-logos [&>svg]:w-full [&>svg]:h-full">
+        {{ settings.tiktok_svg | raw }}
+    </div>
+</a>
 
 {% endif %}
 
 {% if settings.instagram_url %}
-     <a href="{{ settings.instagram_url }}" target="_blank" aria-label="TikTok" class="hover:text-pink-500">
-        <div class="w-12 h-12 md:w-24 md:h-24 [&>svg]:w-full [&>svg]:h-full">
+    <a href="{{ settings.instagram_url }}" target="_blank" aria-label="TikTok" class="hover:text-pink-500">
+        <div class="w-12 h-12 md:w-24 md:h-24 container-social-logos [&>svg]:w-full [&>svg]:h-full">
             {{ settings.instagram_svg | raw }}
         </div>
     </a>
 {% endif %}
-
-
 
