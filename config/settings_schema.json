@@ -12,7 +12,6 @@
         "id": "logo_movil",
         "label": "Logo para dispositivos moviles"
       },
-
       {
         "type": "image_picker",
         "id": "announcement_image",
@@ -20,8 +19,6 @@
       }
     ]
   },
-  
-  
   {
     "name": "Colores",
     "settings": [
@@ -55,8 +52,13 @@
       }
     ]
   },
-  
-  
+  {
+    "name": "Redes Sociales",
+    "settings": [
+     
+    ]
+
+  },
   {
       "name": "Favicon",
       "settings": [
