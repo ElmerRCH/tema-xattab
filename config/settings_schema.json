@@ -39,11 +39,24 @@
       {
         "type": "text",
         "id": "email",
-        "label": "email",
+        "label": "Email",
         "default": "example@gmail.com"
       }
     ]
   },
+  {
+    "name": "email",
+    "settings": [
+      {
+        "type": "text",
+        "id": "phone",
+        "label": "Numero celular",
+        "default": "123"
+      }
+    ]
+  },
+  
+  
   {
       "name": "Favicon",
       "settings": [
@@ -53,5 +66,5 @@
           "label": "Sube tu favicon"
         }
       ]
-    }
+  }
 ]
