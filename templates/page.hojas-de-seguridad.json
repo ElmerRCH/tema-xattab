@@ -10,7 +10,7 @@
 {
   "sections": {
     "main": {
-      "type": "search",
+      "type": "page-safety-data-sheets",
       "settings": {}
     }
   },
