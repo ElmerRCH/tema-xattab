@@ -50,37 +50,49 @@
         "logo_MdpztE": {
           "type": "logo",
           "settings": {
-            "logo_image": "shopify://shop_images/logo_kelve.svg"
+            "logo_image": "shopify://shop_images/logo_kelve.svg",
+            "logo_link": "https://xattab.mx/search?q=kelve",
+            "logo_alt": ""
           }
         },
         "logo_jBHB6E": {
           "type": "logo",
           "settings": {
-            "logo_image": "shopify://shop_images/logo-lhabo.svg"
+            "logo_image": "shopify://shop_images/logo-lhabo.svg",
+            "logo_link": "",
+            "logo_alt": ""
           }
         },
         "logo_ckdrKi": {
           "type": "logo",
           "settings": {
-            "logo_image": "shopify://shop_images/logo-olympus.avif"
+            "logo_image": "shopify://shop_images/logo-olympus.avif",
+            "logo_link": "",
+            "logo_alt": ""
           }
         },
         "logo_DYbYKk": {
           "type": "logo",
           "settings": {
-            "logo_image": "shopify://shop_images/victorinox.svg"
+            "logo_image": "shopify://shop_images/victorinox.svg",
+            "logo_link": "",
+            "logo_alt": ""
           }
         },
         "logo_aUaWKi": {
           "type": "logo",
           "settings": {
-            "logo_image": "shopify://shop_images/logo-gamo.webp"
+            "logo_image": "shopify://shop_images/logo-gamo.webp",
+            "logo_link": "",
+            "logo_alt": ""
           }
         },
         "logo_Te7dtq": {
           "type": "logo",
           "settings": {
-            "logo_image": "shopify://shop_images/labomed-corporate-logo.svg"
+            "logo_image": "shopify://shop_images/labomed-corporate-logo.svg",
+            "logo_link": "",
+            "logo_alt": ""
           }
         }
       },
