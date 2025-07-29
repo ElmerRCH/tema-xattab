@@ -1,8 +1,10 @@
-{%- assign products = collection.products | default: collection.items -%}
+{%- assign products = products | default: collection.products | default: collection.items -%}
+
 
 {%- if products == blank and search_results -%}
   {%- assign products = search_results.items | where: "object_type", "product" -%}
 {%- endif -%}
+
 
 <div class="bg-gray-50 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-5 rounded-b-md">
 
