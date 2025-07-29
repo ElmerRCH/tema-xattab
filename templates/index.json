@@ -67,7 +67,7 @@
           "type": "logo",
           "settings": {
             "logo_image": "shopify://shop_images/logo-olympus.avif",
-            "logo_link": "",
+            "logo_link": "https://xattab.mx/search?q=olympus",
             "logo_alt": ""
           }
         },
