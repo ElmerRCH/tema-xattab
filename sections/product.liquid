@@ -105,7 +105,11 @@
                 </div>
           </form>
           {% else %}
-            <span class="px-1 py-1">No disponible</span>
+              <div class="flex m-auto  h-52">
+                {% render 'message-no-stock' %}
+
+              </div>
+            
         {% endif %} 
      
       </div>
