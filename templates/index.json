@@ -75,7 +75,7 @@
           "type": "logo",
           "settings": {
             "logo_image": "shopify://shop_images/victorinox.svg",
-            "logo_link": "",
+            "logo_link": "https://xattab.mx/search?q=victorinox",
             "logo_alt": ""
           }
         },
