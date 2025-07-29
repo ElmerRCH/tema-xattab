@@ -59,6 +59,7 @@
 
         <!-- Formulario de compra con selector de cantidad funcional -->
          {% if product.available %}
+
           <form method="post" action="{{ routes.cart_add_url }}" class="mt-5 w-full add-to-cart-form">
                 <input type="hidden" name="id" value="{{ product.variants.first.id }}">
 
@@ -104,8 +105,9 @@
                   </button>
                 </div>
           </form>
+          
           {% else %}
-              <div class="flex m-auto  h-52">
+              <div class="flex m-auto h-52">
                 {% render 'message-no-stock' %}
 
               </div>
