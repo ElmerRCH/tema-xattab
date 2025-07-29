@@ -4,22 +4,22 @@
 
 <div class="relative mb-5">
   <!-- Botón izquierdo -->
-  <button onclick="scrollCarousel('left')" class="absolute left-0 top-1/2 z-10 -translate-y-1/2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 p-2 rounded-full shadow-md hover:bg-red-300 dark:hover:bg-gray-700">
-    ◀
+  <button onclick="scrollCarousel('left')" class="border border-gray-400 color-text-brand absolute left-0 top-1/2 z-10 -translate-y-1/2 bg-white p-2 rounded-full shadow-md hover:bg-red-300">
+    {% render 'arrow-left' %}
   </button>
 
   <!-- Contenedor deslizable -->
- <div id="product-carousel" class="carousel-container flex overflow-x-auto space-x-4 scroll-smooth px-4">
-  {% for product in collection.products limit: section.settings.limit %}
-    {% render 'product-card', product: product %}
-  {% else %}
-    <p>No products to show.</p>
-  {% endfor %}
-</div>
+  <div id="product-carousel" class="carousel-container flex overflow-x-auto space-x-4 scroll-smooth px-4">
+    {% for product in collection.products limit: section.settings.limit %}
+      {% render 'product-card', product: product %}
+    {% else %}
+      <p>No products to show.</p>
+    {% endfor %}
+  </div>
 
   <!-- Botón derecho -->
-  <button onclick="scrollCarousel('right')" class="absolute right-0 top-1/2 z-10 -translate-y-1/2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 p-2 rounded-full shadow-md hover:bg-red-300 dark:hover:bg-gray-700">
-    ▶
+  <button onclick="scrollCarousel('right')" class="border border-gray-400 color-text-brand absolute right-0 top-1/2 z-10 -translate-y-1/2 bg-white p-2 rounded-full shadow-md hover:bg-red-300">
+    {% render 'arrow-right' %}
   </button>
 </div>
 
