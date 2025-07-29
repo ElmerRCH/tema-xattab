@@ -83,7 +83,7 @@
           "type": "logo",
           "settings": {
             "logo_image": "shopify://shop_images/logo-gamo.webp",
-            "logo_link": "",
+            "logo_link": "https://xattab.mx/search?q=gamo",
             "logo_alt": ""
           }
         },
