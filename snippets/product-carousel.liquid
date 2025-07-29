@@ -9,31 +9,13 @@
   </button>
 
   <!-- Contenedor deslizable -->
-  <div id="product-carousel" class="carousel-container flex overflow-x-auto space-x-4 scroll-smooth px-4">
-    {% for product in collection.products limit: section.settings.limit %}
-      <a href="{{ product.url }}" class="flex-none w-72 bg-white border border-gray-300 hover:border-[var(--brand-color)] rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 hover:shadow-md transition-shadow duration-200">
-        <img class="p-4 rounded-t-lg object-contain h-48 w-full"
-             src="{{ product.featured_image | image_url: width: 400 }}"
-             alt="{{ product.title | escape }}" 
-            height="100"
-            width="100">
-
-        <div class="px-5 pb-5">
-          <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-            {{ product.title }}
-          </h5>
-          
-          <div class="flex items-center justify-between mt-2">
-            <span class="text-xl font-bold color-text-brand dark:text-white">
-              {{ product.price | money }}
-            </span>
-          </div>
-        </div>
-      </a>
-    {% else %}
-      <p>No products to show.</p>
-    {% endfor %}
-  </div>
+ <div id="product-carousel" class="carousel-container flex overflow-x-auto space-x-4 scroll-smooth px-4">
+  {% for product in collection.products limit: section.settings.limit %}
+    {% render 'product-card', product: product %}
+  {% else %}
+    <p>No products to show.</p>
+  {% endfor %}
+</div>
 
   <!-- Botón derecho -->
   <button onclick="scrollCarousel('right')" class="absolute right-0 top-1/2 z-10 -translate-y-1/2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 p-2 rounded-full shadow-md hover:bg-red-300 dark:hover:bg-gray-700">

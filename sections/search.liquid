@@ -9,35 +9,14 @@
   {% if total_results > 0 and search.results.size > 0 %}
       <p class="mb-4 text-gray-700">Mostrando {{ total_results }} resultados para "<strong>{{ search.terms }}</strong>"</p>
 
-      <div class="bg-gray-50 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-5 rounded-md">
+     <div class="bg-gray-50 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-5 rounded-md">
         {% for product in search.results %}
           {% if product.object_type == 'product' %}
-            <div class="border border-gray-200 bg-white rounded-lg overflow-hidden flex flex-col hover:shadow-lg transition-shadow duration-300">
-               <div class="h-56 w-full">
-                <a href="{{ product.url }}">
-                    <img 
-                        width="100"
-                        height="100"
-                        src="{{ product.featured_image | image_url: width: 600 }}" 
-                        alt="{{ product.title }}" 
-                        class="w-full h-64 object-cover"
-                    />
-                </a>
-            </div>
-              <div class="p-4 flex-grow flex flex-col">
-                <a href="{{ product.url }}" class="text-lg font-semibold text-gray-900 hover:text-red-600 mb-2">{{ product.title }}</a>
-                <div class="mt-auto">
-                  {% if product.price %}
-                    <span class="text-red-600 font-bold text-lg">
-                      {{ product.price | money }}
-                    </span>
-                  {% endif %}
-                </div>
-              </div>
-            </div>
+            {% render 'product-card', product: product %}
           {% endif %}
         {% endfor %}
       </div>
+
 
       <!-- PAGINACIÓN ESTÉTICA -->
       <nav aria-label="Paginación de resultados" class="mt-8 flex justify-center space-x-2">
