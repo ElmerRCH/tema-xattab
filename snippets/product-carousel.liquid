@@ -7,7 +7,7 @@
   <button onclick="scrollCarousel('left')" class="border border-gray-400 color-text-brand absolute left-0 top-1/2 z-10 -translate-y-1/2 bg-white p-2 rounded-full shadow-md hover:bg-red-300">
     {% render 'arrow-left' %}
   </button>
-
+  
   <!-- Contenedor deslizable -->
   <div id="product-carousel" class="carousel-container flex overflow-x-auto space-x-4 scroll-smooth px-4">
     {% for product in collection.products limit: section.settings.limit %}

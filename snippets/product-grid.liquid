@@ -14,18 +14,20 @@
 
   <!-- Paginación -->
   {% if paginate.pages > 1 %}
-    <div class="flex justify-center mt-10 space-x-2">
+    <div class="flex justify-center flex-wrap sm:col-span-4 mt-10 m-auto space-x-2 ">
+      
       {% if paginate.previous %}
         <a href="{{ paginate.previous.url }}" class="px-4 py-2 border rounded hover:bg-gray-100">Anterior</a>
       {% endif %}
 
       {% for part in paginate.parts %}
+
         {% if part.is_link %}
-          <a href="{{ part.url }}" class="px-3 py-1 border rounded hover:bg-gray-100">{{ part.title }}</a>
+          <a href="{{ part.url }}" class="px-3 py-1 border rounded hover:bg-gray-100">{{ part.title}}</a>
         {% elsif part.title == paginate.current_page %}
           <span class="px-3 py-1 border rounded bg-gray-800 text-white">{{ part.title }}</span>
         {% else %}
-          <span class="px-3 py-1">{{ part.title }}</span>
+          <span class="px-3 py-1">{{ part.title }}-</span>
         {% endif %}
       {% endfor %}
 
