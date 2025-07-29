@@ -72,9 +72,9 @@
            {% assign prev_dots_left = lower_bound | minus: 1 %}
 {% assign prev_dots_right = upper_bound | plus: 1 %}
 
-{% if i == prev_dots_left or i == prev_dots_right %}
-  <span class="inline-flex items-center justify-center w-10 h-10 text-gray-500 select-none">…</span>
-{% endif %}
+      {% if i == prev_dots_left or i == prev_dots_right %}
+        <span class="inline-flex items-center justify-center w-10 h-10 text-gray-500 select-none">…</span>
+      {% endif %}
 
           {% endif %}
         {% endfor %}
