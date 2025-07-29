@@ -1,0 +1,96 @@
+  <h3 class="text-4xl font-bold text-black text-center">Manuales de usuario</h3>
+
+<div >
+    <div class="container-son">
+        <div id="marcas-container" class="mb-4 flex flex-wrap gap-2"></div>
+        <div id="carousel" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
+
+    </div>
+
+</div>
+
+<div id="marcas-container" class="mb-4 flex flex-wrap gap-2"></div>
+
+<div id="carousel" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
+<div id="carousel" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-4"></div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", async () => {
+    const marcasContainer = document.getElementById("marcas-container");
+    const carousel = document.getElementById("carousel");
+
+    try {
+      const response = await fetch('{{ "descargas.json" | asset_url }}');
+      const data = await response.json();
+
+      // Crear botones para cada marca
+      data.forEach(marcaObj => {
+        const btn = document.createElement('button');
+        btn.className = "px-10 py-5 w-12 h-12 text-black font-semibold rounded shadow-sm button-action";
+        
+        btn.style.borderRadius = "10px";
+        btn.style.boxShadow = "0 4px 8px rgba(0.5, 0.5, 0.5, 0.2)";
+        btn.style.backgroundImage = `url('${marcaObj.marca}')`;
+        btn.style.backgroundSize = "contain";
+        btn.style.backgroundRepeat = "no-repeat";
+        btn.style.backgroundPosition = "center";
+        btn.addEventListener("click", () => {
+          mostrarProductosDeMarca(marcaObj);
+        });
+
+        marcasContainer.appendChild(btn);
+      });
+
+
+      function mostrarProductosDeMarca(marcaObj) {
+        carousel.innerHTML = ""; // Limpiar
+
+        marcaObj.productos.forEach(producto => {
+          const card = document.createElement("div");
+          card.className = "bg-white rounded-lg shadow-md overflow-hidden flex flex-col";
+
+          card.innerHTML = `
+            <img src="${producto.img}" alt="${producto.nombre}" class="w-full h-48 object-contain p-4">
+            <div class="px-4 pb-4 flex-1 flex flex-col justify-between">
+              <h3 class="text-lg font-medium text-gray-800 mb-2 text-center name-product">${producto.nombre}</h3>
+              <a href="${producto.link_descarga}" target="_blank"
+                 class="mt-auto inline-block bg-brand-color text-center hover:bg-red-700 text-white text-sm font-semibold py-2 px-4 rounded">
+                Descargar
+              </a>
+            </div>
+          `;
+
+          carousel.appendChild(card);
+        });
+      }
+
+    } catch (error) {
+      console.error("Error cargando los productos:", error);
+      carousel.innerHTML = "<p class='text-red-600'>No se pudieron cargar los productos.</p>";
+    }
+  });
+</script>
+
+
+<style>
+    .container-father {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 5%;
+    }
+    .container-son {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    }
+    #marcas-container {
+    margin-top: 2.5%;
+    }
+    .name-product {
+    font-family: Roboto, sans-serif;
+    }
+</style>
