@@ -6,7 +6,7 @@
 {%- endif -%}
 
 
-<div class="bg-gray-50 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-5 rounded-b-md">
+<div class="bg-gray-50 flex flex-wrap gap-4 p-5 rounded-b-md">
 
   {% for product in products %}
     {% if product.object_type == 'product' or product.object_type == nil %}
@@ -29,7 +29,7 @@
         {% elsif part.title == paginate.current_page %}
           <span class="px-3 py-1 border rounded bg-gray-800 text-white">{{ part.title }}</span>
         {% else %}
-          <span class="px-3 py-1">{{ part.title }}-</span>
+          <span class="px-3 py-1">{{ part.title }}</span>
         {% endif %}
       {% endfor %}
 
