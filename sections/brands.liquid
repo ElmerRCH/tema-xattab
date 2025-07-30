@@ -11,7 +11,7 @@
     <div class="flex gap-8 text-gray-500 overflow-x-auto scroll-smooth no-scrollbar flex-nowrap " id="brandCarousel">
       {% for block in section.blocks %}
         {% if block.settings.logo_image != blank %}
-          <div class="flex-shrink-0 flex items-center justify-center min-w-[120px] sm:min-w-[150px] animate-float-in personal-shadow p-4">
+          <div  class=" flex-shrink-0 flex items-center justify-center min-w-[120px] sm:min-w-[150px] personal-shadow p-4 animation opacity-0">
             {% if block.settings.logo_link != blank %}
               <a href="{{ block.settings.logo_link }}" target="_blank" rel="noopener noreferrer">
                 <img
@@ -53,30 +53,45 @@
 
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const carousel = document.getElementById('brandCarousel');
-    const btnLeft = document.getElementById('scrollLeft');
-    const btnRight = document.getElementById('scrollRight');
-    const scrollAmount = 600;
+  
+  document.addEventListener("DOMContentLoaded", () => {
+  // --- Carrusel ---
+  const carousel = document.getElementById('brandCarousel');
+  const btnLeft = document.getElementById('scrollLeft');
+  const btnRight = document.getElementById('scrollRight');
+  const scrollAmount = 600;
 
-    function toggleButtons() {
-      btnLeft.classList.toggle('hidden', carousel.scrollLeft <= 0);
-      btnRight.classList.toggle('hidden', carousel.scrollLeft + carousel.offsetWidth >= carousel.scrollWidth - 10);
-    }
+  function toggleButtons() {
+    btnLeft.classList.toggle('hidden', carousel.scrollLeft <= 0);
+    btnRight.classList.toggle('hidden', carousel.scrollLeft + carousel.offsetWidth >= carousel.scrollWidth - 10);
+  }
 
-    btnRight.addEventListener('click', () => {
-      carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-      setTimeout(toggleButtons, 400);
-    });
-
-    btnLeft.addEventListener('click', () => {
-      carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-      setTimeout(toggleButtons, 400);
-    });
-
-    carousel.addEventListener('scroll', toggleButtons);
-    toggleButtons();
+  btnRight.addEventListener('click', () => {
+    carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    setTimeout(toggleButtons, 400);
   });
+
+  btnLeft.addEventListener('click', () => {
+    carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    setTimeout(toggleButtons, 400);
+  });
+
+  carousel.addEventListener('scroll', toggleButtons);
+  toggleButtons();
+
+  // --- Animación al entrar en pantalla ---
+   const targets = document.querySelectorAll(".animation");
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("animate-float-in");
+      }
+    });
+  }, { threshold: 0.5 });
+   targets.forEach(el => observer.observe(el));
+
+});
+
 
 </script>
 
@@ -143,7 +158,7 @@
     );
 
   }
-
+ 
   .animate-float-in {
     opacity: 0;
     animation: floatIn 1.2s ease forwards;
