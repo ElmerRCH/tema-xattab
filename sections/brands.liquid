@@ -4,14 +4,14 @@
   </h2>
 {% endif %}
 
-<section class="bg-white dark:bg-gray-900 rounded-md py-4 relative overflow-hidden">
-  <div class="mx-auto px-6">
+<section class="bg-white dark:bg-gray-900 rounded-md relative overflow-hidden">
+  <div class="mx-auto px-6 ">
     
     <!-- Contenedor del carrusel -->
-    <div class="flex gap-8 text-gray-500 overflow-x-auto scroll-smooth no-scrollbar flex-nowrap" id="brandCarousel">
+    <div class="flex gap-8 text-gray-500 overflow-x-auto scroll-smooth no-scrollbar flex-nowrap " id="brandCarousel">
       {% for block in section.blocks %}
         {% if block.settings.logo_image != blank %}
-          <div class="flex-shrink-0 flex items-center justify-center min-w-[120px] sm:min-w-[150px] animate-float-in">
+          <div class="flex-shrink-0 flex items-center justify-center min-w-[120px] sm:min-w-[150px] animate-float-in personal-shadow p-4">
             {% if block.settings.logo_link != blank %}
               <a href="{{ block.settings.logo_link }}" target="_blank" rel="noopener noreferrer">
                 <img
@@ -39,12 +39,12 @@
     </div>
 
     <!-- Botón Izquierda -->
-    <button id="scrollLeft" class="absolute left-0 top-1/2 -translate-y-1/2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full shadow p-2 hover:bg-gray-100 dark:hover:bg-gray-700 hidden">
+    <button id="scrollLeft" class="absolute left-0 top-1/2 -translate-y-1/2 bg-white  text-gray-700 shadow p-2 hover:bg-gray-100  hidden h-full">
       &#10094;
     </button>
 
     <!-- Botón Derecha -->
-    <button id="scrollRight" class="absolute right-0 top-1/2 -translate-y-1/2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full shadow p-2 hover:bg-gray-100 dark:hover:bg-gray-700">
+    <button id="scrollRight" class="absolute right-0 top-1/2 -translate-y-1/2 bg-white  text-gray-700 shadow p-2 hover:bg-gray-100 h-full">
       &#10095;
     </button>
 
@@ -57,7 +57,7 @@
     const carousel = document.getElementById('brandCarousel');
     const btnLeft = document.getElementById('scrollLeft');
     const btnRight = document.getElementById('scrollRight');
-    const scrollAmount = 200;
+    const scrollAmount = 600;
 
     function toggleButtons() {
       btnLeft.classList.toggle('hidden', carousel.scrollLeft <= 0);
