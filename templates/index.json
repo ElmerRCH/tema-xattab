@@ -71,11 +71,11 @@
             "logo_alt": ""
           }
         },
-        "logo_DYbYKk": {
+        "logo_7xagLE": {
           "type": "logo",
           "settings": {
-            "logo_image": "shopify://shop_images/victorinox.svg",
-            "logo_link": "https://xattab.mx/search?q=victorinox",
+            "logo_image": "shopify://shop_images/logo-ohaus.svg",
+            "logo_link": "https://xattab.mx/search?q=ohaus",
             "logo_alt": ""
           }
         },
@@ -84,6 +84,14 @@
           "settings": {
             "logo_image": "shopify://shop_images/logo-gamo.webp",
             "logo_link": "https://xattab.mx/search?q=gamo",
+            "logo_alt": ""
+          }
+        },
+        "logo_DYbYKk": {
+          "type": "logo",
+          "settings": {
+            "logo_image": "shopify://shop_images/victorinox.svg",
+            "logo_link": "https://xattab.mx/search?q=victorinox",
             "logo_alt": ""
           }
         },
@@ -118,27 +126,19 @@
             "logo_link": "https://xattab.mx/search?q=dlab",
             "logo_alt": ""
           }
-        },
-        "logo_7xagLE": {
-          "type": "logo",
-          "settings": {
-            "logo_image": "shopify://shop_images/logo-ohaus.svg",
-            "logo_link": "https://xattab.mx/search?q=ohaus",
-            "logo_alt": ""
-          }
         }
       },
       "block_order": [
         "logo_MdpztE",
         "logo_jBHB6E",
         "logo_ckdrKi",
-        "logo_DYbYKk",
+        "logo_7xagLE",
         "logo_aUaWKi",
+        "logo_DYbYKk",
         "logo_Te7dtq",
         "logo_tFtUdC",
         "logo_LHhWPh",
-        "logo_dwnMLn",
-        "logo_7xagLE"
+        "logo_dwnMLn"
       ],
       "settings": {
         "section_heading": "Encuentra las mejores marcas"
