@@ -102,6 +102,14 @@
             "logo_link": "https://xattab.mx/collections/hogar-y-electrodomesticos?filter.p.vendor=Urrea",
             "logo_alt": ""
           }
+        },
+        "logo_LHhWPh": {
+          "type": "logo",
+          "settings": {
+            "logo_image": "shopify://shop_images/logo-bellota.svg",
+            "logo_link": "https://xattab.mx/search?q=bellota",
+            "logo_alt": ""
+          }
         }
       },
       "block_order": [
@@ -111,7 +119,8 @@
         "logo_DYbYKk",
         "logo_aUaWKi",
         "logo_Te7dtq",
-        "logo_tFtUdC"
+        "logo_tFtUdC",
+        "logo_LHhWPh"
       ],
       "settings": {
         "section_heading": "Encuentra las mejores marcas"
