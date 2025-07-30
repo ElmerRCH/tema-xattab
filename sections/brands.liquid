@@ -1,15 +1,15 @@
  {% if section.settings.section_heading != blank %}
-  <h2 class=" text-2xl font-semibold text-start mb-4 text-gray-900 dark:text-white">
+  <h2 class=" text-2xl font-semibold text-start mb-4 text-gray-900">
     {{ section.settings.section_heading }}
   </h2>
 {% endif %}
 
 
 
-<section class="bg-white  antialiased dark:bg-gray-900 rounded-md sm:h-20" >
+<section class="bg-white  antialiased  rounded-md sm:h-20" >
   <div class=" mx-auto px-6">
      
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 text-gray-500  dark:text-gray-400 ">
+      <div class="flex grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 text-gray-500  bg-emerald-400 ">
        {% for block in section.blocks %}
         {% if block.settings.logo_image != blank %}
           <div class="flex items-center justify-center mt-1">
