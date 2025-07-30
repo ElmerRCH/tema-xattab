@@ -1,40 +1,103 @@
- {% if section.settings.section_heading != blank %}
-  <h2 class=" text-2xl font-semibold text-start mb-4 text-gray-900 dark:text-white">
+{% if section.settings.section_heading != blank %}
+  <h2 class=" text-2xl font-semibold text-start mb-4 text-gray-900">
     {{ section.settings.section_heading }}
   </h2>
 {% endif %}
 
-
-{% comment %}
-  alimentar con demas logos-marcas
-{% endcomment %}
-<section class="bg-white  antialiased dark:bg-gray-900 rounded-md sm:h-20" >
-  <div class=" mx-auto px-6">
-     
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 text-gray-500  dark:text-gray-400 ">
-        {% for block in section.blocks %}
-          {% if block.settings.logo_image != blank %}
-            <div class="flex items-center justify-center h-1/3 mt-1">
-              {% assign delay_ms = forloop.index0 | times: 300 %}
-              <img
-                height="200"
-                width="200"
-                src="{{ block.settings.logo_image | image_url: width: 200 }}"
-                alt="{{ block.settings.logo_image.alt | escape }}"
-                class="h-full object-contain animate-float-in  transition duration-300 cursor-pointer personal-shadow"
-                style="animation-delay: {{ delay_ms }}ms;"
-              >
-            </div>
-          {% endif %}
-        {% endfor %}
-      </div>
-  </div>
+<section class="bg-white dark:bg-gray-900 rounded-md relative overflow-hidden">
+  <div class="mx-auto px-6 ">
     
+    <!-- Contenedor del carrusel -->
+    <div class="flex gap-8 text-gray-500 overflow-x-auto scroll-smooth no-scrollbar flex-nowrap " id="brandCarousel">
+      {% for block in section.blocks %}
+        {% if block.settings.logo_image != blank %}
+          <div  class=" flex-shrink-0 flex items-center justify-center min-w-[120px] sm:min-w-[150px] personal-shadow p-4 animation opacity-0">
+            {% if block.settings.logo_link != blank %}
+              <a href="{{ block.settings.logo_link }}" target="_blank" rel="noopener noreferrer">
+                <img
+                  loading="lazy"
+                  height="120"
+                  width="120"
+                  src="{{ block.settings.logo_image | image_url: width: 200 }}"
+                  alt="{{ block.settings.logo_alt | escape }}"
+                  class="max-h-16 w-auto object-contain transition duration-300 cursor-pointer hover:scale-105"
+                >
+              </a>
+            {% else %}
+              <img
+                loading="lazy"
+                height="120"
+                width="120"
+                src="{{ block.settings.logo_image | image_url: width: 200 }}"
+                alt="{{ block.settings.logo_alt | escape }}"
+                class="max-h-16 w-auto object-contain transition duration-300"
+              >
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <!-- Botón Izquierda -->
+    <button id="scrollLeft" class="absolute left-0 top-1/2 -translate-y-1/2 bg-white  text-gray-700 shadow p-2 hover:bg-gray-100  hidden h-full">
+      &#10094;
+    </button>
+
+    <!-- Botón Derecha -->
+    <button id="scrollRight" class="absolute right-0 top-1/2 -translate-y-1/2 bg-white  text-gray-700 shadow p-2 hover:bg-gray-100 h-full">
+      &#10095;
+    </button>
+
+  </div>
 </section>
 
 
+<script>
+  
+  document.addEventListener("DOMContentLoaded", () => {
+  // --- Carrusel ---
+  const carousel = document.getElementById('brandCarousel');
+  const btnLeft = document.getElementById('scrollLeft');
+  const btnRight = document.getElementById('scrollRight');
+  const scrollAmount = 600;
+
+  function toggleButtons() {
+    btnLeft.classList.toggle('hidden', carousel.scrollLeft <= 0);
+    btnRight.classList.toggle('hidden', carousel.scrollLeft + carousel.offsetWidth >= carousel.scrollWidth - 10);
+  }
+
+  btnRight.addEventListener('click', () => {
+    carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    setTimeout(toggleButtons, 400);
+  });
+
+  btnLeft.addEventListener('click', () => {
+    carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    setTimeout(toggleButtons, 400);
+  });
+
+  carousel.addEventListener('scroll', toggleButtons);
+  toggleButtons();
+
+  // --- Animación al entrar en pantalla ---
+   const targets = document.querySelectorAll(".animation");
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("animate-float-in");
+      }
+    });
+  }, { threshold: 0.5 });
+   targets.forEach(el => observer.observe(el));
+
+});
+
+
+</script>
+
+
 {% schema %}
-{
+  {
   "name": "Banner Logos",
   "settings": [
     {
@@ -53,9 +116,19 @@
           "type": "image_picker",
           "id": "logo_image",
           "label": "Logo"
+        },
+        {
+          "type": "url",
+          "id": "logo_link",
+          "label": "Enlace del logo"
+        },
+        {
+          "type": "text",
+          "id": "logo_alt",
+          "label": "Texto alternativo (opcional)"
         }
       ],
-      "limit": 7
+      "limit": 12
     }
   ],
   "presets": [
@@ -64,11 +137,20 @@
     }
   ]
 }
+
 {% endschema %}
 
 
 
 <style>
+  /* Oculta scroll nativo */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 
   .personal-shadow:hover{
     filter:drop-shadow(
@@ -76,7 +158,7 @@
     );
 
   }
-
+ 
   .animate-float-in {
     opacity: 0;
     animation: floatIn 1.2s ease forwards;
@@ -84,16 +166,13 @@
 
   /* Animación de entrada flotante */
   @keyframes floatIn {
-    0% {
-      transform: translate(
-        calc(-50vw + 100px),
-        calc(-50vh + 100px)
-      ) scale(0.3) rotate(20deg);
-
-    }
-    100% {
-      transform: translate(0, 0) scale(1) rotate(0deg);
-      opacity: 1;
-    }
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
   }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 </style>
