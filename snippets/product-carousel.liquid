@@ -1,55 +1,75 @@
+<h2 class="text-2xl font-semibold text-start mb-4 text-gray-900 dark:text-white mt-4">
+  {{ section.settings.section_heading }}
+</h2>
 
-<h2 class=" text-2xl font-semibold text-start mb-4 text-gray-900 dark:text-white mt-4" >{{section.settings.section_heading}}</h2>
-
-
-<div class="relative mb-5">
+<div class="relative mb-6 group">
   <!-- Botón izquierdo -->
-  <button onclick="scrollCarousel('left')" class="absolute left-0 top-1/2 z-10 -translate-y-1/2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 p-2 rounded-full shadow-md hover:bg-red-300 dark:hover:bg-gray-700">
-    ◀
+  <button onclick="scrollCarousel('left')" 
+    class="hidden md:flex items-center justify-center border border-gray-300 text-gray-700 absolute left-2 top-1/2 z-10 -translate-y-1/2 bg-white p-3 rounded-full shadow-md hover:bg-[var(--brand-color)] hover:text-white transition-colors duration-200">
+    {% render 'arrow-left' %}
   </button>
-
+  
   <!-- Contenedor deslizable -->
-  <div id="product-carousel" class="carousel-container flex overflow-x-auto space-x-4 scroll-smooth px-4">
+  <div id="product-carousel" 
+       class="carousel-container flex overflow-x-auto space-x-4 scroll-smooth px-4 py-1 hide-scrollbar snap-x snap-mandatory"
+       onmouseenter="pauseCarousel()" onmouseleave="resumeCarousel()" ontouchstart="pauseCarousel()" ontouchend="resumeCarousel()">
     {% for product in collection.products limit: section.settings.limit %}
-      <a href="{{ product.url }}" class="flex-none w-72 bg-white border border-gray-300 hover:border-[var(--brand-color)] rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 hover:shadow-md transition-shadow duration-200">
-        <img class="p-4 rounded-t-lg object-contain h-48 w-full"
-             src="{{ product.featured_image | image_url: width: 400 }}"
-             alt="{{ product.title | escape }}" 
-            height="100"
-            width="100">
-
-        <div class="px-5 pb-5">
-          <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-            {{ product.title }}
-          </h5>
-          
-          <div class="flex items-center justify-between mt-2">
-            <span class="text-xl font-bold color-text-brand dark:text-white">
-              {{ product.price | money }}
-            </span>
-          </div>
-        </div>
-      </a>
+      <div class="snap-start flex-shrink-0">
+        {% render 'product-card', product: product %}
+      </div>
     {% else %}
-      <p>No products to show.</p>
+      <p class="text-gray-500">No products to show.</p>
     {% endfor %}
   </div>
 
   <!-- Botón derecho -->
-  <button onclick="scrollCarousel('right')" class="absolute right-0 top-1/2 z-10 -translate-y-1/2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 p-2 rounded-full shadow-md hover:bg-red-300 dark:hover:bg-gray-700">
-    ▶
+  <button onclick="scrollCarousel('right')" 
+    class="hidden md:flex items-center justify-center border border-gray-300 text-gray-700 absolute right-2 top-1/2 z-10 -translate-y-1/2 bg-white p-3 rounded-full shadow-md hover:bg-[var(--brand-color)] hover:text-white transition-colors duration-200">
+    {% render 'arrow-right' %}
   </button>
 </div>
 
-<!-- Script de scroll -->
 <script>
+  const carousel = document.getElementById('product-carousel');
+  let autoplayInterval;
+
+  // Función de scroll manual
   function scrollCarousel(direction) {
-    const container = document.getElementById('product-carousel');
-    const scrollAmount = 300; // ajusta según ancho del item
-    if (direction === 'left') {
-      container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-    } else {
-      container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    }
+    const scrollAmount = 300;
+    carousel.scrollBy({ left: direction === 'left' ? -scrollAmount : scrollAmount, behavior: 'smooth' });
   }
+
+  // Autoplay
+  function startCarousel() {
+    autoplayInterval = setInterval(() => {
+      if (carousel.scrollLeft + carousel.offsetWidth >= carousel.scrollWidth - 5) {
+        // Si llega al final, regresa al inicio
+        carousel.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        carousel.scrollBy({ left: 300, behavior: 'smooth' });
+      }
+    }, 4000); // 4s de espera entre desplazamientos
+  }
+
+  function pauseCarousel() {
+    clearInterval(autoplayInterval);
+  }
+
+  function resumeCarousel() {
+    startCarousel();
+  }
+
+  // Inicia autoplay después de cargar
+  document.addEventListener('DOMContentLoaded', startCarousel);
 </script>
+
+<style>
+  /* Oculta la barra de scroll */
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>

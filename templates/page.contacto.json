@@ -10,9 +10,18 @@
 {
   "sections": {
     "main": {
-      "type": "product",
-      "settings": {}
+      "type": "page-contact",
+      "custom_css": [
+        "h1 {text-align: center;}"
+      ],
+      "settings": {
+        "mission": "ATENCION AL CLIENTE",
+        "vision": "SOCIAL",
+        "subtitulo_3": "INFORMACION EXTRA"
+      }
     }
   },
-  "order": ["main"]
+  "order": [
+    "main"
+  ]
 }

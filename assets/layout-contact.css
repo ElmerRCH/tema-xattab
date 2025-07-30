@@ -1,0 +1,174 @@
+.layout-contact-container-1,.layout-contact-container-2{
+    width: 95%;
+    margin: auto;
+    
+}
+
+
+.layout-contact-container-1{
+    
+    padding-top:10px;
+    padding-bottom:10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background: #ededed;
+    color:var(--brand-color);;
+
+}
+
+.subcontainer-1{
+    display: flex;
+    justify-content: center;
+}
+
+.subcontainer-1 div{
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 10px;
+    width: 45%;
+
+}
+
+.subcontainer-1 div a{
+    text-decoration: none;
+    color:var(--brand-color);;
+}
+
+.layout-contact-container-2{
+    background: #f5f5f5;;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 15px;
+
+}
+
+.layout-contact-container-2 div{
+    
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+    width: 45%;
+    
+}
+.layout-contact-container-2 div span{
+    width: 80%;
+
+    font-size: clamp(14px, 2vw, 20px);
+    font-family:  bold;
+}
+
+.layout-contact-container-2 div span a{
+    color:var(--brand-color);;
+    text-decoration: none;
+}
+.social-container{
+    margin-top:5px;
+    display: flex;
+    flex-direction: row !important;
+    justify-content: space-evenly !important;
+}
+
+.social-container a{
+    display: inline-block;
+
+}
+.border-r{
+    border-right: 0.9px dashed #595959;
+}
+
+@media only screen and (max-width: 768px) {
+    .layout-contact-container-2{
+        flex-direction: column;
+
+
+    }
+
+    .layout-contact-container-2 div{
+        width: 90%;
+        
+    }
+    .social-container{
+        display: flex;
+        justify-content: start !important;
+        align-items: center start;
+    }
+
+    .container-extra, .container-data-social{
+       padding: 10px;;
+    }
+    .layout-contact-container-2 .button-see-contact{
+        margin-top:10px;
+    }
+    .subcontainer-1{
+
+        flex-wrap: wrap;
+        justify-content: start;
+    }
+    .border-r{
+        width: 70%;
+        padding: 5px;
+        border-right:none;
+    }
+    .border-r label{
+        width: 100%;
+    }
+
+}
+
+
+h3{
+
+    border-left: 10px solid var(--brand-color);;
+    padding-left: 10px;
+    margin-top:1.2%;
+    display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h3, .layout-contact-container-2 div span,.social-container{
+    margin-left: 10%;
+    padding-left: 10px;
+
+}
+
+span{margin-top:5px}
+
+label{
+    width: 80%;
+    margin: auto;
+    text-align: center;
+}
+
+.svg-icon {
+  fill: currentColor;
+  display: inline-block;
+  vertical-align: middle;
+  transition: fill 0.3s ease;
+}
+
+
+
+
+.button-see-contact{
+    color: black;
+    box-shadow: 0px 5px;
+    margin: auto;
+    background: var(--brand-color);;
+    border:none;
+    border-radius:10px;
+    font-size: 1em;
+    padding:5px;
+}
+
+.button-see-contact:hover{
+    cursor: pointer;
+}
+

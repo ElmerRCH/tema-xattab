@@ -1,0 +1,31 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "page-about-us",
+      "settings": {
+        "title": "Nosotros",
+        "description": "En Xattab, nos enorgullece ser una empresa 100% mexicana con más de tres décadas de dedicación a la venta y distribución de productos de calidad en todo México.",
+        "mission": "Nuestra misión es satisfacer las necesidades de nuestros clientes con los más altos estándares de calidad. Nos esforzamos por ofrecer excelentes productos y servicios, colocando como objetivo principal la constante búsqueda de crecimiento. Aspiramos a ser reconocidos por nuestra dedicación y contribución al progreso de quienes confían en nosotros.",
+        "vision": "Nos proyectamos hacia la excelencia como una empresa de clase mundial. Buscamos el reconocimiento y certificación por parte de organizaciones de calidad internacional. Nuestra visión se cimenta en la distinción de contar con un equipo altamente calificado, comprometido y dispuesto a satisfacer las expectativas de nuestros clientes en todo momento.",
+        "motto": "Creando lo que inspira.",
+        "commitment": "En Xattab, no solo ofrecemos productos de calidad, sino que también cultivamos un compromiso continuo creando lo que inspira.",
+        "icon_mission": "shopify://shop_images/xattaba-2.webp",
+        "icon_vision": "shopify://shop_images/ControladorPublico_6917089a-2e00-4d87-a1b0-038e6b6c2879.jpg",
+        "icon_motto": "shopify://shop_images/ControladorPublico_d381ff8c-fcc9-4d3b-90c4-abd6aff66d64.jpg",
+        "icon_commitment": "shopify://shop_images/WhatsAppImage2025-07-01at2.45.42PM.jpg"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

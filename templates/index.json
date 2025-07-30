@@ -15,13 +15,13 @@
         "slider_hRLfjQ": {
           "type": "slider",
           "settings": {
-            "desktop_image": "shopify://shop_images/FOTO_2_jpg.jpg"
+            "desktop_image": "shopify://shop_images/1_c78b6374-cc47-480f-bc7d-c5ccf05b41c7.svg"
           }
         },
         "slider_BJ8Cem": {
           "type": "slider",
           "settings": {
-            "desktop_image": "shopify://shop_images/Kelve_-_Baner_de_slider_-_2.svg"
+            "desktop_image": "shopify://shop_images/2.svg"
           }
         }
       },
@@ -30,10 +30,10 @@
         "slider_BJ8Cem"
       ],
       "settings": {
-        "static_image_one": "shopify://shop_images/xattab-1.webp",
-        "static_link_one": "",
-        "static_image_two": "shopify://shop_images/xattaba-2.webp",
-        "static_link_two": ""
+        "static_image_one": "shopify://shop_images/1_49ee9da8-0b7a-4452-8b4e-c55daf37adbc.svg",
+        "static_link_one": "https://xattab.mx/search?q=xattab&page=2",
+        "static_image_two": "shopify://shop_images/2_50553b42-1e3f-4dd3-ad85-e14698b422ec.svg",
+        "static_link_two": "https://xattab.mx/search?q=aceites+xattab"
       }
     },
     "recommen-product": {
@@ -50,37 +50,73 @@
         "logo_MdpztE": {
           "type": "logo",
           "settings": {
-            "logo_image": "shopify://shop_images/logo_kelve.svg"
+            "logo_image": "shopify://shop_images/logo_kelve.svg",
+            "logo_link": "https://xattab.mx/search?q=kelve",
+            "logo_alt": ""
           }
         },
         "logo_jBHB6E": {
           "type": "logo",
           "settings": {
-            "logo_image": "shopify://shop_images/logo-lhabo.svg"
+            "logo_image": "shopify://shop_images/logo-lhabo.svg",
+            "logo_link": "https://xattab.mx/search?q=lhabo",
+            "logo_alt": ""
           }
         },
         "logo_ckdrKi": {
           "type": "logo",
           "settings": {
-            "logo_image": "shopify://shop_images/logo-olympus.avif"
+            "logo_image": "shopify://shop_images/logo-olympus.avif",
+            "logo_link": "https://xattab.mx/search?q=olympus",
+            "logo_alt": ""
           }
         },
         "logo_DYbYKk": {
           "type": "logo",
           "settings": {
-            "logo_image": "shopify://shop_images/victorinox.svg"
+            "logo_image": "shopify://shop_images/victorinox.svg",
+            "logo_link": "https://xattab.mx/search?q=victorinox",
+            "logo_alt": ""
           }
         },
         "logo_aUaWKi": {
           "type": "logo",
           "settings": {
-            "logo_image": "shopify://shop_images/logo-gamo.webp"
+            "logo_image": "shopify://shop_images/logo-gamo.webp",
+            "logo_link": "https://xattab.mx/search?q=gamo",
+            "logo_alt": ""
           }
         },
         "logo_Te7dtq": {
           "type": "logo",
           "settings": {
-            "logo_image": "shopify://shop_images/labomed-corporate-logo.svg"
+            "logo_image": "shopify://shop_images/labomed-corporate-logo.svg",
+            "logo_link": "https://xattab.mx/search?q=labomed",
+            "logo_alt": ""
+          }
+        },
+        "logo_tFtUdC": {
+          "type": "logo",
+          "settings": {
+            "logo_image": "shopify://shop_images/logo-urrea-valvulas.svg",
+            "logo_link": "https://xattab.mx/collections/hogar-y-electrodomesticos?filter.p.vendor=Urrea",
+            "logo_alt": ""
+          }
+        },
+        "logo_LHhWPh": {
+          "type": "logo",
+          "settings": {
+            "logo_image": "shopify://shop_images/logo-bellota.svg",
+            "logo_link": "https://xattab.mx/search?q=bellota",
+            "logo_alt": ""
+          }
+        },
+        "logo_dwnMLn": {
+          "type": "logo",
+          "settings": {
+            "logo_image": "shopify://shop_images/logo-dlab.svg",
+            "logo_link": "https://xattab.mx/search?q=dlab",
+            "logo_alt": ""
           }
         }
       },
@@ -90,7 +126,10 @@
         "logo_ckdrKi",
         "logo_DYbYKk",
         "logo_aUaWKi",
-        "logo_Te7dtq"
+        "logo_Te7dtq",
+        "logo_tFtUdC",
+        "logo_LHhWPh",
+        "logo_dwnMLn"
       ],
       "settings": {
         "section_heading": "Encuentra las mejores marcas"
@@ -98,7 +137,9 @@
     },
     "view-product": {
       "type": "view-product",
-      "settings": {}
+      "settings": {
+        "product": "microscopio-biologico-trinocular-cx43-olympus"
+      }
     },
     "information-banner": {
       "type": "information-banner",

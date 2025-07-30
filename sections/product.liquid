@@ -19,9 +19,10 @@
   }
 </style>
 
+
+
 <section class="py-8 bg-white md:py-16 dark:bg-gray-900 antialiased rounded-lg mb-5">
   <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
-    
     <div class="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
       
       <!-- Galería de imágenes -->
@@ -33,77 +34,100 @@
             {% for image in product.images %}
               <button onclick="document.getElementById('main-image').src='{{ image | img_url: '1024x1024' }}'"
                       class="border border-gray-200 rounded-md overflow-hidden hover:ring-2 ring-gray-400">
-                <img src="{{ image | img_url: '150x150' }}" alt="Vista {{ forloop.index }}" class="w-16 h-16 object-cover"  width="100" height="100">
+                <img src="{{ image | img_url: '150x150' }}" alt="Vista {{ forloop.index }}" class="w-16 h-16 object-cover" width="100" height="100">
               </button>
             {% endfor %}
           </div>
 
-          <!-- Imagen con zoom tipo lupa -->
+          <!-- Imagen con zoom -->
           <div class="flex-1 relative zoom-container rounded-md" onmousemove="zoomImage(event)" onmouseleave="resetZoom()">
             <img id="main-image"
                  src="{{ product.featured_image | img_url: '1024x1024' }}"
                  alt="{{ product.title }}"
-                 class="zoom-image w-full h-auto max-h-[500px] object-contain" /
-                width="100"
-                height="100">
+                 class="zoom-image w-full h-auto max-h-[500px] object-contain"
+                 width="100"
+                 height="100">
           </div>
-          
         </div>
       </div>
 
       <!-- Información del producto -->
       <div class="mt-6 ml-8 sm:mt-8 lg:mt-0 border p-4 w-5/6 h-auto rounded-md">
-        <h1 class=" inline-block text-2xl font-semibold text-gray-900 dark:text-white">{{ product.title }}</h1>
-        <p class=" mt-2 text-2xl font-bold color-text-brand">{{ product.price | money }}</p>
-        <p class=" -mt-1 text-xs font-sans">IVA incluido</p>
+        <h1 class="inline-block text-2xl font-semibold text-gray-900 dark:text-white">{{ product.title }}</h1>
+        <p class="mt-2 text-2xl font-bold color-text-brand">{{ product.price | money }}</p>
+        <p class="-mt-1 text-xs font-sans">IVA incluido</p>
 
-        <form class="mt-5">
-          <label for="quantity-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cantidad:</label>
-          <div class="relative flex items-center max-w-[14rem]">
-            <button type="button" id="decrement-button" data-input-counter-decrement="quantity-input" class="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
-                <svg class="w-3 h-3 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16"/>
-                </svg>
-            </button>
-            <input type="text" id="quantity-input" data-input-counter aria-describedby="helper-text-explanation" class="bg-gray-50 border-x-0 border-gray-300 h-11 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="1" required />
-            <button type="button" id="increment-button" data-input-counter-increment="quantity-input" class="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
-                <svg class="w-3 h-3 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-                </svg>
-            </button>
-          </div>
-        </form>
-        <div class="flex  flex-wrap mt-5 gap-2">
-          <button type="button" class=" w-full sm:w-2/5 h-10 text-white bg-brand-color hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        <!-- Formulario de compra con selector de cantidad funcional -->
+         {% if product.available %}
+
+          <form method="post" action="{{ routes.cart_add_url }}" class="mt-5 w-full add-to-cart-form">
+                <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+
+                <label for="quantity-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cantidad:</label>
+                <div class="relative flex items-center max-w-[14rem] mb-4">
+                  <button type="button" id="decrement-button" class="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-2 focus:outline-none">
+                    <svg class="w-3 h-3 text-gray-900 dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
+                    </svg>
+                  </button>
+                  <input 
+                    type="number" 
+                    name="quantity" 
+                    id="quantity-input" 
+                    min="1" 
+                    value="1" 
+                    data-stock="{{ product.variants.first.inventory_quantity }}"
+                    required
+                    class="bg-gray-50 border-x-0 border-gray-300 h-11 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+                  />
+                  <button type="button" id="increment-button" class="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-2 focus:outline-none">
+                    <svg class="w-3 h-3 text-gray-900 dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
+                    </svg>
+                  </button>
+                </div>
+
+                <div class="flex flex-wrap mt-5 gap-2">
+                  <button 
+                    type="button" 
+                    id="buy-now-btn"
+                    class="w-full sm:w-2/5 h-10 text-white bg-brand-color hover:bg-gray-700 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 inline-flex items-center justify-center">
+                    Comprar ahora
+                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+                    </svg>
+                  </button>
+                  <button type="submit" class="w-full sm:w-1/2 h-10 text-white bg-brand-color hover:bg-gray-700 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 inline-flex items-center">
+                    Agregar al carrito
+                    <svg class="w-3.5 h-3.5 me-2 ml-2" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21">
+                      <path d="M15 12a1 1 0 0 0 .962-.726l2-7A1 1 0 0 0 17 3H3.77L3.175.745A1 1 0 0 0 2.208 0H1a1 1 0 0 0 0 2h.438l.6 2.255v.019l2 7 .746 2.986A3 3 0 1 0 9 17a2.966 2.966 0 0 0-.184-1h2.368c-.118.32-.18.659-.184 1a3 3 0 1 0 3-3H6.78l-.5-2H15Z" />
+                    </svg>
+                  </button>
+                </div>
+          </form>
+          
+          {% else %}
+              <div class="flex m-auto h-52">
+                {% render 'message-no-stock' %}
+
+              </div>
             
-            Comprar ahora
-             <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-            </svg>
-          </button>
-          <button type="button" class="w-full sm:w-1/2 h-10 text-white bg-brand-color hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-              Agregar al carrito
-            <svg class="w-3.5 h-3.5 me-2 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21">
-            <path d="M15 12a1 1 0 0 0 .962-.726l2-7A1 1 0 0 0 17 3H3.77L3.175.745A1 1 0 0 0 2.208 0H1a1 1 0 0 0 0 2h.438l.6 2.255v.019l2 7 .746 2.986A3 3 0 1 0 9 17a2.966 2.966 0 0 0-.184-1h2.368c-.118.32-.18.659-.184 1a3 3 0 1 0 3-3H6.78l-.5-2H15Z"/>
-            </svg>
-          </button>
-        </div>
-       
-       
+        {% endif %} 
+     
       </div>
 
-    </div>
-     {% if product.description != blank %}
 
-    <div class="text-gray-800 text-sm leading-relaxed mt-4 m-auto p-4">
-      
-    {{ product.description }}
     </div>
+
+    {% if product.description != blank %}
+      <div class="text-gray-800 text-sm leading-relaxed mt-4 m-auto p-4">
+        {{ product.description }}
+      </div>
     {% endif %}
-
-
   </div>
 </section>
+
+
 
 <script>
   const image = document.getElementById("main-image");
@@ -122,19 +146,42 @@
   }
 </script>
 
-{% comment %}
-    {% if product.description != blank %}
-    <div class="text-gray-600 text-sm leading-relaxed mt-4">
-    {{ product.description }}
-    </div>
-    {% endif %}
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const quantityInput = document.getElementById("quantity-input");
+    const incrementBtn = document.getElementById("increment-button");
+    const decrementBtn = document.getElementById("decrement-button");
 
-    <form method="post" action="/cart/add" class="mt-6">
-        <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-        <button type="submit"
-                class="w-full sm:w-auto bg-yellow-400 hover:bg-yellow-500 text-black font-semibold px-6 py-3 rounded-md transition">
-        🛒 Comprar ahora
-        </button>
-    </form>
-    
-{% endcomment %}
+    const maxStock = parseInt(quantityInput.dataset.stock, 10) || 1;
+
+    const updateQuantity = (change) => {
+      let currentValue = parseInt(quantityInput.value, 10) || 1;
+      let newValue = currentValue + change;
+
+      if (newValue < 1) newValue = 1;
+      if (newValue > maxStock) newValue = maxStock;
+
+      quantityInput.value = newValue;
+    };
+
+    incrementBtn.addEventListener("click", () => updateQuantity(1));
+    decrementBtn.addEventListener("click", () => updateQuantity(-1));
+
+    quantityInput.addEventListener("input", () => {
+      let value = parseInt(quantityInput.value, 10);
+      if (isNaN(value) || value < 1) {
+        quantityInput.value = 1;
+      } else if (value > maxStock) {
+        quantityInput.value = maxStock;
+      }
+    });
+  });
+</script>
+
+<script>
+  document.getElementById('buy-now-btn').addEventListener('click', function () {
+    const quantity = document.getElementById('quantity-input').value;
+    const variantId = "{{ product.variants.first.id }}";
+    window.location.href = `/cart/${variantId}:${quantity}`;
+  });
+</script>

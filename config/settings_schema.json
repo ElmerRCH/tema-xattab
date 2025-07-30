@@ -9,6 +9,11 @@
       },
       {
         "type": "image_picker",
+        "id": "logo_movil",
+        "label": "Logo para dispositivos moviles"
+      },
+      {
+        "type": "image_picker",
         "id": "announcement_image",
         "label": "Imagen de anuncio"
       }
@@ -24,5 +29,81 @@
         "default": "#ed1b24"
       }
     ]
+  },
+  {
+    "name": "email",
+    "settings": [
+      {
+        "type": "text",
+        "id": "email",
+        "label": "Email",
+        "default": "example@gmail.com"
+      }
+    ]
+  },
+  {
+    "name": "Celular",
+    "settings": [
+      {
+        "type": "text",
+        "id": "phone",
+        "label": "Numero celular",
+        "default": "123"
+      }
+    ]
+  },
+  {
+  "name": "Redes Sociales",
+  "settings": [
+    {
+      "type": "url",
+      "id": "tiktok_url",
+      "label": "Enlace a TikTok"
+    },
+    {
+      "type": "textarea",
+      "id": "tiktok_svg",
+      "label": "SVG TikTok",
+      "default": "<svg fill='currentColor' ...></svg>"
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Enlace a Instagram"
+    },
+    {
+      "type": "textarea",
+      "id": "instagram_svg",
+      "label": "SVG Instagram",
+      "default": "<svg fill='currentColor' ...></svg>"
+    }
+  ]
+  },
+  {
+  "name": "Direcciones",
+  "settings": [
+    {
+      "type": "text",
+      "id": "direcction_1",
+      "label": "direccion 1"
+    },
+    {
+      "type": "text",
+      "id": "direcction_2",
+      "label": "direccion 2"
+    },
+    
+  ]
+  },
+
+  {
+      "name": "Favicon",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "favicon_image",
+          "label": "Sube tu favicon"
+        }
+      ]
   }
 ]

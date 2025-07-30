@@ -10,9 +10,11 @@
 {
   "sections": {
     "main": {
-      "type": "product",
+      "type": "page-certificates",
       "settings": {}
     }
   },
-  "order": ["main"]
+  "order": [
+    "main"
+  ]
 }

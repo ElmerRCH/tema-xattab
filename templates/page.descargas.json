@@ -10,9 +10,11 @@
 {
   "sections": {
     "main": {
-      "type": "product",
+      "type": "page-donwload",
       "settings": {}
     }
   },
-  "order": ["main"]
+  "order": [
+    "main"
+  ]
 }

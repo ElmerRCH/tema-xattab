@@ -10,9 +10,16 @@
 {
   "sections": {
     "main": {
-      "type": "product",
+      "type": "collection-template",
+      "settings": {}
+    },
+    "product_grid": {
+      "type": "collection-products",
       "settings": {}
     }
   },
-  "order": ["main"]
+  "order": [
+    "main",
+    "product_grid"
+  ]
 }
