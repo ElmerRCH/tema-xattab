@@ -110,6 +110,14 @@
             "logo_link": "https://xattab.mx/search?q=bellota",
             "logo_alt": ""
           }
+        },
+        "logo_dwnMLn": {
+          "type": "logo",
+          "settings": {
+            "logo_image": "shopify://shop_images/logo-dlab.svg",
+            "logo_link": "https://xattab.mx/search?q=dlab",
+            "logo_alt": ""
+          }
         }
       },
       "block_order": [
@@ -120,7 +128,8 @@
         "logo_aUaWKi",
         "logo_Te7dtq",
         "logo_tFtUdC",
-        "logo_LHhWPh"
+        "logo_LHhWPh",
+        "logo_dwnMLn"
       ],
       "settings": {
         "section_heading": "Encuentra las mejores marcas"
