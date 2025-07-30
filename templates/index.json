@@ -118,6 +118,14 @@
             "logo_link": "https://xattab.mx/search?q=dlab",
             "logo_alt": ""
           }
+        },
+        "logo_7xagLE": {
+          "type": "logo",
+          "settings": {
+            "logo_image": "shopify://shop_images/logo-ohaus.svg",
+            "logo_link": "https://xattab.mx/search?q=ohaus",
+            "logo_alt": ""
+          }
         }
       },
       "block_order": [
@@ -129,7 +137,8 @@
         "logo_Te7dtq",
         "logo_tFtUdC",
         "logo_LHhWPh",
-        "logo_dwnMLn"
+        "logo_dwnMLn",
+        "logo_7xagLE"
       ],
       "settings": {
         "section_heading": "Encuentra las mejores marcas"
@@ -138,8 +147,8 @@
     "view-product": {
       "type": "view-product",
       "settings": {
-        "product": "microscopio-biologico-trinocular-cx43-olympus"
-
+        "product": "microscopio-biologico-trinocular-cx43-olympus",
+        "handles": "centrifuga-digital-4000rpm-12x15ml-jf-lhabo,colorimetro-digital-portatil-jf-lhabo,balanza-analizadora-de-humedad-ohaus,espectrofotometro-digital-jf-lhabo-jf721s,espectrofotometro-visible-digital-sp-v1000-kelve,espectrofotometro-uv-visible-sp-uv1000-kelve,microscopio-binocular-cxl-halogeno-labomed,micropipeta-autoclavble-10-100-ul-jf-lhabo,micropipeta-autoclavable-20-200-ul-jf-lhabo,micropipeta-autoclavable-100-1000-ul-jf-lhabo,micropipeta-autoclavable-2-10-ml-jf-lhabo,microscopio-biologico-cx23-olympus,microscopio-binocular-cxl-led-labomed,micropipeta-autoclavable-0-1-2-5-ul-jf-lhabo,micropipeta-autoclavable-2-20-ul-jf-lhabo,micropipeta-autoclavable-5-50-ul-jf-lhabo,balanza-analitica-calibracion-interna-220x-0001g-jf-lhabo,balanza-analitica-220x-0001g-jf-lhabo,bomba-de-vacio-para-equipo-de-filtracion-10l-jf-lhabo,termoagitador-120-x-120-mm-sh-2-jf-lhabo,espectrofotometro-uv-visible-modelo-jf-lhabo,espectrofotometro-digital-jf721-jf-lhabo,sp42-soporte-de-acrilico-para-pipetas-serologicas-42-orificios,sp32-soporte-de-acrilico-para-pipetas-serologicas-32-orificios,camara-de-neubauer-hematocitometro-linea-brillante-kelve,camara-de-neubauer-hematocitometro-linea-brillante-paq-c-2-kelve,balanza-digital-de-bolsillo-50g-0-001g-kelve,balanza-digital-de-bolsillo-200g-0-01g-kelve,microscopio-biologico-trinocular-cx33-olympus,microscopio-biologico-trinocular-cx43-olympus,microscopio-am2111-dino-lite,microscopio-dino-lite-am3111,balanza-analitica-calibracion-externa-220x-0001g-jf-lhabo-1,foco-led-p-microscopio-1w-6v,balanza-portatil-uso-rudo-200g-0-01g,medidor-de-ph-mv-temp-jf-laren-220,medidor-de-ph-mv-temp-jf-laren-221,camara-digital-c-mount-3146100-16-mp-usb-3-0-atlas-labomed,microscopio-estereo-digital-4z-c-camar"
       }
     },
     "information-banner": {
