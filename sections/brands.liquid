@@ -1,50 +1,84 @@
- {% if section.settings.section_heading != blank %}
+{% if section.settings.section_heading != blank %}
   <h2 class=" text-2xl font-semibold text-start mb-4 text-gray-900">
     {{ section.settings.section_heading }}
   </h2>
 {% endif %}
 
-
-
-<section class="bg-white  antialiased  rounded-md sm:h-20" >
-  <div class=" mx-auto px-6">
-     
-      <div class="flex grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 text-gray-500  bg-emerald-400 ">
-       {% for block in section.blocks %}
+<section class="bg-white dark:bg-gray-900 rounded-md py-4 relative overflow-hidden">
+  <div class="mx-auto px-6">
+    
+    <!-- Contenedor del carrusel -->
+    <div class="flex gap-8 text-gray-500 overflow-x-auto scroll-smooth no-scrollbar flex-nowrap" id="brandCarousel">
+      {% for block in section.blocks %}
         {% if block.settings.logo_image != blank %}
-          <div class="flex items-center justify-center mt-1">
-            {% assign delay_ms = forloop.index0 | times: 200 %}
+          <div class="flex-shrink-0 flex items-center justify-center min-w-[120px] sm:min-w-[150px] animate-float-in">
             {% if block.settings.logo_link != blank %}
               <a href="{{ block.settings.logo_link }}" target="_blank" rel="noopener noreferrer">
                 <img
                   loading="lazy"
-                  height="200"
-                  width="200"
+                  height="120"
+                  width="120"
                   src="{{ block.settings.logo_image | image_url: width: 200 }}"
                   alt="{{ block.settings.logo_alt | escape }}"
-                  class="max-h-16 object-contain animate-float-in transition duration-300 cursor-pointer personal-shadow"
-                  style="animation-delay: {{ delay_ms }}ms;"
+                  class="max-h-16 w-auto object-contain transition duration-300 cursor-pointer hover:scale-105"
                 >
               </a>
             {% else %}
               <img
                 loading="lazy"
-                height="200"
-                width="200"
+                height="120"
+                width="120"
                 src="{{ block.settings.logo_image | image_url: width: 200 }}"
                 alt="{{ block.settings.logo_alt | escape }}"
-                class="max-h-16 object-contain animate-float-in transition duration-300 personal-shadow"
-                style="animation-delay: {{ delay_ms }}ms;"
+                class="max-h-16 w-auto object-contain transition duration-300"
               >
             {% endif %}
           </div>
         {% endif %}
       {% endfor %}
+    </div>
 
-      </div>
+    <!-- Botón Izquierda -->
+    <button id="scrollLeft" class="absolute left-0 top-1/2 -translate-y-1/2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full shadow p-2 hover:bg-gray-100 dark:hover:bg-gray-700 hidden">
+      &#10094;
+    </button>
+
+    <!-- Botón Derecha -->
+    <button id="scrollRight" class="absolute right-0 top-1/2 -translate-y-1/2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full shadow p-2 hover:bg-gray-100 dark:hover:bg-gray-700">
+      &#10095;
+    </button>
+
   </div>
-    
 </section>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const carousel = document.getElementById('brandCarousel');
+    const btnLeft = document.getElementById('scrollLeft');
+    const btnRight = document.getElementById('scrollRight');
+    const scrollAmount = 200;
+
+    function toggleButtons() {
+      btnLeft.classList.toggle('hidden', carousel.scrollLeft <= 0);
+      btnRight.classList.toggle('hidden', carousel.scrollLeft + carousel.offsetWidth >= carousel.scrollWidth - 10);
+    }
+
+    btnRight.addEventListener('click', () => {
+      carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      setTimeout(toggleButtons, 400);
+    });
+
+    btnLeft.addEventListener('click', () => {
+      carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+      setTimeout(toggleButtons, 400);
+    });
+
+    carousel.addEventListener('scroll', toggleButtons);
+    toggleButtons();
+  });
+
+</script>
 
 
 {% schema %}
@@ -94,6 +128,14 @@
 
 
 <style>
+  /* Oculta scroll nativo */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 
   .personal-shadow:hover{
     filter:drop-shadow(

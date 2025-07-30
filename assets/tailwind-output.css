@@ -1499,8 +1499,16 @@ input[type="range"]::-ms-fill-lower {
   width: 100%;
 }
 
+.w-auto {
+  width: auto;
+}
+
 .min-w-0 {
   min-width: 0px;
+}
+
+.min-w-\[120px\] {
+  min-width: 120px;
 }
 
 .max-w-2xl {
@@ -1658,6 +1666,10 @@ input[type="range"]::-ms-fill-lower {
 
 .flex-wrap {
   flex-wrap: wrap;
+}
+
+.flex-nowrap {
+  flex-wrap: nowrap;
 }
 
 .items-start {
@@ -2140,6 +2152,11 @@ input[type="range"]::-ms-fill-lower {
 .py-8 {
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .pb-4 {
@@ -2840,6 +2857,10 @@ input[type="range"]::-ms-fill-lower {
 
   .sm\:w-auto {
     width: auto;
+  }
+
+  .sm\:min-w-\[150px\] {
+    min-width: 150px;
   }
 
   .sm\:grid-cols-2 {
