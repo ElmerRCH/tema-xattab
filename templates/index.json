@@ -94,6 +94,14 @@
             "logo_link": "https://xattab.mx/search?q=labomed",
             "logo_alt": ""
           }
+        },
+        "logo_tFtUdC": {
+          "type": "logo",
+          "settings": {
+            "logo_image": "shopify://shop_images/logos-urrea-valvulas.svg",
+            "logo_link": "https://xattab.mx/collections/hogar-y-electrodomesticos?filter.p.vendor=Urrea",
+            "logo_alt": ""
+          }
         }
       },
       "block_order": [
@@ -102,7 +110,8 @@
         "logo_ckdrKi",
         "logo_DYbYKk",
         "logo_aUaWKi",
-        "logo_Te7dtq"
+        "logo_Te7dtq",
+        "logo_tFtUdC"
       ],
       "settings": {
         "section_heading": "Encuentra las mejores marcas"
