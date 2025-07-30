@@ -202,10 +202,15 @@
       "settings": {
         "section_heading": "Todas las categorias",
         "collections_to_show": [
-          "colorantes",
           "equipos-de-medicion-y-analiticos",
           "ferreteria",
-          "productos-kelve"
+          "hogar-y-electrodomesticos",
+          "consumibles",
+          "colorantes",
+          "productos-kelve",
+          "productos-xattab",
+          "suplementos",
+          "vidrieria"
         ]
       }
     }
