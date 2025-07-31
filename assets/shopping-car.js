@@ -1,16 +1,21 @@
-// ✅ Actualiza el contador del carrito
+// ✅ Actualiza el contador del carrito dinámicamente
 async function updateCartCount() {
     try {
         const response = await fetch('/cart.js');
         const cart = await response.json();
-        const cartCountElement = document.getElementById('cart-count');
-        if (cartCountElement) {
-            cartCountElement.textContent = cart.item_count;
-        }
+        const cartCounters = document.querySelectorAll('.cart-count');
+        
+        cartCounters.forEach(counter => {
+            counter.textContent = cart.item_count;
+            if (cart.item_count > 0) {
+                counter.parentElement.classList.remove("hidden");
+            }
+        });
     } catch (error) {
         console.error('Error al actualizar el contador del carrito:', error);
     }
 }
+
 
 // ✅ Maneja el envío de formularios "Agregar al carrito"
 document.querySelectorAll('.add-to-cart-form').forEach(form => {
@@ -45,6 +50,7 @@ document.querySelectorAll('.add-to-cart-form').forEach(form => {
             });
 
             if (response.ok) {
+                // ✅ Actualizar contador dinámicamente
                 await updateCartCount();
 
                 // Restaurar el botón después de 1 segundo
@@ -63,3 +69,6 @@ document.querySelectorAll('.add-to-cart-form').forEach(form => {
         }
     });
 });
+
+// ✅ Mantener el contador actualizado al cargar la página
+document.addEventListener("DOMContentLoaded", updateCartCount);
