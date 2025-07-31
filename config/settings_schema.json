@@ -38,6 +38,12 @@
         "id": "email",
         "label": "Email",
         "default": "example@gmail.com"
+      },
+      {
+        "type": "text",
+        "id": "email_2",
+        "label": "Email",
+        "default": "example@gmail.com"
       }
     ]
   },

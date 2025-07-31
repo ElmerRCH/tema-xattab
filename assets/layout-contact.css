@@ -110,7 +110,7 @@
     .subcontainer-1{
 
         flex-wrap: wrap;
-        justify-content: start;
+        justify-content: center;
     }
     .border-r{
         width: 70%;
