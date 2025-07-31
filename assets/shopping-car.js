@@ -44,7 +44,7 @@ document.querySelectorAll('.add-to-cart-form').forEach(form => {
             const currentQty = existingItem ? existingItem.quantity : 0;
 
             if ((currentQty + quantityToAdd) > stock) {
-                showNotification("⚠️ Has alcanzado la cantidad máxima disponible para este producto.");
+                showNotification("⚠️ Cantidad máxima disponible para este producto.");
                 return;
             }
 
@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (newValue < 1) newValue = 1;
         if (newValue > getRemainingStock()) {
             newValue = getRemainingStock();
-            showNotification("⚠️ Has alcanzado la cantidad máxima disponible para este producto.");
+            showNotification("⚠️ cantidad máxima disponible para este producto.");
         }
 
         quantityInput.value = newValue;
