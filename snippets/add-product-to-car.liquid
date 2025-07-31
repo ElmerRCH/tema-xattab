@@ -1,5 +1,6 @@
 <form method="post" action="{{ routes.cart_add_url }}" 
       class="mt-5 w-full add-to-cart-form" 
+      data-stock="{{ product.selected_or_first_available_variant.inventory_quantity }}"
       data-product-id="{{ product.id }}">
   <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
   <input type="hidden" name="quantity" value="1" class="quantity-field">
