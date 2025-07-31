@@ -20,3 +20,9 @@
 .shadow-bottom{
   box-shadow: 0 1px 15px  var(--brand-color)
 }
+
+ .form-field-input:focus {
+        border-color: var(--brand-color);
+        outline: none;
+        box-shadow: 0 1px 15px  var(--brand-color)
+    }
