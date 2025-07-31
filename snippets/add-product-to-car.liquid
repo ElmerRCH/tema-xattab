@@ -1,36 +1,18 @@
-<form method="post" action="{{ routes.cart_add_url }}" class="mt-5 w-full add-to-cart-form">
+<form method="post" action="{{ routes.cart_add_url }}" 
+      class="mt-5 w-full add-to-cart-form" 
+      data-product-id="{{ product.id }}">
   <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-
-  <div class="flex flex-wrap mt-5 gap-2 bg-red-300">
+  <input type="hidden" name="quantity" value="1" class="quantity-field">
+  
+  <div class="flex flex-wrap mt-5 gap-2">
     <button 
       type="submit" 
-      class="relative w-full sm:w-1/2 h-10 text-white bg-[var(--brand-color)] hover:bg-gray-700 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 inline-flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200">
+      class="relative w-full h-10 text-white bg-[var(--brand-color)] hover:bg-gray-700 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 inline-flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200">
       <span class="button-text">Agregar al carrito</span>
-      <svg class="w-4 h-4 ml-2" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21" aria-hidden="true">
+      <svg class="w-4 h-4 ml-2" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21">
         <path d="M15 12a1 1 0 0 0 .962-.726l2-7A1 1 0 0 0 17 3H3.77L3.175.745A1 1 0 0 0 2.208 0H1a1 1 0 0 0 0 2h.438l.6 2.255v.019l2 7 .746 2.986A3 3 0 1 0 9 17a2.966 2.966 0 0 0-.184-1h2.368c-.118.32-.18.659-.184 1a3 3 0 1 0 3-3H6.78l-.5-2H15Z" />
       </svg>
       <span class="loading-spinner hidden absolute right-4 w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
     </button>
   </div>
 </form>
-
-
-
-<script>
-
-    document.addEventListener("DOMContentLoaded", () => {
-     document.querySelectorAll(".add-to-cart-form").forEach(form => {
-        form.addEventListener("submit", function (e) {
-        const btn = this.querySelector("button");
-        const text = btn.querySelector(".button-text");
-        const spinner = btn.querySelector(".loading-spinner");
-
-        // Mostrar estado de carga
-        btn.disabled = true;
-        text.textContent = "Agregando...";
-        spinner.classList.remove("hidden");
-        });
-    });
-    });
-
-</script>

@@ -29,10 +29,10 @@
     <div class="flex items-center justify-between mt-auto">
       <span class="text-xl font-bold color-text-brand">
           {% if product.available %}
-            {{ product.price | money }}
-            {% comment %}
-              {% render 'add-product-to-car' %}
-            {% endcomment %}
+            
+              {{ product.price | money }}
+              {% render 'add-product-to-car', product: product %}
+
             
           {% else %}
 
