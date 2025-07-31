@@ -1,7 +1,9 @@
 
 .bg-brand-color {
+  
   background: var(--brand-color);
 }
+
 
 .border-brand {
   border: 2px solid var(--brand-color);
