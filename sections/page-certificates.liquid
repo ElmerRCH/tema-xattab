@@ -1,1 +1,299 @@
-{% render 'announcent' %}
+<style>
+
+    .form-field-input {
+        width: 80%;
+        padding: 10px;
+        margin: auto;
+        margin-top: 5%;
+        margin-bottom: 5%;
+        border: 1px solid var(--brand-color);
+        border-radius: 5px;
+        font-size: 16px;
+    }
+   
+    .button-primary {
+        background-color: var(--brand-color);
+        color: white;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .button-secondary {
+        text-align: center;
+        text-decoration: none;
+        background-color: var(--brand-color);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 20px;
+        font-size: auto;
+        font-weight: bold;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    .button-primary:hover {
+        background-color: var(--brand-color);
+    }
+    .certificate-list table {
+        width: 80%;
+        margin: 20px auto;
+        border-collapse: collapse;
+    }
+    .certificate-list th, .certificate-list td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+    }
+    .certificate-list th {
+        background-color: var(--brand-color);
+        color: #333;
+    }
+    .login-container {
+        max-width: 400px;
+        margin: 20px auto;
+        padding: 20px;
+        border-radius: 8px;
+        background-color: #fff;
+    }
+   
+    .pagination, .year-buttons {
+        text-align: center;
+        margin: 20px 0;
+    }
+    .pagination button, .year-buttons button {
+        margin: 5px;
+        padding: 8px 15px;
+        background-color: var(--brand-color);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .pagination button:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+    }
+  
+    .button-primary {
+        background-color: var(--brand-color);
+        color: white;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .button-secondary {
+        text-align: center;
+        text-decoration: none;
+        background-color: var(--brand-color);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 20px;
+        font-size: auto;
+        font-weight: bold;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    .button-primary:hover {
+        background-color: var(--brand-color);
+    }
+    .button-primary:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+        color: var(--brand-color);
+    }
+
+    /* Tabla de certificados */
+    .certificate-list table {
+        width: 80%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .certificate-list th, .certificate-list td {
+        border: 1px solid #var(--brand-color);
+        padding: 12px;
+        text-align: left;
+    }
+    .certificate-list th {
+        background-color: #var(--brand-color);
+        color: #333;
+        font-weight: bold;
+    }
+    .certificate-list td {
+        background-color: #var(--brand-color);
+    }
+    .certificate-list tr:nth-child(even) td {
+        background-color: #var(--brand-color);
+    }
+
+    .login-container {
+        max-width: 400px;
+        margin: 20px auto;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        background-color: #var(--brand-color);
+    }
+    .login-text {
+        color: #555;
+        font-size: 16px;
+    }
+
+    .fade-in {
+        display: block;
+        opacity: 0;
+        transition: opacity 0.5s ease-in;
+    }
+    .fade-in.show {
+        opacity: 1;
+    }
+
+</style>
+
+<div class="full-width-container" style="text-align: center;">
+    <div class="login-container fade-in" style="display: none;">
+        <p class="login-text" style="margin-bottom: 10px; display: none;">
+            Para acceder a los certificados, ingrese su usuario y contraseña:
+        </p>
+        <input class="form-field-input" id="username-input" type="text" placeholder="Ingrese usuario" autofocus>
+        <input class="form-field-input" id="password-input" type="password" placeholder="Ingrese contraseña">
+        <button id="login-button" class="button-primary">Ver Certificados</button>
+    </div>
+
+    <div class="certificate-list fade-in" style="display:none">
+        <div class="year-buttons" id="year-buttons"></div>
+        <div id="certificate-container"></div>
+        <div class="pagination" id="pagination"></div>
+    </div>
+</div>
+
+<script>
+    let allCertificados = [];
+    let currentYear = null;
+    let currentPage = 1;
+    const itemsPerPage = 5;
+
+    function getUserCertificates(username, password) {
+        return fetch('{{ "certificados.json" | asset_url }}')
+            .then(response => response.json())
+            .then(data => {
+                const user = data.find(u => u.username === username && u.password === password);
+                return user ? user.certificados : [];
+            });
+    }
+
+    function showLoginInput() {
+        document.querySelector('.login-container').style.display = 'block';
+        document.querySelector('.login-container').classList.add('show');
+    }
+
+    function validateLogin() {
+        const username = document.getElementById('username-input').value;
+        const password = document.getElementById('password-input').value;
+
+        getUserCertificates(username, password).then(certificados => {
+            if (certificados.length > 0) {
+                allCertificados = certificados;
+                showYearButtons(certificados);
+                showCertificateList();
+            } else {
+                alert('Usuario o contraseña incorrectos o sin certificados.');
+            }
+        });
+    }
+
+    function showYearButtons(certificados) {
+        const yearButtonsContainer = document.getElementById('year-buttons');
+        yearButtonsContainer.innerHTML = '';
+
+        certificados.forEach(item => {
+            const year = Object.keys(item)[0];
+            const button = document.createElement('button');
+            button.textContent = year;
+            button.onclick = () => {
+                currentYear = year;
+                currentPage = 1;
+                showCertificateList();
+            };
+            yearButtonsContainer.appendChild(button);
+        });
+    }
+
+    function showCertificateList() {
+        document.querySelector('.login-container').style.display = 'none';
+        document.querySelector('.certificate-list').style.display = 'block';
+        document.querySelector('.certificate-list').classList.add('show');
+
+        const container = document.getElementById('certificate-container');
+        container.innerHTML = '';
+
+        const yearData = allCertificados.find(item => item[currentYear]);
+        if (!yearData) return;
+
+        const certificados = yearData[currentYear];
+        const start = (currentPage - 1) * itemsPerPage;
+        const paginatedCertificados = certificados.slice(start, start + itemsPerPage);
+
+        const table = document.createElement('table');
+        table.innerHTML = `
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>PDF</th>
+                </tr>
+            </thead>
+        `;
+        const tbody = document.createElement('tbody');
+        paginatedCertificados.forEach(cert => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${cert.nombre}</td>
+                <td><a class="button-secondary" href="${cert.cetificados_url}" target="_blank">Descargar</a></td>
+            `;
+            tbody.appendChild(row);
+        });
+        table.appendChild(tbody);
+        container.appendChild(table);
+
+        showPagination(certificados.length);
+    }
+
+    function showPagination(totalItems) {
+        const pagination = document.getElementById('pagination');
+        pagination.innerHTML = '';
+
+        const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+        const prevButton = document.createElement('button');
+        prevButton.textContent = 'Anterior';
+        prevButton.disabled = currentPage === 1;
+        prevButton.onclick = () => {
+            currentPage--;
+            showCertificateList();
+        };
+        pagination.appendChild(prevButton);
+
+        const nextButton = document.createElement('button');
+        nextButton.textContent = 'Siguiente';
+        nextButton.disabled = currentPage === totalPages;
+        nextButton.onclick = () => {
+            currentPage++;
+            showCertificateList();
+        };
+        pagination.appendChild(nextButton);
+    }
+
+    document.getElementById('login-button').addEventListener('click', validateLogin);
+    document.getElementById('password-input').addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') validateLogin();
+    });
+
+    document.addEventListener('DOMContentLoaded', showLoginInput);
+</script>
