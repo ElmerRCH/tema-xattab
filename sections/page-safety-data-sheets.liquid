@@ -1,1 +1,152 @@
-{% render 'announcent' %}
+<div class="sheet-list fade-in bg-white " style="display:none">
+    <table id="sheet-table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>PDF</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <div class="pagination-controls">
+        <button id="prev-page" onclick="changePage(-1)">Anterior</button>
+        <span id="page-info"></span>
+        <button id="next-page" onclick="changePage(1)">Siguiente</button>
+    </div>
+</div>
+
+<style>
+    #sheet-table{
+        width:100%;
+
+    
+    }
+    .fade-out {
+        opacity: 0;
+        transition: opacity 0.5s ease-out;
+    }
+    .fade-in {
+        display: block;
+        opacity: 0;
+        transition: opacity 0.5s ease-in;
+    }
+    .fade-in.show {
+        opacity: 1;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid gray;
+        padding: 5px;
+        text-align: left;
+    }
+    .sheet-list {
+        text-align: center;
+    }
+    .sheet-list table {
+        margin: 0 auto;
+
+
+    }
+    .pagination-controls {
+        margin-top: 10px;
+    }
+    .pagination-controls button {
+        padding: 5px 10px;
+        margin: 0 5px;
+        cursor: pointer;
+        background:var(--brand-color);
+        border:none;
+        border-radius: 5px;
+    }
+    .sheet-list {
+    width: 100%;
+    margin: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .button-secondary {
+    text-align: center;
+    text-decoration: none;
+    background-color: var(--brand-color);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 5px 5px;
+    font-size: auto;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    .button-secondary:hover {
+    background-color: black;
+    transform: scale(1.05);
+    }
+   
+</style>
+
+<script>
+    let currentPage = 1;
+    const itemsPerPage = 5;
+    let sheetData = [];
+
+    function getSheets() {
+        return fetch('{{ "hojas.json" | asset_url }}')
+            .then(response => response.json())
+            .then(data => {
+                return data;
+            })
+            .catch(error => {
+                console.error('Error cargando JSON Hojas:', error);
+                return [];
+            });
+    }
+
+    function showSheetList(files) {
+        sheetData = files;
+        updateTable();
+        document.querySelector('.sheet-list').style.display = 'block';
+        setTimeout(function() {
+            document.querySelector('.sheet-list').classList.add('show');
+        }, 10);
+    }
+
+    function updateTable() {
+        const tbody = document.querySelector('#sheet-table tbody');
+        tbody.innerHTML = '';
+
+        const start = (currentPage - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+        const pageItems = sheetData.slice(start, end);
+
+        pageItems.forEach(file => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${file.name}</td>
+                <td><a class="button-secondary" href="${file.url_shopify}" target="_blank" style="color:#ffffff">Descargar</a></td>
+            `;
+            tbody.appendChild(row);
+        });
+
+        document.getElementById('page-info').textContent = `Página ${currentPage} de ${Math.ceil(sheetData.length / itemsPerPage)}`;
+    }
+
+    function changePage(direction) {
+        const totalPages = Math.ceil(sheetData.length / itemsPerPage);
+        currentPage += direction;
+
+        if (currentPage < 1) currentPage = 1;
+        if (currentPage > totalPages) currentPage = totalPages;
+
+        updateTable();
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        getSheets().then(response => {
+            showSheetList(response);
+        });
+    });
+</script>
+
