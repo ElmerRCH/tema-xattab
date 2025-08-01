@@ -1,10 +1,10 @@
 <!-- snippets/filters.liquid -->
 <div id="filterModal" tabindex="-1" aria-hidden="true" class="fixed left-0 right-0 top-0 z-50 hidden h-modal w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0 md:h-full">
   <div class="relative h-full w-full max-w-xl md:h-auto">
-    <div class="relative rounded-lg bg-white shadow dark:bg-gray-800">
+    <div class="relative rounded-lg bg-white shadow">
       <div class="flex items-start justify-between rounded-t p-4 md:p-5">
-        <h3 class="text-lg font-normal text-gray-500 dark:text-gray-400">Filtros</h3>
-        <button type="button" class="ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="filterModal">
+        <h3 class="text-lg font-normal text-gray-500 ">Filtros</h3>
+        <button type="button" class="ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-100 hover:text-gray-900" data-modal-toggle="filterModal">
           <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"/></svg>
           <span class="sr-only">Cerrar modal</span>
         </button>
@@ -16,7 +16,7 @@
           <div class="grid grid-cols-2 gap-4 md:grid-cols-3" id="brand" role="tabpanel" aria-labelledby="brand-tab">
             {% for filter in collection.filters %}
               <div class="space-y-2">
-                <h5 class="text-lg font-medium uppercase text-black dark:text-white">{{ filter.label }}</h5>
+                <h5 class="text-lg font-medium uppercase text-black">{{ filter.label }}</h5>
 
                 {% case filter.type %}
                   {% when 'list' %}
@@ -28,9 +28,9 @@
                           name="{{ filter.param_name }}"
                           value="{{ value.value }}"
                           {% if value.active %}checked{% endif %}
-                          class="filter-checkbox h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                          class="filter-checkbox h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500"
                         />
-                        <label for="{{ filter.label | handleize }}_{{ forloop.index }}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                        <label for="{{ filter.label | handleize }}_{{ forloop.index }}" class="ml-2 text-sm font-medium text-gray-900">
                           {{ value.label }} ({{ value.count }})
                         </label>
                       </div>
@@ -43,8 +43,8 @@
 
         <!-- ✅ Botones del formulario -->
         <div class="flex items-center justify-between rounded-b pt-4 md:p-5">
-          <button id="clearFiltersBtn" type="reset" class="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Limpiar</button>
-          <button type="submit" class="rounded-lg bg-black px-5 py-2.5 text-sm font-medium text-white dark:bg-white dark:text-black">Aplicar</button>
+          <button id="clearFiltersBtn" type="reset" class="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700">Limpiar</button>
+          <button type="submit" class="rounded-lg bg-black px-5 py-2.5 text-sm font-medium text-white">Aplicar</button>
         </div>
       </form>
     </div>

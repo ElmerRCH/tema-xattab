@@ -53,8 +53,6 @@
 {% endschema %}
 
 
-
-
 <style>
   .benefit-icon svg {
     width: 2rem;
@@ -63,11 +61,10 @@
 </style>
 
 
-
-<section class="bg-white dark:bg-gray-800 py-6 px-4 mt-4 rounded-md">
+<section class="bg-white py-6 px-4 mt-4 rounded-md">
   <div class="max-w-7xl mx-auto">
     {% if section.settings.section_heading != blank %}
-      <h2 class="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white text-center mb-6">
+      <h2 class="text-xl sm:text-2xl font-semibold text-gray-900 text-center mb-6">
         {{ section.settings.section_heading }}
       </h2>
     {% endif %}
@@ -78,7 +75,7 @@
           <div class="benefit-icon " style="color: {{ block.settings.icon_color }}">
             {{ block.settings.icon_svg }}
           </div>
-          <p class="text-gray-800 dark:text-white text-base font-medium">{{ block.settings.title }}</p>
+          <p class="text-gray-800 text-base font-medium">{{ block.settings.title }}</p>
         </div>
       {% endfor %}
     </div>

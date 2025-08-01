@@ -1,28 +1,4 @@
 
-<!-- sections/search.liquid -->
-{% comment %}
-  <section class="w-full max-w-6xl mx-auto p-4">
-
-  {% assign total_results = search.results_count %}
-
-  {% if total_results > 0 and search.results.size > 0 %}
-    <p class="mb-4 text-gray-700">
-      Mostrando {{ total_results }} resultados para "<strong>{{ search.terms }}</strong>"
-    </p>
-
-    
-    
-  {% else %}
-    <p class="text-center text-gray-600 mt-10">
-      No se encontraron productos para "<strong>{{ search.terms }}</strong>".
-    </p>
-  {% endif %}
-
-  </section>
-
-  
-{% endcomment %}
-
 {% paginate search.results by 12 %}
       {% render 'product-grid', products: search.results, paginate: paginate %}
 {% endpaginate %}
